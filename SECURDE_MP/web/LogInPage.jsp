@@ -33,7 +33,7 @@
                 });
                 
                 $('#loginBtn').on('click', function(){
-                    window.location.href = "LogInPage.html";
+                    window.location.href = "LogInPage.jsp";
                 });
                 
             });
