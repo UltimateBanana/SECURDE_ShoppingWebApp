@@ -16,7 +16,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-        <link rel="stylesheet" href="HomePage.css">
+        <link rel="stylesheet" href="LogInPage.css">
         
         <title>Talaria Footwear Company</title>
         
@@ -25,7 +25,7 @@
             $(document).ready(function(){
                 
                 $('#goHome').on('click', function(){
-                    window.location.href = "test.html";
+                    window.location.href = "index.jsp";
                 });
                 
                 $('#signupBtn').on('click', function(){
