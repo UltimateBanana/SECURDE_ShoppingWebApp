@@ -58,7 +58,7 @@
                             <div class="form-group">
                               <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Search">
                             </div>
-                            <button type="submit" class="btn btn-default navbar-btn" id="submitsearchBtn" nae="submitsearchBtn">
+                            <button type="submit" class="btn btn-default navbar-btn" id="submitsearchBtn" name="submitsearchBtn">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </form>
