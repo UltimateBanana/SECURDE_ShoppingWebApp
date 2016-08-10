@@ -70,31 +70,31 @@
             <div class="col-md-12">
                 <div class="modal-dialog" style="margin-bottom:0">
                     <div class="modal-content">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Sign In</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <form role="form" id="loginForm" name="loginForm">
-                                        <fieldset>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Username" name="usernameSignIn" id="usernameSignIn" type="text" autofocus="">
-                                            </div>
-                                            <div class="form-group">
-                                                <input class="form-control" placeholder="Password" name="passwordSignIn" id="passwordSignIn" type="password" value="">
-                                            </div>
-                                            <div class="checkbox">
-                                                <label>
-                                                    <input name="rememberCBoxSignIn" id="rememberCBoxSignIn" type="checkbox" value="Remember Me">Remember Me
-                                                </label>
-                                            </div>
-                                            <!-- Change this to a button or input when using this as a form -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sign In</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" id="loginForm" name="loginForm">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Username" name="usernameSignIn" id="usernameSignIn" type="text" autofocus="">
+                                    </div>
+                                    <div class="form-group">
+                                        <input class="form-control" placeholder="Password" name="passwordSignIn" id="passwordSignIn" type="password" value="">
+                                    </div>
+                                    <div class="checkbox">
+                                        <label>
+                                            <input name="rememberCBoxSignIn" id="rememberCBoxSignIn" type="checkbox" value="Remember Me">Remember Me
+                                        </label>
+                                    </div>
+                                    <!-- Change this to a button or input when using this as a form -->
 <!--                                            <a href="javascript:;" class="btn btn-sm btn-success">Login</a>-->
-                                            <input type="submit" class="btn btn-success" id="signinSubmit" name="signinSubmit" value="Sign In" />
-                                            
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
+                                    <input type="submit" class="btn btn-success" id="signinSubmit" name="signinSubmit" value="Sign In" />
+
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /content -->

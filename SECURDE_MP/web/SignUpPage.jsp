@@ -36,6 +36,8 @@
                     window.location.href = "LogInPage.jsp";
                 });
                 
+                
+                
             });
             
         </script>
@@ -70,88 +72,88 @@
             <div class="col-md-12">
                 <div class="modal-dialog" style="margin-bottom:0">
                     <div class="modal-content">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Sign Up</h3>
-                                </div>
-                                <div class="panel-body">
-                                    <form role="form" id="signupForm" name="signupForm">
-                                        <fieldset>
-                                            <!-- Name (First, Middle Initial, Last -->
-                                            <div class="col-sm-4 form-group">
-                                                <input class="form-control" placeholder="First Name" name="fnameSignUp" id="fnameSignUp" type="text" autofocus="">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <input class="form-control" placeholder="Middle Initial" name="minitialSignUp" id="minitialSignUp" type="text" autofocus="">
-                                            </div>
-                                            <div class="col-sm-4 form-group">
-                                                <input class="form-control" placeholder="Last Name" name="lnameSignUp" id="lnameSignUp" type="text" autofocus="">
-                                            </div>
-                                            
-                                            <!-- Username, Password, and Email -->
-                                            <div class="col-sm-6 form-group">
-                                                <input class="form-control" placeholder="Username" name="usernameSignUp" id="usernameSignUp" type="text" autofocus="">
-                                            </div>
-                                            <div class="col-sm-6 form-group">
-                                                <input class="form-control" placeholder="Password" name="passwordSignUp" id="passwordSignUp" type="password" value="">
-                                            </div>
-                                            <div class="col-sm-12 form-group">
-                                                <input class="form-control" placeholder="E-mail" name="emailSignUp" id="emailSignUp" type="email" value="">
-                                            </div>
-                                            
-                                            <!-- Billing Address and Shipping Address -->
-                                            <div id="billingAddress">
-                                                <label class="col-sm-12">Billing Address</label>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="House #" name="housenumBA" id="housenumBA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Street" name="streetBA" id="streetBA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Subdivision" name="subdivisionBA" id="subdivisionBA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="City" name="cityBA" id="cityBA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Postal Code" name="postalcodeBA" id="postalcodeBA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Country" name="countryBA" id="countryBA" type="text" autofocus="">
-                                                </div>
-                                            </div>
-                                            
-                                            <div id="billingAddress">
-                                                <label class="col-sm-12">Shipping Address</label>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="House #" name="housenumSA" id="housenumSA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Street" name="streetSA" id="streetSA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Subdivision" name="subdivisionSA" id="subdivisionSA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="City" name="citySA" id="citySA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Postal Code" name="postalcodeSA" id="postalcodeSA" type="text" autofocus="">
-                                                </div>
-                                                <div class="col-sm-3 form-group">
-                                                    <input class="form-control" placeholder="Country" name="countrySA" id="countrySA" type="text" autofocus="">
-                                                </div>
-                                            </div>
-                                            
-                                            <!-- Change this to a button or input when using this as a form -->
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Sign Up</h3>
+                        </div>
+                        <div class="panel-body">
+                            <form role="form" id="signupForm" name="signupForm">
+                                <fieldset>
+                                    <!-- Name (First, Middle Initial, Last -->
+                                    <div class="col-sm-4 form-group">
+                                        <input class="form-control" placeholder="First Name" name="fnameSignUp" id="fnameSignUp" type="text" autofocus="">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <input class="form-control" placeholder="Middle Initial" name="minitialSignUp" id="minitialSignUp" type="text" autofocus="">
+                                    </div>
+                                    <div class="col-sm-4 form-group">
+                                        <input class="form-control" placeholder="Last Name" name="lnameSignUp" id="lnameSignUp" type="text" autofocus="">
+                                    </div>
+
+                                    <!-- Username, Password, and Email -->
+                                    <div class="col-sm-6 form-group">
+                                        <input class="form-control" placeholder="Username" name="usernameSignUp" id="usernameSignUp" type="text" autofocus="">
+                                    </div>
+                                    <div class="col-sm-6 form-group">
+                                        <input class="form-control" placeholder="Password" name="passwordSignUp" id="passwordSignUp" type="password" value="">
+                                    </div>
+                                    <div class="col-sm-12 form-group">
+                                        <input class="form-control" placeholder="E-mail" name="emailSignUp" id="emailSignUp" type="email" value="">
+                                    </div>
+
+                                    <!-- Billing Address and Shipping Address -->
+                                    <div id="billingAddress">
+                                        <label class="col-sm-12">Billing Address</label>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="House #" name="housenumBA" id="housenumBA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Street" name="streetBA" id="streetBA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Subdivision" name="subdivisionBA" id="subdivisionBA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="City" name="cityBA" id="cityBA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Postal Code" name="postalcodeBA" id="postalcodeBA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Country" name="countryBA" id="countryBA" type="text" autofocus="">
+                                        </div>
+                                    </div>
+
+                                    <div id="billingAddress">
+                                        <label class="col-sm-12">Shipping Address</label>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="House #" name="housenumSA" id="housenumSA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Street" name="streetSA" id="streetSA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Subdivision" name="subdivisionSA" id="subdivisionSA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="City" name="citySA" id="citySA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Postal Code" name="postalcodeSA" id="postalcodeSA" type="text" autofocus="">
+                                        </div>
+                                        <div class="col-sm-3 form-group">
+                                            <input class="form-control" placeholder="Country" name="countrySA" id="countrySA" type="text" autofocus="">
+                                        </div>
+                                    </div>
+
+                                    <!-- Change this to a button or input when using this as a form -->
 <!--                                            <a href="javascript:;" class="btn btn-sm btn-success">Login</a>-->
-                                            <div class="col-sm-12 form-group">
-                                                <input type="submit" class="btn btn-success" id="signupSubmit" name="signupSubmit" value="Sign Up" />
-                                            </div>
-                                        </fieldset>
-                                    </form>
-                                </div>
-                            </div>
+                                    <div class="col-sm-12 form-group">
+                                        <input type="submit" class="btn btn-success" id="signupSubmit" name="signupSubmit" value="Sign Up" />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
             <!-- /content -->
