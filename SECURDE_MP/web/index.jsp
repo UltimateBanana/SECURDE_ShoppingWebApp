@@ -36,6 +36,10 @@
                     window.location.href = "LogInPage.jsp";
                 });
                 
+                $('#adminBtn').on('click', function(){
+                    window.location.href = "AdminPage.jsp";
+                });
+                
             });
         </script>
     </head>
@@ -65,6 +69,7 @@
 
                         <!-- Sign In and Sign Up buttons -->
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
                             <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
                         </div>
