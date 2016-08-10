@@ -1,9 +1,10 @@
+<%-- 
+    Document   : AdminPage
+    Created on : 26-Jul-2016, 15:46:03
+    Author     : hannah
+--%>
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
     <head>
         <!-- Bootstrap stuff -->
@@ -14,7 +15,7 @@ and open the template in the editor.
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-        <link rel="stylesheet" href="ProductManagerPage.css">
+        <link rel="stylesheet" href="AdminPage.css">
         
         <title>Talaria Footwear Company</title>
         

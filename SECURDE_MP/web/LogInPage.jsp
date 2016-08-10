@@ -74,7 +74,7 @@
                             <h3 class="panel-title">Sign In</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form" id="loginForm" name="loginForm">
+                            <form role="form" id="loginForm" name="loginForm" action="LoginServlet" method ="post">
                                 <fieldset>
                                     <div class="form-group">
                                         <input class="form-control" placeholder="Username" name="usernameSignIn" id="usernameSignIn" type="text" autofocus="">
