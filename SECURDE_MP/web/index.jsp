@@ -40,6 +40,10 @@
                     window.location.href = "AdminPage.jsp";
                 });
                 
+                $('#productmanagerBtn').on('click', function(){
+                    window.location.href = "ProductManagerPage.jsp";
+                });
+                
                 $('#productBtn').on('click', function(){
                     window.location.href = "ProductDetailsPage.jsp";
                 });
@@ -74,6 +78,7 @@
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
                             <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn">Product Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
                             <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
                         </div>
