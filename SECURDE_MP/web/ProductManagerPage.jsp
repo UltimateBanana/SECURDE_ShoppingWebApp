@@ -16,7 +16,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-        <link rel="stylesheet" href="AdminPage.css">
+        <link rel="stylesheet" href="ProductManagerPage.css">
         
         <title>Talaria Footwear Company</title>
         
