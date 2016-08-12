@@ -1,0 +1,198 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 12-Aug-2016, 10:48:11
+    Author     : hannah
+*/
+
+/* ID */
+#topheader {
+    background-color: #ffffff;
+    position: fixed;
+}
+
+#footer {
+    background-color: #78c3e2;
+}
+
+#content {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    color: #333333;
+}
+
+#topheaderlink {
+    /* links in the top header */
+    padding-left: 50px;
+    font-size: 15px;
+}
+
+#tabDiv {
+    border-radius: 25px;
+    border: 3px solid #89BDD3;
+    background: #ffffff;
+    padding: 20px;
+}
+
+#tabTitle1, #tabTitle2 {
+    border-bottom-left-radius: 2em;
+    border-top-left-radius: 2em;
+}
+
+
+/* CLASS */
+.navbar{
+    min-width: 800px;
+    min-height: 20px;
+    position: fixed;
+}
+
+.navbar-default {
+    /* padding in the left and right of top header */
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.navbar-default .navbar-brand {
+    /* Brand (aka app name) in the top header */
+    font-size: 40px;
+    font-weight: bold;
+    /*color: #a9a9a9; */
+    color: #ff383f;
+    float: left;
+    margin-left: auto;
+}
+
+.navbar-header {
+    /* for the top header buttons to keep right */
+    width:100%;
+}
+
+.navbar-brand:hover, 
+.navbar-brand:focus {
+  color: #ff3333 !important;
+}
+
+.navbar-brand {
+    padding-top: 20px;
+}
+
+.navbar-nav {
+    padding-top: 10px;
+}
+
+.right-side-button {
+    /* keeps buttons in top header align to right */
+    float:right;
+}
+
+.btn {
+    /* spacing between buttons */
+    /*margin-left:5px;*/
+}
+
+
+/* TAGS */
+body {
+    width: 100%;
+    background-color: #efefef;
+    padding-top: 80px;
+}
+
+li {
+    position: fixed;
+}
+
+label {
+    font-size: 16px;
+}
+
+
+
+
+/* The sidebar thing at the body */
+/* http://bootsnipp.com/snippets/featured/sidebar-with-tabs */
+.blogShort{ border-bottom:1px solid #ddd;}
+.add{background: #333; padding: 10%; height: 300px;}
+
+.nav-sidebar { 
+    width: 120%;
+    padding: 20px 0; 
+    border-right: 1px solid #ddd;
+}
+.nav-sidebar a {
+    color: #333;
+    -webkit-transition: all 0.08s linear;
+    -moz-transition: all 0.08s linear;
+    -o-transition: all 0.08s linear;
+    transition: all 0.08s linear;
+}
+.nav-sidebar .active a { 
+    cursor: default;
+    background-color: #0b56a8; 
+    color: #fff; 
+}
+.nav-sidebar .active a:hover {
+    background-color: #E50000;   
+}
+
+.nav-sidebar a a:hover {
+    background-color: #E50000;   
+}
+.nav-sidebar .text-overflow a,
+.nav-sidebar .text-overflow .media-body {
+    white-space: nowrap;
+    overflow: hidden;
+    -o-text-overflow: ellipsis;
+    text-overflow: ellipsis; 
+}
+
+.btn-blog {
+    color: #ffffff;
+    background-color: #E50000;
+    border-color: #E50000;
+    border-radius:0;
+    margin-bottom:10px
+}
+.btn-blog:hover,
+.btn-blog:focus,
+.btn-blog:active,
+.btn-blog.active,
+.open .dropdown-toggle.btn-blog {
+    color: white;
+    background-color:#0b56a8;
+    border-color: #0b56a8;
+}
+article h2{color:#333333;}
+h2, h3, h4{color:#0b56a8;}
+ .margin10{margin-bottom:10px; margin-right:10px;}
+ 
+ .container .text-style
+{
+  text-align: justify;
+  line-height: 23px;
+  margin: 0 13px 0 0;
+  font-size: 19px;
+  width: 100%;
+}
+
+
+/* for the Product List */
+/* http://bootsnipp.com/snippets/featured/striped-table-30 */
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+    }
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+    }

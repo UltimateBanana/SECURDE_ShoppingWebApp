@@ -36,6 +36,21 @@
                     window.location.href = "LogInPage.jsp";
                 });
                 
+                $('#adminBtn').on('click', function(){
+                    window.location.href = "AdminPage.jsp";
+                });
+                
+                $('#productmanagerBtn').on('click', function(){
+                    window.location.href = "ProductManagerPage.jsp";
+                });
+                
+                $('#accountingmanagerBtn').on('click', function(){
+                    window.location.href = "AccountingManagerPage.jsp";
+                });
+                
+                $('#productBtn').on('click', function(){
+                    window.location.href = "ProductDetailsPage.jsp";
+                });
             });
         </script>
     </head>
@@ -58,13 +73,17 @@
                             <div class="form-group">
                               <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Search">
                             </div>
-                            <button type="submit" class="btn btn-default navbar-btn" id="submitsearchBtn" nae="submitsearchBtn">
+                            <button type="submit" class="btn btn-default navbar-btn" id="submitsearchBtn" name="submitsearchBtn">
                                 <i class="glyphicon glyphicon-search"></i>
                             </button>
                         </form>
 
                         <!-- Sign In and Sign Up buttons -->
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                            <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn">Product Manager Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn">Accounting Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
                             <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
                         </div>
