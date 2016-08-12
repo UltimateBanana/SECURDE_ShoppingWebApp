@@ -16,7 +16,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-        <link rel="stylesheet" href="AdminPage.css">
+        <link rel="stylesheet" href="ProductManagerPage.css">
         
         <title>Talaria Footwear Company</title>
         
@@ -119,12 +119,14 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Product Name</th>
+                                        <th>Category</th>
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
                                 <tr>
                                     <td>1</td>
                                     <td>Banana Slippers</td>
+                                    <td>Slippers</td>
                                     <td class="text-center">
                                         <a class="btn btn-info btn-xs editMe" href="#">
                                             <span class="glyphicon glyphicon-edit"></span> 
@@ -139,6 +141,7 @@
                                 <tr>
                                     <td>2</td>
                                     <td>Converse</td>
+                                    <td>Shoes</td>
                                     <td class="text-center">
                                         <a class="btn btn-info btn-xs editMe" href="#">
                                             <span class="glyphicon glyphicon-edit"></span> 
@@ -153,6 +156,7 @@
                                 <tr>
                                     <td>3</td>
                                     <td>Tsinelas Bruh</td>
+                                    <td>Slippers</td>
                                     <td class="text-center">
                                         <a class="btn btn-info btn-xs editMe" href="#">
                                             <span class="glyphicon glyphicon-edit"></span> 
@@ -178,6 +182,7 @@
                                     <tr>
                                         <td><c:out value="${product.id}" /></td>
                                         <td><c:out value="${product.title}" /></td>
+                                        <td><c:out value="${product.category}" /></td>
                                         <td class="text-center">
                                             <a class="btn btn-info btn-xs editMe" href="#">
                                                 <span class="glyphicon glyphicon-edit"></span> 
