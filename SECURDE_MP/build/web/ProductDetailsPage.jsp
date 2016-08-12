@@ -112,7 +112,7 @@
                             <div class="medium-6 large-5 columns">
                                 <h4>Vans Old Skool</h4>
                                 <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
-                                <form id="addToCart" method="post" action="addToCart">
+                                <form id="addToCart" method="post" action="AddToCartServlet" method="post">
                                     <label>Size
                                         <select name="size">
                                             <option value="9">9</option>
