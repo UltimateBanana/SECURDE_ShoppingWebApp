@@ -16,11 +16,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-<<<<<<< HEAD
         <link rel="stylesheet" href="AccountingManagerPage.css">
-=======
-        <link rel="stylesheet" href="AdminPage.css">
->>>>>>> master
         
         <title>Talaria Footwear Company</title>
         
