@@ -184,7 +184,16 @@ public class AccountManager
 	try
 	{
 	    ps = connection.prepareStatement(sql);
-	    ps.setInt(1, accountRequest.isLocked());
+	    
+	    // if filter is null, pass null, else pass filter value
+	    if( accountRequest.isLocked() == -1 )
+	    {
+		ps.setString(1, null);
+	    }
+	    else
+	    {
+		ps.setInt(1, accountRequest.isLocked());
+	    }
 	    
 	    ResultSet rs = ps.executeQuery();
 	    

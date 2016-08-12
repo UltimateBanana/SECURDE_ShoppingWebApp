@@ -2,27 +2,27 @@ package request;
 
 public class AccountRequest
 {
-    private boolean isLocked;
+    private int isLocked;
     
     public AccountRequest()
     {
-	isLocked = false;
+	isLocked = -1;
     }
 
     public int isLocked()
     {
-	if( isLocked )
-	{
-	    return 1;
-	}
-	else
-	{
-	    return 0;
-	}
+	return isLocked;
     }
 
     public void setIsLocked(boolean isLocked)
     {
-	this.isLocked = isLocked;
+	if( isLocked )
+	{
+	    this.isLocked = 1;
+	}
+	else
+	{
+	    this.isLocked = 0;
+	}
     }
 }
