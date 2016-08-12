@@ -76,7 +76,7 @@
                             <h3 class="panel-title">Sign Up</h3>
                         </div>
                         <div class="panel-body">
-                            <form role="form" id="signupForm" name="signupForm">
+                            <form role="form" id="signupForm" name="signupForm" action="SignUpServlet" method="post">
                                 <fieldset>
                                     <!-- Name (First, Middle Initial, Last -->
                                     <div class="col-sm-4 form-group">
