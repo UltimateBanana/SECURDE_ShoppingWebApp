@@ -83,6 +83,14 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                    window.location.href = \"ProductManagerPage.jsp\";\n");
       out.write("                });\n");
       out.write("                \n");
+      out.write("                $('#accountingmanagerBtn').on('click', function(){\n");
+      out.write("                    window.location.href = \"AccountingManagerPage.jsp\";\n");
+      out.write("                });\n");
+      out.write("                \n");
+      out.write("                $('#userdetailsBtn').on('click', function(){\n");
+      out.write("                    window.location.href = \"UserDetailsPage.jsp\";\n");
+      out.write("                });\n");
+      out.write("                \n");
       out.write("                $('#productBtn').on('click', function(){\n");
       out.write("                    window.location.href = \"ProductDetailsPage.jsp\";\n");
       out.write("                });\n");
@@ -118,6 +126,8 @@ public final class index_jsp extends org.apache.jasper.runtime.HttpJspBase
       out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"productBtn\" name=\"productBtn\">Product Details Page</button>\n");
       out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"adminBtn\" name=\"adminBtn\">Admin Page</button>\n");
       out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"productmanagerBtn\" name=\"productmanagerBtn\">Product Manager Page</button>\n");
+      out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"accountingmanagerBtn\" name=\"accountingmanagerBtn\">Accounting Manager Page</button>\n");
+      out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"userdetailsBtn\" name=\"userdetailsBtn\">User Details Page</button>\n");
       out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"loginBtn\" name=\"loginBtn\">Sign In</button>\n");
       out.write("                            <button type=\"button\" class=\"btn btn-default navbar-btn\" id=\"signupBtn\" name=\"signupBtn\">Sign Up</button>\n");
       out.write("                        </div>\n");
