@@ -38,13 +38,13 @@ public class AddManagerServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String firstName = request.getParameter("fnameSignUp");
-        String middleInitial = request.getParameter("minitialSignUp");
-        String lastName = request.getParameter("lnameSignUp");
-        String username = request.getParameter("usernameSignUp");
-        String password = request.getParameter("passwordSignUp");
-        String email = request.getParameter("emailSignUp");
-        String managerType = request.getParameter("managerType");
+        String firstName = request.getParameter("fnameManager");
+        String middleInitial = request.getParameter("minitialManager");
+        String lastName = request.getParameter("lnameManager");
+        String username = request.getParameter("usernameManager");
+        String password = request.getParameter("passwordManager");
+        String email = request.getParameter("emailSignManager");
+        String managerType = request.getParameter("typeManager");
         
         if(firstName.isEmpty() || middleInitial.isEmpty() || lastName.isEmpty() ||
                 username.isEmpty() || password.isEmpty() || email.isEmpty() ||
