@@ -177,11 +177,13 @@
                                             <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
                                         </div>
                                     </div>
+                                    <form id="addReview" action="addReview" method="post">
                                     <label>
                                         My Review
-                                        <textarea placeholder="None"></textarea>
+                                        <textarea id="userReview" name="userReview" placeholder="None"></textarea>
                                     </label>
-                                    <button class="button">Submit Review</button>
+                                    <input type="submit" id="addReviewBtn" value="Submit Review" class="button">
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -195,5 +197,6 @@
                 </div><!-- /content -->
 
             </div> <!-- /container-fluid BODY -->
+        </div>
         </body>
         </html>

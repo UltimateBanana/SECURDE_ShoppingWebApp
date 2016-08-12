@@ -48,12 +48,23 @@
                     window.location.href = "AccountingManagerPage.jsp";
                 });
                 
+<<<<<<< HEAD
                 $('#userdetailsBtn').on('click', function(){
                     window.location.href = "UserDetailsPage.jsp";
                 });
                 
+=======
+>>>>>>> master
                 $('#productBtn').on('click', function(){
                     window.location.href = "ProductDetailsPage.jsp";
+                });
+                
+                $('#productListBtn').on('click', function(){
+                    window.location.href = "ProductListPage.jsp";
+                });
+                
+                $('#shoppingCartBtn').on('click', function(){
+                    window.location.href = "ShoppingCartPage.jsp";
                 });
             });
         </script>
@@ -85,10 +96,17 @@
                         <!-- Sign In and Sign Up buttons -->
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
                             <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="productBtn">Product List Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="productBtn">Shopping Cart Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn">Product Manager Page</button>
+<<<<<<< HEAD
                             <button type="button" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn">Accounting Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn">User Details Page</button>
+=======
+                            
+                            <button type="button" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn">Accounting Manager Page</button>
+>>>>>>> master
                             <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
                             <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
                         </div>

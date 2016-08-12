@@ -97,7 +97,7 @@
                             <h2 class="panel-title">Add Manager</h2>
                         </div>-->
                         <div class="panel-body">
-                            <form role="form" id="createmanagerForm" name="createmanagerForm">
+                            <form role="form" id="createmanagerForm" name="createmanagerForm" action="AddManagerServlet" method="post">
                                 <fieldset>
                                     <!-- Name (First, Middle Initial, Last) -->
                                     <div class="col-sm-4 form-group">
