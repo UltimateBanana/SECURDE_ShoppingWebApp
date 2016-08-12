@@ -37,11 +37,11 @@ public class AddReviewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //PrintWriter out = response.getWriter();
-        //String review = request.getParameter("review");
-        //RequestDispatcher rd = request.getRequestDispatcher("ProductDetails.jsp");
-        //System.out.println("Review: "+review);
-        //rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        String review = request.getParameter("userReview");
+        RequestDispatcher rd = request.getRequestDispatcher("ProductDetailsPage.jsp");
+        System.out.println("Review: "+review);
+        rd.forward(request, response);
         //processRequest(request, response);
     }
 
