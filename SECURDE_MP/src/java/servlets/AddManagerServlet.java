@@ -42,37 +42,31 @@ public class AddManagerServlet extends HttpServlet {
             throws ServletException, IOException {
         
         Controller controller = new Controller();
-        Account account = new Account();
+        Account account;
+        PrintWriter writer = response.getWriter();
         
-        response.setContentType("text/html");
-        PrintWriter out = response.getWriter();
         String firstName = request.getParameter("fnameManager");
         String middleInitial = request.getParameter("minitialManager");
         String lastName = request.getParameter("lnameManager");
         String username = request.getParameter("usernameManager");
         String password = request.getParameter("passwordManager");
-        String email = request.getParameter("emailSignManager");
+        String email = request.getParameter("emailManager");
         String managerType = request.getParameter("typeManager");        
         
-        if(firstName.isEmpty() || middleInitial.isEmpty() || lastName.isEmpty() ||
-                username.isEmpty() || password.isEmpty() || email.isEmpty()){
-            RequestDispatcher rd = request.getRequestDispatcher("AdminPage.jsp");
-            out.println("<font color=red>Please fill all the fields</font>");
-            rd.include(request, response);
+        if(firstName.isEmpty() || middleInitial.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty()){
+            RequestDispatcher rs = request.getRequestDispatcher("AdminPage.jsp");
+            writer.println("<font color=red>Please fill all the fields</font>");
+            rs.include(request, response);
         }
         else{
-            if(managerType.equals("1")){
-                account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
-                System.out.println("Hi");
-            }
-            else if(managerType.equals("2")){
-                account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
-            }
             
+            account = controller.login(username, password);
             
-            if(controller.login(username, password) != null){
-                System.out.println("Hello");
-                account = controller.login(username, password);
+            if(account != null){
+                if(managerType.equals("1"))
+                    account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
+                else if(managerType.equals("2"))
+                    account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
                 account.setFirstName(firstName);
                 account.setMiddleName(middleInitial);
                 account.setLastName(lastName);
@@ -82,10 +76,11 @@ public class AddManagerServlet extends HttpServlet {
                 controller.updateAccount(account);
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
+
             }
             else{
                 RequestDispatcher rs = request.getRequestDispatcher("AdminPage.jsp");
-                out.println("<font color=red>Incorrect username or password. </font>");
+                writer.println("<font color=red>Incorrect username or password. </font>");
                 rs.include(request, response);
             }
         }

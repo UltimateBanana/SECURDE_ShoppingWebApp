@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app version="3.1" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
     <servlet>
-        <servlet-name>AddManagerServlet</servlet-name>
-        <servlet-class>servlets.AddManagerServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>LoginServlet</servlet-name>
         <servlet-class>servlets.LoginServlet</servlet-class>
     </servlet>
@@ -14,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>LockAccountsServlet</servlet-name>
-        <servlet-class>servlets.LockAccountsServlet</servlet-class>
+        <servlet-class>servlets.LockAccountsServle  t</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>AddReviewServlet</servlet-name>
@@ -24,10 +20,10 @@
         <servlet-name>AddToCartServlet</servlet-name>
         <servlet-class>servlets.AddToCartServlet</servlet-class>
     </servlet>
-    <servlet-mapping>
+    <servlet>
         <servlet-name>AddManagerServlet</servlet-name>
-        <url-pattern>/AddManagerServlet</url-pattern>
-    </servlet-mapping>
+        <servlet-class>servlets.AddManagerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -47,6 +43,10 @@
     <servlet-mapping>
         <servlet-name>AddToCartServlet</servlet-name>
         <url-pattern>/AddToCartServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddManagerServlet</servlet-name>
+        <url-pattern>/AddManagerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
