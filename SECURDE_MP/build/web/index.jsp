@@ -93,6 +93,8 @@
                         <!-- Sign In and Sign Up buttons -->
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
                             <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="productBtn">Product List Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="productBtn">Shopping Cart Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="adminBtn">Product List Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="adminBtn">Shopping Cart Page</button>

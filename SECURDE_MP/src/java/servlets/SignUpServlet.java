@@ -1,6 +1,8 @@
 
 package servlets;
 
+import controller.Controller;
+import enumeration.AccessLevel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -8,6 +10,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
+import model.Address;
 
 public class SignUpServlet extends HttpServlet {
 
@@ -38,7 +42,7 @@ public class SignUpServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+        Controller controller = new Controller();
         PrintWriter out = response.getWriter();
         String firstName = request.getParameter("fnameSignUp");
         String middleInitial = request.getParameter("minitialSignUp");
@@ -71,8 +75,38 @@ public class SignUpServlet extends HttpServlet {
             rd.include(request, response);
         }
         else{
+            Account account = new Account();
+            
+            account.setAccessLevel(AccessLevel.USER);
+            account.setFirstName(firstName);
+            account.setMiddleName(middleInitial);
+            account.setLastName(lastName);
+            account.setUsername(username);
+            account.setPassword(password);
+            account.setEmail(email);
+            
+            Address addressBA = new Address();
+            addressBA.setHouseNumber(houseNumBA);
+            addressBA.setStreet(streetBA);
+            addressBA.setSubdivision(subdivisionBA);
+            addressBA.setCity(cityBA);
+            addressBA.setPostalCode(postalCodeBA);
+            addressBA.setCountry(countryBA);
+            
+            Address addressSA = new Address();
+            addressSA.setHouseNumber(houseNumSA);
+            addressSA.setStreet(streetSA);
+            addressSA.setSubdivision(subdivisionSA);
+            addressSA.setCity(citySA);
+            addressSA.setPostalCode(postalCodeSA);
+            addressSA.setCountry(countrySA);
+            
+            account.setBillingAddress(addressBA);
+            account.setShippingAddress(addressSA);
+            
+            controller.register(account);
             RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
+            rd.forward(request, response);
         }
         
         //processRequest(request, response);

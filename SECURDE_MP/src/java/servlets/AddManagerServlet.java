@@ -1,6 +1,8 @@
 
 package servlets;
 
+import controller.Controller;
+import enumeration.AccessLevel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -8,11 +10,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
+import model.Address;
 
-/**
- *
- * @author Phil
- */
 public class AddManagerServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -41,25 +41,48 @@ public class AddManagerServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String firstName = request.getParameter("fnameSignUp");
-        String middleInitial = request.getParameter("minitialSignUp");
-        String lastName = request.getParameter("lnameSignUp");
-        String username = request.getParameter("usernameSignUp");
-        String password = request.getParameter("passwordSignUp");
-        String email = request.getParameter("emailSignUp");
-        String managerType = request.getParameter("managerType");
         
-        if(firstName.isEmpty() || middleInitial.isEmpty() || lastName.isEmpty() ||
-                username.isEmpty() || password.isEmpty() || email.isEmpty() ||
-                managerType.isEmpty()){
-            RequestDispatcher rd = request.getRequestDispatcher("AdminPage.jsp");
-            out.println("<font color=red>Please fill all the fields</font>");
-            rd.include(request, response);
+        Controller controller = new Controller();
+        Account account = new Account();
+        PrintWriter writer = response.getWriter();
+        
+        String firstName = request.getParameter("fnameManager");
+        String middleInitial = request.getParameter("minitialManager");
+        String lastName = request.getParameter("lnameManager");
+        String username = request.getParameter("usernameManager");
+        String password = request.getParameter("passwordManager");
+        String email = request.getParameter("emailManager");
+        String managerType = request.getParameter("typeManager");        
+        
+        if(firstName.isEmpty() || middleInitial.isEmpty() || lastName.isEmpty() || username.isEmpty() || password.isEmpty() || email.isEmpty()){
+            RequestDispatcher rs = request.getRequestDispatcher("AdminPage.jsp");
+            writer.println("<font color=red>Please fill all the fields</font>");
+            rs.include(request, response);
         }
         else{
-            RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
-			rd.forward(request, response);
+                if(managerType.equals("1"))
+                    account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
+                else if(managerType.equals("2"))
+                    account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
+                account.setFirstName(firstName);
+                account.setMiddleName(middleInitial);
+                account.setLastName(lastName);
+                account.setUsername(username);
+                account.setPassword(password);
+                account.setEmail(email);
+                
+                Address address = new Address();
+                address.setHouseNumber("");
+                address.setStreet("");
+                address.setSubdivision("");
+                address.setCity("");
+                address.setCountry("");
+                address.setPostalCode("0");
+                account.setBillingAddress(address);
+                account.setShippingAddress(address);
+                controller.register(account);
+                RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+                rd.forward(request, response);
         }
         //processRequest(request, response);
     }

@@ -1,8 +1,10 @@
 
 package servlets;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -42,6 +44,21 @@ public class LoginServlet extends HttpServlet {
         String username = request.getParameter("usernameSignIn");
         String password = request.getParameter("passwordSignIn");
         
+        Controller controller = new Controller();
+        if(controller.login(username, password)!=null){
+            RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
+            rs.forward(request, response);
+        }
+        else if(username.isEmpty() || password.isEmpty()){
+            RequestDispatcher rs = request.getRequestDispatcher("LogInPage.jsp");
+            out.println("<font color=red>Please fill all the fields. </font>");
+            rs.include(request, response);
+        }
+        else{
+                RequestDispatcher rs = request.getRequestDispatcher("LogInPage.jsp");
+                out.println("<font color=red>Incorrect username or password. </font>");
+                rs.include(request, response);
+        }
         //pseudo code
         //if(validatation.check(username, password)){
         //      RequestDispatcher rs = request.getRequestDispatcher(to whatever page you wanna redirect);

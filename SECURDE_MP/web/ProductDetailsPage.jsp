@@ -112,7 +112,7 @@
                             <div class="medium-6 large-5 columns">
                                 <h4>Vans Old Skool</h4>
                                 <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
-                                <form id="addToCart" method="post" action="addToCart">
+                                <form id="addToCart" method="post" action="AddToCartServlet" method="post">
                                     <label>Size
                                         <select name="size">
                                             <option value="9">9</option>
@@ -177,7 +177,7 @@
                                             <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
                                         </div>
                                     </div>
-                                    <form id="addReview" action="addReview" method="post">
+                                    <form id="addReview" action="AddReviewServlet" method="post">
                                     <label>
                                         My Review
                                         <textarea id="userReview" name="userReview" placeholder="None"></textarea>

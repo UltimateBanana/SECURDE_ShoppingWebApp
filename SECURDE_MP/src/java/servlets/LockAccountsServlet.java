@@ -38,7 +38,7 @@ public class LockAccountsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
-        String account = request.getParameter("lockedAccounts");
+        String account = request.getParameter("createmanagerSubmit");
         RequestDispatcher rd = request.getRequestDispatcher("AdminPage.jsp");
         out.println("Account: "+account);
         System.out.println("Shit: "+account);

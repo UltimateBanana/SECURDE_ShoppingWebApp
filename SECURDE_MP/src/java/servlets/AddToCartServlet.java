@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class AddReviewSerlvet extends HttpServlet {
+public class AddToCartServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -19,10 +19,10 @@ public class AddReviewSerlvet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AddReviewSerlvet</title>");            
+            out.println("<title>Servlet AddToCartServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AddReviewSerlvet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet AddToCartServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -37,11 +37,11 @@ public class AddReviewSerlvet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        //PrintWriter out = response.getWriter();
-        //String review = request.getParameter("review");
-        //RequestDispatcher rd = request.getRequestDispatcher("ProductDetails.jsp");
-        //System.out.println("Review: "+review);
-        //rd.forward(request, response);
+        PrintWriter out = response.getWriter();
+        String size = request.getParameter("size");
+        String color = request.getParameter("color");
+        RequestDispatcher rd = request.getRequestDispatcher("ProductDetailsPage.jsp");
+        rd.forward(request, response);
         //processRequest(request, response);
     }
 
