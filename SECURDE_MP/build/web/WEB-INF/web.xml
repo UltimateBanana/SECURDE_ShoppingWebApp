@@ -28,6 +28,10 @@
         <servlet-name>UnlockAccountServlet</servlet-name>
         <servlet-class>servlets.UnlockAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <servlet-class>servlets.AdminPageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -55,6 +59,10 @@
     <servlet-mapping>
         <servlet-name>UnlockAccountServlet</servlet-name>
         <url-pattern>/UnlockAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <url-pattern>/AdminPageServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
