@@ -4,6 +4,7 @@
     Author     : hannah
 --%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -144,9 +145,6 @@
                     
                     <div class="tab-pane text-style" id="tab2">
                         <h3>Unlock Accounts</h3>
-                        <p>
-                            May list (combo box? data is taken from database) ng locked accounts tapos admin selects one then click UNLOCK tapos may lalabas dapat na confirmation window. 
-                        </p>
                         <hr>
 <!--                        <div class="panel-heading">
                             <h2 class="panel-title">Unlock Account</h2>
@@ -157,9 +155,12 @@
                                     <div class="form-group">
                                         <label class="col-sm-3">Locked Accounts:</label>
                                         <div class="col-sm-4">
-                                            <select class="form-control">
+                                            <select class="form-control" name="lockedaccountsSelect">
                                                 <option value="1">How To Put Account Here?</option>
                                                 <option value="2">????</option>
+                                                <c:forEach items="${accounts}" var="account">
+                                                    <option value="${account.accountId}">${account.accountId} - ${account.username}</option>
+                                                </c:forEach>
                                             </select>
                                         </div>
                                     </div>
@@ -168,6 +169,32 @@
                                         <input type="submit" class="btn btn-success" id="unlockaccountSubmit" name="unlockaccountSubmit" value="Unlock Account" />
                                     </div>
                                 </fieldset>
+<!--                                
+                                <div class="row col-md-12 custyle">
+                                    <table class="table table-striped custab">
+                                        <thead>
+                                            <tr>
+                                                <th>ID</th>
+                                                <th>Username</th>
+                                                <th class="text-center">Action</th>
+                                            </tr>
+                                            <c:forEach items="${accounts}" var="account">
+                                                <tr>
+                                                    <td><c:out value="${account.accountId}" /></td>
+                                                    <td><c:out value="${account.username}" /></td>
+                                                    <td class="text-center">
+                                                        <button type="submit" class="btn btn-primary">
+                                                            <i class="glyphicons glyphicons-unlock"></i>
+                                                            Unlock
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </c:forEach>
+                                        </thead>
+                                        
+                                    </table>
+                                </div>-->
+                                
                             </form>
                         </div>
                         
