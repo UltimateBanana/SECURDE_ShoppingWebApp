@@ -85,7 +85,7 @@ public class AdminPageServlet extends HttpServlet {
         request.setAttribute("accounts", lockedUserList);
         
         request.getRequestDispatcher("/AdminPage.jsp").forward(request, response);
-        response.sendRedirect("AdminPage.jsp");
+//        response.sendRedirect("AdminPage.jsp");
     }
 
     /**
