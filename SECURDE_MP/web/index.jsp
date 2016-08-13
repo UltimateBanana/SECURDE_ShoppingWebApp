@@ -93,9 +93,9 @@
                         <!-- Sign In and Sign Up buttons -->
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
                             <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="productListBtn">Product List Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="shoppingCartBtn">Shopping Cart Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
-                            <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="adminBtn">Product List Page</button>
-                            <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="adminBtn">Shopping Cart Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn">Product Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn">Accounting Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn">User Details Page</button>
