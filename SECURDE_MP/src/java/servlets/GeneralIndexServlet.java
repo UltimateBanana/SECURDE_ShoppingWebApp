@@ -5,12 +5,18 @@
  */
 package servlets;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
+import model.Product;
+import request.AccountRequest;
+import request.ProductRequest;
 
 /**
  *
@@ -56,7 +62,41 @@ public class GeneralIndexServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        if(request.getParameter("adminBtn") != null)
+        {
+            Controller controller = new Controller();
+            AccountRequest accountRequest = new AccountRequest();
+            ArrayList<Account> lockedUserList = new ArrayList<Account>();
+
+            accountRequest.setIsLocked(true);
+            lockedUserList = controller.queryAllAccounts(accountRequest);
+            request.setAttribute("accounts", lockedUserList);
+
+            request.getRequestDispatcher("/AdminPage.jsp").forward(request, response);
+//            response.sendRedirect("AdminPage.jsp");
+        }
+        else if(request.getParameter("productmanagerBtn") != null)
+        {
+            
+            
+            request.getRequestDispatcher("/ProductManagerPage.jsp").forward(request, response);
+//            response.sendRedirect("ProductManagerPage.jsp");
+        }
+        else if(request.getParameter("accountingmanagerBtn") != null)
+        {
+            
+            
+            request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
+//            response.sendRedirect("AccountingManagerPage.jsp");
+        }
+        else if(request.getParameter("userdetailsBtn") != null)
+        {
+            
+            
+            request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
+//            response.sendRedirect("UserDetailsPage.jsp");
+        }
     }
 
     /**
@@ -72,7 +112,54 @@ public class GeneralIndexServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        
+        if(request.getParameter("adminBtn") != null)
+        {
+            Controller controller = new Controller();
+            AccountRequest accountRequest = new AccountRequest();
+            ArrayList<Account> lockedUserList = new ArrayList<Account>();
+
+            accountRequest.setIsLocked(true);
+            lockedUserList = controller.queryAllAccounts(accountRequest);
+            request.setAttribute("accounts", lockedUserList);
+
+            request.getRequestDispatcher("/AdminPage.jsp").forward(request, response);
+//            response.sendRedirect("AdminPage.jsp");
+        }
+        else if(request.getParameter("productmanagerBtn") != null)
+        {
+            Controller controller = new Controller();
+            ProductRequest productRequest = new ProductRequest();
+            ArrayList<Product> productList = new ArrayList<Product>();
+            
+            productRequest.setIsDeleted(false);
+            productList = controller.searchProducts(productRequest);
+            request.setAttribute("products", productList);
+            
+            request.getRequestDispatcher("/ProductManagerPage.jsp").forward(request, response);
+//            response.sendRedirect("ProductManagerPage.jsp");
+        }
+        else if(request.getParameter("accountingmanagerBtn") != null)
+        {
+//            Controller controller = new Controller();
+//            ProductRequest productRequest = new ProductRequest();
+//            ArrayList<Product> productList = new ArrayList<Product>();
+//            
+//            productRequest.setIsDeleted(false);
+//            productList = controller.searchProducts(productRequest);
+//            request.setAttribute("products", productList);
+            
+            // What is needed here??
+            
+            request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
+//            response.sendRedirect("AccountingManagerPage.jsp");
+        }
+        else if(request.getParameter("userdetailsBtn") != null)
+        {
+            
+            
+            request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
+//            response.sendRedirect("UserDetailsPage.jsp");
+        }
     }
 
     /**
