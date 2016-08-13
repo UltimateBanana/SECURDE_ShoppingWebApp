@@ -55,6 +55,14 @@
                 $('#productBtn').on('click', function(){
                     window.location.href = "ProductDetailsPage.jsp";
                 });
+                
+                $('#productListBtn').on('click', function(){
+                    window.location.href = "ProductListPage.jsp";
+                });
+                
+                $('#shoppingCartBtn').on('click', function(){
+                    window.location.href = "ShoppingCartPage.jsp";
+                });
             });
         </script>
     </head>
@@ -86,6 +94,8 @@
                         <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
                             <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="adminBtn">Product List Page</button>
+                            <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="adminBtn">Shopping Cart Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn">Product Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn">Accounting Manager Page</button>
                             <button type="button" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn">User Details Page</button>
