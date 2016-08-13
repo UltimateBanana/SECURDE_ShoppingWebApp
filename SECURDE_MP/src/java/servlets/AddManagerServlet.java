@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Account;
+import model.Address;
 
 public class AddManagerServlet extends HttpServlet {
 
@@ -42,7 +43,7 @@ public class AddManagerServlet extends HttpServlet {
             throws ServletException, IOException {
         
         Controller controller = new Controller();
-        Account account;
+        Account account = new Account();
         PrintWriter writer = response.getWriter();
         
         String firstName = request.getParameter("fnameManager");
@@ -59,10 +60,6 @@ public class AddManagerServlet extends HttpServlet {
             rs.include(request, response);
         }
         else{
-            
-            account = controller.login(username, password);
-            
-            if(account != null){
                 if(managerType.equals("1"))
                     account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
                 else if(managerType.equals("2"))
@@ -73,16 +70,19 @@ public class AddManagerServlet extends HttpServlet {
                 account.setUsername(username);
                 account.setPassword(password);
                 account.setEmail(email);
-                controller.updateAccount(account);
+                
+                Address address = new Address();
+                address.setHouseNumber("");
+                address.setStreet("");
+                address.setSubdivision("");
+                address.setCity("");
+                address.setCountry("");
+                address.setPostalCode("0");
+                account.setBillingAddress(address);
+                account.setShippingAddress(address);
+                controller.register(account);
                 RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
                 rd.forward(request, response);
-
-            }
-            else{
-                RequestDispatcher rs = request.getRequestDispatcher("AdminPage.jsp");
-                writer.println("<font color=red>Incorrect username or password. </font>");
-                rs.include(request, response);
-            }
         }
         //processRequest(request, response);
     }
