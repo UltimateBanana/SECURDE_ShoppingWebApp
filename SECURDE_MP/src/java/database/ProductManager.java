@@ -44,26 +44,27 @@ public class ProductManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    int deleted = rs.getInt(Product.COLUMN_IS_DELETED);
-	    boolean isDeleted;
-	    
-	    if( deleted == 0 )
+	    if( rs.next() )
 	    {
-		isDeleted = false;
+		int deleted = rs.getInt(Product.COLUMN_IS_DELETED);
+		boolean isDeleted;
+
+		if( deleted == 0 )
+		{
+		    isDeleted = false;
+		}
+		else
+		{
+		    isDeleted = true;
+		}
+
+		return new Product(Integer.toString(rs.getInt(Product.COLUMN_PRODUCT_ID)),
+				   rs.getString(Product.COLUMN_NAME),
+				   rs.getString(Product.COLUMN_DESCRIPTION),
+				   Category.translateCategoryStringToEnum(rs.getString(Product.COLUMN_CATEGORY)),
+				   rs.getDouble(Product.COLUMN_PRICE),
+				   isDeleted);
 	    }
-	    else
-	    {
-		isDeleted = true;
-	    }
-	    
-	    return new Product(Integer.toString(rs.getInt(Product.COLUMN_PRODUCT_ID)),
-			       rs.getString(Product.COLUMN_NAME),
-			       rs.getString(Product.COLUMN_DESCRIPTION),
-			       Category.translateCategoryStringToEnum(rs.getString(Product.COLUMN_CATEGORY)),
-			       rs.getDouble(Product.COLUMN_PRICE),
-			       isDeleted);
 	}
 	catch (SQLException ex)
 	{

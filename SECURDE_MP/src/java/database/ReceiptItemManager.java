@@ -49,16 +49,17 @@ public class ReceiptItemManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    Product product = productManager.queryProduct(rs.getInt(Product.COLUMN_PRODUCT_ID));
-	    ArrayList<Feedback> feedbacks = feedbackManager.queryAllFeedbackByReceiptItem(receiptItemId);
-	    
-	    return new ReceiptItem(Integer.toString(rs.getInt(ReceiptItem.COLUMN_RECEIPT_ITEM_ID)),
-				   product,
-				   rs.getInt(ReceiptItem.COLUMN_QUANTITY),
-				   rs.getDouble(ReceiptItem.COLUMN_SUBTOTAL),
-				   feedbacks);
+	    if( rs.next() )
+	    {
+		Product product = productManager.queryProduct(rs.getInt(Product.COLUMN_PRODUCT_ID));
+		ArrayList<Feedback> feedbacks = feedbackManager.queryAllFeedbackByReceiptItem(receiptItemId);
+
+		return new ReceiptItem(Integer.toString(rs.getInt(ReceiptItem.COLUMN_RECEIPT_ITEM_ID)),
+				       product,
+				       rs.getInt(ReceiptItem.COLUMN_QUANTITY),
+				       rs.getDouble(ReceiptItem.COLUMN_SUBTOTAL),
+				       feedbacks);
+	    }
 	}
 	catch (SQLException ex)
 	{
