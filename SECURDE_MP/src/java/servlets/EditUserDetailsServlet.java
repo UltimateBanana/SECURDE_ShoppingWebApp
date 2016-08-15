@@ -79,10 +79,14 @@ public class EditUserDetailsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Account user = (Account) request.getSession(false).getAttribute("user");
-        System.out.println("username: "+user.getUsername());
+        String user = (String) request.getSession(false).getAttribute("user");
+        System.out.println("username: "+user);
         Controller controller = new Controller();
-
+        String id = controller.queryUser(user);
+        Account dummyAccount = controller.queryAccount(Integer.parseInt(id));
+        System.out.println("password: "+dummyAccount.getPassword());
+        
+        System.out.println("account id: "+dummyAccount.getAccountId());
         String firstName = request.getParameter("fnameEditUD");
         String middleName = request.getParameter("minitialEditUD");
         String lastName = request.getParameter("lnameEditUD");
@@ -111,7 +115,7 @@ public class EditUserDetailsServlet extends HttpServlet {
         account.setMiddleName(middleName);
         account.setLastName(lastName);
         account.setUsername(username);
-        account.setPassword(user.getPassword());
+        account.setPassword(dummyAccount.getPassword());
         account.setEmail(email);
         
         addressBA.setHouseNumber(houseNumBA);
@@ -131,10 +135,10 @@ public class EditUserDetailsServlet extends HttpServlet {
         
         //temporary fix
         //account.setAccessLevel(AccessLevel.USER);
-        account.setAccessLevel(user.getAccessLevel());
+        account.setAccessLevel(dummyAccount.getAccessLevel());
         account.setBillingAddress(addressBA);
         account.setShippingAddress(addressSA);
-        account.setAccountId(user.getAccountId());
+        account.setAccountId(id);
         
         controller.updateAccount(account);
         RequestDispatcher rs = request.getRequestDispatcher("UserDetailsPage.jsp");

@@ -41,6 +41,11 @@ public class Controller
 	return accountManager.queryAccount(accountId);
     }
     
+    public String queryUser( String username )
+    {
+        return accountManager.queryUser(username);
+    }
+    
     public Account login( String username, String password )
     {
 	return accountManager.queryAccountByCredentials(username, password);
