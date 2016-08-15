@@ -5,20 +5,12 @@
  */
 package servlets;
 
-import controller.Controller;
-import enumeration.AccessLevel;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import model.Account;
-import model.Address;
-import request.AccountRequest;
 
 /**
  *
@@ -78,70 +70,7 @@ public class EditUserDetailsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        Account user = (Account) request.getSession(false).getAttribute("user");
-        System.out.println("username: "+user.getUsername());
-        Controller controller = new Controller();
-
-        String firstName = request.getParameter("fnameEditUD");
-        String middleName = request.getParameter("minitialEditUD");
-        String lastName = request.getParameter("lnameEditUD");
-        String username = request.getParameter("usernameEditUD");
-        String email = request.getParameter("emailEditUD");
-        
-        String houseNumBA = request.getParameter("housenumBAEditUD");
-        String streetBA = request.getParameter("streetBAEditUD");
-        String subdivisionBA = request.getParameter("subdivisionBAEditUD");
-        String cityBA = request.getParameter("cityBAEditUD");
-        String postalCodeBA = request.getParameter("postalcodeBAEditUD");
-        String countryBA = request.getParameter("countryBAEditUD");
-        
-        String houseNumSA = request.getParameter("housenumSAEditUD");
-        String streetSA = request.getParameter("streetSAEditUD");
-        String subdivisionSA = request.getParameter("subdivisionSAEditUD");
-        String citySA = request.getParameter("citySAEditUD");
-        String postalCodeSA = request.getParameter("postalcodeSAEditUD");
-        String countrySA = request.getParameter("countrySAEditUD");
-        
-        Account account = new Account();
-        Address addressBA = new Address();
-        Address addressSA = new Address();
-        
-        account.setFirstName(firstName);
-        account.setMiddleName(middleName);
-        account.setLastName(lastName);
-        account.setUsername(username);
-        account.setPassword(user.getPassword());
-        account.setEmail(email);
-        
-        addressBA.setHouseNumber(houseNumBA);
-        addressBA.setStreet(streetBA);
-        addressBA.setSubdivision(subdivisionBA);
-        addressBA.setCity(cityBA);
-        addressBA.setPostalCode(postalCodeBA);
-        addressBA.setCountry(countryBA);
-        
-        addressSA.setHouseNumber(houseNumSA);
-        addressSA.setStreet(streetSA);
-        addressSA.setSubdivision(subdivisionSA);
-        addressSA.setCity(citySA);
-        addressSA.setPostalCode(postalCodeSA);
-        addressSA.setCountry(countrySA);
-        
-        
-        //temporary fix
-        //account.setAccessLevel(AccessLevel.USER);
-        account.setAccessLevel(user.getAccessLevel());
-        account.setBillingAddress(addressBA);
-        account.setShippingAddress(addressSA);
-        account.setAccountId(user.getAccountId());
-        
-        controller.updateAccount(account);
-        RequestDispatcher rs = request.getRequestDispatcher("UserDetailsPage.jsp");
-        rs.forward(request, response);
-        //rs.forward(request, response);
-        
-        //processRequest(request, response);
+        processRequest(request, response);
     }
 
     /**
