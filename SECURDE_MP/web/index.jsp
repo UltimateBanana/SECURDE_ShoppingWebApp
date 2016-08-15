@@ -28,13 +28,20 @@
                     window.location.href = "index.jsp";
                 });
                 
-                $('#signupBtn').on('click', function(){
-                    window.location.href = "SignUpPage.jsp";
-                });
-                
-                $('#loginBtn').on('click', function(){
-                    window.location.href = "LogInPage.jsp";
-                });
+//                $('#signupBtn').on('click', function(){
+//                    if($('#signupBtn').val() == "Sign Up")
+//                    {
+//                        window.location.href = "SignUpPage.jsp";
+//                    }
+//                    else if($('#signupBtn').val() == "Log Out")
+//                    {
+//                        
+//                    }
+//                });
+//                
+//                $('#loginBtn').on('click', function(){
+//                    window.location.href = "LogInPage.jsp";
+//                });
                 
 //                $('#adminBtn').on('click', function(){
 //                    window.location.href = "AdminPage.jsp";
@@ -67,7 +74,38 @@
         </script>
     </head>
     <body>
-        
+        <%
+            String user = null;
+//            if(session.getAttribute("user") == null){
+//                response.sendRedirect("index.jsp");
+//            }
+            if(session.getAttribute("user") != null){
+                user = session.getAttribute("user").toString();
+            }
+            
+            String userName = "Sign In";
+            String logoutName = "Sign Up";
+            String sessionID = null;
+            
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("user"))
+                    {
+                        userName = cookie.getValue();
+                        logoutName = "Sign Out";
+                    }
+                    if(cookie.getName().equals("JSESSIONID"))
+                    {
+                        sessionID = cookie.getValue();
+                    }
+                }
+            }
+//            if(userName == null)
+//            {
+//                response.sendRedirect("index.jsp");
+//            }
+        %>
         <div class="container-fluid">
             
             <!-- The HEADER and the buttons/links in it -->
@@ -93,15 +131,15 @@
                         <!-- Sign In and Sign Up buttons -->
                         <form action="GeneralIndexServlet" method="post">
                             <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-                                <button type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn">Product Details Page</button>
-                                <button type="button" class="btn btn-default navbar-btn" id="productListBtn" name="productListBtn">Product List Page</button>
-                                <button type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="shoppingCartBtn">Shopping Cart Page</button>
-                                <button type="submit" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn">Admin Page</button>
-                                <button type="submit" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn">Product Manager Page</button>
-                                <button type="submit" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn">Accounting Manager Page</button>
-                                <button type="submit" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn">User Details Page</button>
-                                <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
-                                <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
+                                <input type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn" value="Product Details Page"/>
+                                <input type="button" class="btn btn-default navbar-btn" id="productListBtn" name="productListBtn" value="Product List Page"/>
+                                <input type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="shoppingCartBtn" value="Shopping Cart Page"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn" value="Admin Page"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn" value="Product Manager Page"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn" value="Accounting Manager Page"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn" value="User Details Page"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn" value="<%=userName%>"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn" value="<%=logoutName%>"/>
                             </div>
                         </form>
                         

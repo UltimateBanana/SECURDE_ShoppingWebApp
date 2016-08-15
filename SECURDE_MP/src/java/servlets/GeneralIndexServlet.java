@@ -6,6 +6,7 @@
 package servlets;
 
 import controller.Controller;
+import enumeration.AccessLevel;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -63,40 +64,7 @@ public class GeneralIndexServlet extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        if(request.getParameter("adminBtn") != null)
-        {
-            Controller controller = new Controller();
-            AccountRequest accountRequest = new AccountRequest();
-            ArrayList<Account> lockedUserList = new ArrayList<Account>();
-
-            accountRequest.setIsLocked(true);
-            lockedUserList = controller.queryAllAccounts(accountRequest);
-            request.setAttribute("accounts", lockedUserList);
-
-            request.getRequestDispatcher("/AdminPage.jsp").forward(request, response);
-//            response.sendRedirect("AdminPage.jsp");
-        }
-        else if(request.getParameter("productmanagerBtn") != null)
-        {
-            
-            
-            request.getRequestDispatcher("/ProductManagerPage.jsp").forward(request, response);
-//            response.sendRedirect("ProductManagerPage.jsp");
-        }
-        else if(request.getParameter("accountingmanagerBtn") != null)
-        {
-            
-            
-            request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
-//            response.sendRedirect("AccountingManagerPage.jsp");
-        }
-        else if(request.getParameter("userdetailsBtn") != null)
-        {
-            
-            
-            request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
-//            response.sendRedirect("UserDetailsPage.jsp");
-        }
+        
     }
 
     /**
@@ -114,6 +82,7 @@ public class GeneralIndexServlet extends HttpServlet {
         
         if(request.getParameter("adminBtn") != null)
         {
+            System.out.println("ADMIN BUTTON IS " + request.getParameter("adminBtn"));
             Controller controller = new Controller();
             AccountRequest accountRequest = new AccountRequest();
             ArrayList<Account> lockedUserList = new ArrayList<Account>();
@@ -159,6 +128,38 @@ public class GeneralIndexServlet extends HttpServlet {
             
             request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
 //            response.sendRedirect("UserDetailsPage.jsp");
+        }
+        else if(request.getParameter("loginBtn") != null)
+        {
+//            request.getRequestDispatcher("/SignUpPage.jsp").forward(request, response);
+            System.out.println("EEEYYY " + request.getParameter("loginBtn"));
+            
+            if(request.getParameter("loginBtn").equals("Sign In"))
+            {
+                request.getRequestDispatcher("/LogInPage.jsp").forward(request, response);
+            }
+            else
+            {
+//                Account account = (Account) request.getSession(false).getAttribute("user");
+//                if(account.getAccessLevel().equals(AccessLevel.USER))
+//                {
+//                    request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
+//                }
+                request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
+            }
+        }
+        else if(request.getParameter("signupBtn") != null)
+        {
+            System.out.println("YOOO " + request.getParameter("signupBtn"));
+            
+            if(request.getParameter("signupBtn").equals("Sign Up"))
+            {
+                request.getRequestDispatcher("/SignUpPage.jsp").forward(request, response);
+            }
+            else if(request.getParameter("signupBtn").equals("Sign Out"))
+            {
+                request.getRequestDispatcher("/LogoutServlet").forward(request, response);
+            }
         }
     }
 

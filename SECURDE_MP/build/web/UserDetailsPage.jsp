@@ -58,7 +58,24 @@
         
     </head>
     <body>
-        
+        <%
+//            if(session.getAttribute("user") == null){
+//                response.sendRedirect("index.jsp");
+//            }
+            String userName = "Sign In";
+            String logoutName = "Sign Up";
+            
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("user"))
+                    {
+                        userName = cookie.getValue();
+                        logoutName = "Sign Out";
+                    }
+                }
+            }
+        %>
         <div class="container-fluid">
             
             <!-- The HEADER and the buttons/links in it -->
@@ -72,10 +89,10 @@
                         </a>
                         
                          <!--Logout buttons--> 
-                        <form action="LogoutServlet" method="post">
+                        <form action="GeneralIndexServlet" method="post">
                             <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-                                <input type="button" class="btn btn-default navbar-btn" id="userHeaderBtn" name="userHeaderBtn" value="User's name" />
-                                <input type="button" class="btn btn-default navbar-btn" id="logoutBtn" name="logoutBtn" value="Sign Out" />
+                                <input type="submit" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn" value="<%=userName%>"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn" value="<%=logoutName%>"/>
                             </div>
                         </form>
                     </div>
@@ -218,7 +235,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Edit User Details</h4>
                         </div>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" action="EditUserDetailsServlet" method="post">
                             <div class="modal-body">
                                 <!--<form role="form" id="showuserdetailsForm" name="showuserdetailsForm">-->
                                 <fieldset>
