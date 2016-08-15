@@ -175,25 +175,6 @@ public class AccountManager
 	return null;
     }
     
-    public String queryUser(String username){
-        String sql = "SELECT *"
-                + " FROM " + Account.TABLE_NAME
-                + " WHERE " + Account.COLUMN_USERNAME + " = ?";
-        String id = "";
-        
-        try {
-            PreparedStatement ps = connection.prepareStatement(sql);
-            ps.setString(1, username);
-            ResultSet rs = ps.executeQuery();
-            if(rs.next()){
-                id = String.valueOf(rs.getInt(Account.COLUMN_ACCOUNT_ID));
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return id;
-    }
-    
     public ArrayList<Account> queryAllAccounts( AccountRequest accountRequest )
     {
 	ArrayList<Account> accounts = new ArrayList<>(0);
