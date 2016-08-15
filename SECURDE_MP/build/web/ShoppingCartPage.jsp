@@ -195,7 +195,7 @@
                                     <li>Shipping Cost <span>20$</span></li>
                                     <li>Total <span>200$</span></li>
                                 </ul>
-                                <a class="btn btn-default check_out" href="ProductDetailsPage.jsp">Check Out</a>
+                                <a class="btn btn-default check_out" href="CheckoutPage.jsp">Check Out</a>
                             </div>
                 </div>
             </section><!--/#do_action-->
