@@ -80,7 +80,14 @@ public class GeneralIndexServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        if(request.getParameter("adminBtn") != null)
+        if(request.getParameter("productListBtn") != null)
+        {
+            System.out.println("PRODUCT LIST BUTTON IS " + request.getParameter("adminBtn"));
+            
+            request.getRequestDispatcher("/ProductListServlet").forward(request, response);
+//            response.sendRedirect("AdminPage.jsp");
+        }
+        else if(request.getParameter("adminBtn") != null)
         {
             System.out.println("ADMIN BUTTON IS " + request.getParameter("adminBtn"));
             Controller controller = new Controller();

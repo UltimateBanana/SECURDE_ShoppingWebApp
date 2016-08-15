@@ -132,7 +132,7 @@
                         <form action="GeneralIndexServlet" method="post">
                             <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
                                 <input type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn" value="Product Details Page"/>
-                                <input type="button" class="btn btn-default navbar-btn" id="productListBtn" name="productListBtn" value="Product List Page"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="productListBtn" name="productListBtn" value="Product List Page"/>
                                 <input type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="shoppingCartBtn" value="Shopping Cart Page"/>
                                 <input type="submit" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn" value="Admin Page"/>
                                 <input type="submit" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn" value="Product Manager Page"/>
