@@ -3,13 +3,12 @@ package servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class LockAccountsServlet extends HttpServlet {
+public class FilterSalesServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -19,10 +18,10 @@ public class LockAccountsServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LockAccountsServlet</title>");            
+            out.println("<title>Servlet FilterSalesServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LockAccountsServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FilterSalesServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -37,13 +36,7 @@ public class LockAccountsServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
-        String account = request.getParameter("createmanagerSubmit");
-        RequestDispatcher rd = request.getRequestDispatcher("AdminPage.jsp");
-        out.println("Account: "+account);
-        System.out.println("Shit: "+account);
-        rd.forward(request, response);
-
+        
         //processRequest(request, response);
     }
 
