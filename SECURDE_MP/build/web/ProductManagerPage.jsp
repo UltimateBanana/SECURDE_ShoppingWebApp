@@ -165,7 +165,7 @@
                             <h2 class="panel-title">Add Manager</h2>
                         </div>-->
                         <div class="panel-body">
-                            <form role="form" id="addproductForm" name="addproductForm">
+                            <form role="form" id="addproductForm" name="addproductForm" action="AddProductServlet" method="post">
                                 <fieldset>
                                     <!-- Product Details -->
                                     <div class="col-sm-6 form-group">

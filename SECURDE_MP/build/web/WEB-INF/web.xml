@@ -44,6 +44,18 @@
         <servlet-name>EditUserDetailsServlet</servlet-name>
         <servlet-class>servlets.EditUserDetailsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FilterSalesServlet</servlet-name>
+        <servlet-class>servlets.FilterSalesServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AddProductServlet</servlet-name>
+        <servlet-class>servlets.AddProductServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ProductListServlet</servlet-name>
+        <servlet-class>servlets.ProductListServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -87,6 +99,18 @@
     <servlet-mapping>
         <servlet-name>EditUserDetailsServlet</servlet-name>
         <url-pattern>/EditUserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterSalesServlet</servlet-name>
+        <url-pattern>/FilterSalesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddProductServlet</servlet-name>
+        <url-pattern>/AddProductServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductListServlet</servlet-name>
+        <url-pattern>/ProductListServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
