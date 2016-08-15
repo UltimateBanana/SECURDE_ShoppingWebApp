@@ -164,15 +164,6 @@
                                     <div class="panel-heading"><span><i class="glyphicon glyphicon-lock"></i></span> Secure Payment</div>
                                     <div class="panel-body">
                                         <div class="form-group">
-                                            <div class="col-md-12"><strong>Card Type:</strong></div>
-                                            <div class="col-md-12">
-                                                <select id="CreditCardType" name="CreditCardType" class="form-control">
-                                                    <option value="5">Visa</option>
-                                                    <option value="6">MasterCard</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
                                             <div class="col-md-12"><strong>Credit Card Number:</strong></div>
                                             <div class="col-md-12"><input type="text" class="form-control" name="cardNumber" value="" id="cardNumber"/></div>
                                         </div>
