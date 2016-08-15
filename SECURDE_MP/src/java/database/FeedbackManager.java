@@ -43,10 +43,11 @@ public class FeedbackManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    return new Feedback(Integer.toString(rs.getInt(Feedback.COLUMN_FEEDBACK_ID)),
-				rs.getString(Feedback.COLUMN_FEEDBACK));
+	    if( rs.next() )
+	    {
+		return new Feedback(Integer.toString(rs.getInt(Feedback.COLUMN_FEEDBACK_ID)),
+				    rs.getString(Feedback.COLUMN_FEEDBACK));
+	    }
 	}
 	catch (SQLException ex)
 	{

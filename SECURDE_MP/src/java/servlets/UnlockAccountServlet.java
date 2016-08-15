@@ -4,6 +4,7 @@ package servlets;
 import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +40,13 @@ public class UnlockAccountServlet extends HttpServlet {
             throws ServletException, IOException {
         
         Controller controller = new Controller();
-        String lockedAccount = request.getParameter("lockedAccount");
-        
+        String lockedAccount = request.getParameter("lockedaccountsSelect");
+        System.out.println(lockedAccount);
+        if(controller.unlockAccount(Integer.parseInt(lockedAccount))){
+            System.out.println("Hi");
+            RequestDispatcher rs = request.getRequestDispatcher("/AdminPage.jsp");
+            rs.forward(request, response);
+        }
         //processRequest(request, response);
     }
 

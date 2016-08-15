@@ -150,7 +150,7 @@
                             <h2 class="panel-title">Unlock Account</h2>
                         </div>-->
                         <div class="panel-body">
-                            <form role="form" id="unlockaccountForm" name="unlockaccountForm">
+                            <form role="form" id="unlockaccountForm" name="unlockaccountForm" action="UnlockAccountServlet" method="post">
                                 <fieldset>
                                     <div class="form-group">
                                         <label class="col-sm-3">Locked Accounts:</label>

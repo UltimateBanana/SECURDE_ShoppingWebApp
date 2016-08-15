@@ -46,18 +46,19 @@ public class ReceiptManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    Calendar calendar = Calendar.getInstance();
-	    calendar.setTime(rs.getDate(Receipt.COLUMN_DATE));
-	    
-	    ArrayList<ReceiptItem> receiptItems = receiptItemManager.queryAllReceiptItemByReceipt(receiptId);
-	    
-	    return new Receipt(Integer.toString(rs.getInt(Receipt.COLUMN_RECEIPT_ID)),
-			       calendar,
-			       rs.getString(Receipt.COLUMN_CREDIT_CARD_NUMBER),
-			       rs.getDouble(Receipt.COLUMN_PRICE),
-			       receiptItems);
+	    if( rs.next() )
+	    {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(rs.getDate(Receipt.COLUMN_DATE));
+
+		ArrayList<ReceiptItem> receiptItems = receiptItemManager.queryAllReceiptItemByReceipt(receiptId);
+
+		return new Receipt(Integer.toString(rs.getInt(Receipt.COLUMN_RECEIPT_ID)),
+				   calendar,
+				   rs.getString(Receipt.COLUMN_CREDIT_CARD_NUMBER),
+				   rs.getDouble(Receipt.COLUMN_PRICE),
+				   receiptItems);
+	    }
 	}
 	catch (SQLException ex)
 	{
