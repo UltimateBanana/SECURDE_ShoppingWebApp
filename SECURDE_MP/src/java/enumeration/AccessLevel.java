@@ -6,7 +6,7 @@ public enum AccessLevel
     
     public static AccessLevel translateAccessLevelStringToEnum( String accessLevel )
     {
-	switch( accessLevel.toUpperCase() )
+	switch( accessLevel )
 	{
 	    case "ADMINISTRATOR": return AccessLevel.ADMINISTRATOR;
 	    case "ACCOUNTING MANAGER": return AccessLevel.ACCOUNTING_MANAGER;

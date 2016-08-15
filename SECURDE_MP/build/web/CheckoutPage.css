@@ -1,0 +1,198 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24-Jul-2016, 23:02:31
+    Author     : hannah
+*/
+
+/* ID */
+#topheader {
+    background-color: #ffffff;
+    position: fixed;
+}
+
+#footer {
+    background-color: #78c3e2;
+}
+
+#content {
+    margin: auto;
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    display: block;
+    color: #333333;
+}
+
+#topheaderlink {
+    /* links in the top header */
+    padding-left: 50px;
+    font-size: 15px;
+}
+
+
+/* CLASS */
+.navbar{
+    min-width: 800px;
+    min-height: 20px;
+    position: fixed;
+}
+
+.navbar-default {
+    /* padding in the left and right of top header */
+    padding-left: 40px;
+    padding-right: 40px;
+}
+
+.navbar-default .navbar-brand {
+    /* Brand (aka app name) in the top header */
+    font-size: 40px;
+    font-weight: bold;
+    /*color: #a9a9a9; */
+    color: #ff383f;
+    float: left;
+    margin-left: auto;
+}
+
+.navbar-header {
+    /* for the top header buttons to keep right */
+    width:100%;
+}
+
+.navbar-brand:hover, 
+.navbar-brand:focus {
+  color: #ff3333 !important;
+}
+
+.navbar-brand {
+    padding-top: 20px;
+}
+
+.navbar-nav {
+    padding-top: 10px;
+}
+
+.right-side-button {
+    /* keeps buttons in top header align to right */
+    float:right;
+}
+
+.btn-primary{
+    /* spacing between buttons */
+    /*margin-left:5px;*/
+    background: #FF383f;
+}
+
+.btn-primary:hover{
+    background: #DF383f;
+}
+
+/* TAGS */
+body {
+    width: 100%;
+    background-color: #efefef;
+    padding-top: 80px;
+}
+
+li {
+    position: fixed;
+}
+
+html,body,.wrapper{
+    background: #f7f7f7;
+}
+
+/*
+ * BOOTSTRAP
+ */
+.container{
+    border: none;
+}
+.panel-footer{
+    background:#fff;
+}
+.btn{
+    border-radius: 1px;
+}
+.btn-sm, .btn-group-sm > .btn{
+    border-radius: 1px;
+}
+
+.panel-info {
+    border-color: #999;
+}
+
+.panel-heading {
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+}
+.panel {
+    border-radius: 1px;
+}
+.panel-info > .panel-heading {
+    color: #eee;
+    border-color: #999;
+}
+.panel-info > .panel-heading {
+    background:#FF383f;
+}
+
+hr {
+    border-color: #999 -moz-use-text-color -moz-use-text-color;
+}
+
+.panel-footer {
+    border-bottom-left-radius: 1px;
+    border-bottom-right-radius: 1px;
+    border-top: 1px solid #999;
+}
+
+hr{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+/** MEDIA QUERIES **/
+@media only screen and (max-width: 989px){
+    .span1{
+        margin-bottom: 15px;
+        clear:both;
+    }
+}
+
+@media only screen and (max-width: 764px){
+    .inverse-1{
+        float:right;
+    }
+}
+
+@media only screen and (max-width: 586px){
+    .cart-titles{
+        display:none;
+    }
+    .panel {
+        margin-bottom: 1px;
+    }
+}
+
+@media only screen and (max-width: 486px){
+    .col-xss-12{
+        width:100%;
+    }
+    .cart-img-show{
+        display: none;
+    }
+    .btn-submit-fix{
+        width:100%;
+    }
+    
+}
+/*
+@media only screen and (max-width: 777px){
+    .container{
+        overflow-x: hidden;
+    }
+}*/

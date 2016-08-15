@@ -3,12 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Phil/Desktop/SecurdeMP/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/LoginServlet.java</file>
-            <file>file:/C:/Users/Phil/Desktop/SecurdeMP/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/AccountManager.java</file>
-            <file>file:/C:/Users/Phil/Desktop/SecurdeMP/SECURDE_ShoppingWebApp/SECURDE_MP/web/AdminPage.jsp</file>
-            <file>file:/C:/Users/Phil/Desktop/SecurdeMP/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/EditUserDetailsServlet.java</file>
-            <file>file:/C:/Users/Phil/Desktop/SecurdeMP/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/controller/Controller.java</file>
-            <file>file:/C:/Users/Phil/Desktop/SecurdeMP/SECURDE_ShoppingWebApp/SECURDE_MP/web/UserDetailsPage.jsp</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/GeneralIndexServlet.java</file>
         </group>
     </open-files>
 </project-private>
