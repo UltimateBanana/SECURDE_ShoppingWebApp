@@ -218,7 +218,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Edit User Details</h4>
                         </div>
-                        <form class="form-horizontal" role="form">
+                        <form class="form-horizontal" role="form" action="EditUserDetailsServlet" method="post">
                             <div class="modal-body">
                                 <!--<form role="form" id="showuserdetailsForm" name="showuserdetailsForm">-->
                                 <fieldset>
