@@ -32,7 +32,7 @@ public class CreditCardManager
 	PreparedStatement ps;
 	String sql = "SELECT *"
 		+ " FROM " + CreditCard.TABLE_NAME
-		+ " WHERE " + Account.TABLE_NAME + " = ?;";
+		+ " WHERE " + Account.COLUMN_ACCOUNT_ID + " = ?;";
 	
 	try
 	{
@@ -41,11 +41,12 @@ public class CreditCardManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    return new CreditCard(rs.getString(CreditCard.COLUMN_CREDIT_CARD_NUMBER),
-				  rs.getString(CreditCard.COLUMN_SECURITY_PIN),
-				  rs.getInt(CreditCard.COLUMN_CREDIT_LIMIT));
+	    if( rs.next() )
+	    {
+		return new CreditCard(rs.getString(CreditCard.COLUMN_CREDIT_CARD_NUMBER),
+				      rs.getString(CreditCard.COLUMN_SECURITY_PIN),
+				      rs.getInt(CreditCard.COLUMN_CREDIT_LIMIT));
+	    }
 	}
 	catch (SQLException ex)
 	{
@@ -70,11 +71,12 @@ public class CreditCardManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    return new CreditCard(rs.getString(CreditCard.COLUMN_CREDIT_CARD_NUMBER),
-				  rs.getString(CreditCard.COLUMN_SECURITY_PIN),
-				  rs.getInt(CreditCard.COLUMN_CREDIT_LIMIT));
+	    if( rs.next() )
+	    {
+		return new CreditCard(rs.getString(CreditCard.COLUMN_CREDIT_CARD_NUMBER),
+				      rs.getString(CreditCard.COLUMN_SECURITY_PIN),
+				      rs.getInt(CreditCard.COLUMN_CREDIT_LIMIT));
+	    }
 	}
 	catch (SQLException ex)
 	{

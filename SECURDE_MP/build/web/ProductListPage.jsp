@@ -30,7 +30,23 @@
             $('#loginBtn').on('click', function(){
                 window.location.href = "LogInPage.jsp";
             });
-
+            
+            // For the Search bar part
+            $('.dropdown-menu').on('click', function(event) {
+                event.stopPropagation();
+            });
+            
+            $('.selectpicker').selectpicker({
+                container: 'body'
+            });
+            
+            $('body').on('click', function(event) {
+                var target = $(event.target);
+                if (target.parents('.bootstrap-select').length) {
+                    event.stopPropagation();
+                    $('.bootstrap-select.open').removeClass('open');
+                }
+            });	
         });
     </script>
 </head>
@@ -49,18 +65,62 @@
                     </a>
 
                     <!-- Search Bar -->
-                    <form class="navbar-form navbar-left" role="search">
-                        <div class="form-group">
-                          <input type="text" class="form-control" id="searchInput" name="searchInput" placeholder="Search">
-                      </div>
-                      <button type="submit" class="btn btn-default navbar-btn" id="submitsearchBtn" name="submitsearchBtn">
-                        <i class="glyphicon glyphicon-search"></i>
-                    </button>
-                </form>
+                    <form class="navbar-form navbar-left form-horizontal" role="search">
+                        <div class="input-group" id="adv-search">
+                            <input type="text" class="form-control" placeholder="Search for Product Name" />
+                            <div class="input-group-btn">
+                                <div class="btn-group" role="group">
+                                    <div class="dropdown dropdown-lg">
+                                        <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></button>
+                                        <div class="dropdown-menu dropdown-menu-right" role="menu">
+                                            <!--<fieldset>-->
+                                            <!--<form class="form-horizontal" role="form">-->
+                                            <div class="col-md-6 form-group">
+                                                <label for="price">Filter Price By</label>
+                                                <select class="selectpicker form-control" name="pricefilterSearch" id="pricefilterSearch">
+                                                    <option value="equalto" selected>Equal To</option>
+                                                    <option value="notequalto">Not Equal To</option>
+                                                    <option value="greaterthanequalto">Greater Than or Equal To</option>
+                                                    <option value="greaterthan">Greater Than</option>
+                                                    <option value="lessthanequalto">Less Than or Equal To</option>
+                                                    <option value="lessthan">Less Than</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-6 form-group">
+                                                <label for="price">Price</label>
+                                                <input class="col-md-6 form-control" type="text" placeholder="Price" name="priceSearch" id="priceSearch"/>
+                                            </div>
+                                            <div class="col-md-12 form-group">
+                                                <label for="category">Category</label>
+                                                <select class="selectpicker form-control" name="categorySearch" id="categorySearch">
+                                                    <option value="nocategory" selected>-</option>
+                                                    <option value="boots" >Boots</option>
+                                                    <option value="shoes">Shoes</option>
+                                                    <option value="sandals">Sandals</option>
+                                                    <option value="slippers">Slippers</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-md-12 form-group">
+                                                <label for="orderby">Order by</label>
+                                                <select class="selectpicker form-control" name="orderbySearch" id="orderbySearch">
+                                                    <option value="0" selected>Ascending</option>
+                                                    <option value="1">Descending</option>
+                                                </select>
+                                            </div>
+                                            <!--</fieldset>-->
+                                                <!--<button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>-->
+                                            <!--</form>-->
+                                        </div>
+                                    </div>
+                                    <button type="submit" class="btn btn-primary" name="submitSearch" id="submitSearch"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
 
-                <!-- Sign In and Sign Up buttons -->
-                <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-             <!--        <ul class="nav navbar-nav">
+                    <!-- Sign In and Sign Up buttons -->
+                    <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                 <!--        <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Salman khan <span class="glyphicon glyphicon-user pull-right"></span></a>
                             <ul class="dropdown-menu">
@@ -76,97 +136,98 @@
                             </ul>
                         </li>
                     </ul> -->
-                    <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
-                    <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
-                </div>
+                        <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
+                        <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
+                    </div>
                 
-            </div>
-        </div> <!-- /container-fluid -->
-    </nav> <!-- /navbar top header -->
-    
-    <!-- CONTENT -->
-    <div id="content">
-        <div class="container-fluid">
+                </div>
+            </div> <!-- /container-fluid -->
+        </nav> <!-- /navbar top header -->
 
-            <!-- Text -->
-            <div id="contenttext">
-                <br><br>
-                <div class="row column text-center">
-                    <h2>Our Newest Products</h2>
-                    <hr>
-                </div>
-                <div class="row small-up-2 large-up-4">
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
-                    </div>
-                </div>
-                <hr>
-                <div class="row column text-center">
-                    <h2>Some Other Neat Products</h2>
-                    <hr>
-                </div>
-                <div class="row small-up-2 medium-up-3 large-up-6">
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                    </div>
-                    <div class="column">
-                        <img class="thumbnail" src="./assets/pictures/300x400">
-                        <h5>Nulla At Nulla Justo, Eget</h5>
-                        <p>$400</p>
-                        <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                    </div>
-                </div>
-            </div>
-        </div><!-- /content -->
+        <!-- CONTENT -->
+        <div id="contentProduct">
+            <div class="container-fluid">
 
-    </div> <!-- /container-fluid BODY -->
+                <!-- Text -->
+                <div id="contenttext">
+                    <br><br>
+                    <div class="row column text-center">
+                        <h2>Our Newest Products</h2>
+                        <hr>
+                    </div>
+                    <div class="row small-up-2 large-up-4">
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row column text-center">
+                        <h2>Some Other Neat Products</h2>
+                        <hr>
+                    </div>
+                    <div class="row small-up-2 medium-up-3 large-up-6">
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                        </div>
+                        <div class="column">
+                            <img class="thumbnail" src="./assets/pictures/300x400">
+                            <h5>Nulla At Nulla Justo, Eget</h5>
+                            <p>$400</p>
+                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                        </div>
+                    </div>
+                </div>
+            </div><!-- /content -->
+
+        </div> <!-- /container-fluid BODY -->
+    </div>
 </body>
 </html>

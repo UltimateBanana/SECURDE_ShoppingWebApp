@@ -50,51 +50,52 @@ public class AccountManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    Address billingAddress = new Address(rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_STREET),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_SUBDIVISION),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_CITY),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_POSTAL_CODE),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_COUNTRY));
-	    
-	    Address shippingAddress = new Address(rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_STREET),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY));
-	    
-	    CreditCard creditCard = creditCardManager.queryCreditCardByAccount(accountId);
-	    
-	    ArrayList<Receipt> receipts = receiptManager.queryAllReceiptByAccount(accountId);
-	    
-	    int locked = rs.getInt(Account.COLUMN_IS_LOCKED);
-	    boolean isLocked;
-	    
-	    if( locked == 0 )
+	    if( rs.next() )
 	    {
-		isLocked = false;
+		Address billingAddress = new Address(rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_STREET),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_SUBDIVISION),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_CITY),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_POSTAL_CODE),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_COUNTRY));
+
+		Address shippingAddress = new Address(rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_STREET),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY));
+
+		CreditCard creditCard = creditCardManager.queryCreditCardByAccount(accountId);
+
+		ArrayList<Receipt> receipts = receiptManager.queryAllReceiptByAccount(accountId);
+
+		int locked = rs.getInt(Account.COLUMN_IS_LOCKED);
+		boolean isLocked;
+
+		if( locked == 0 )
+		{
+		    isLocked = false;
+		}
+		else
+		{
+		    isLocked = true;
+		}
+
+		return new Account(Integer.toString(rs.getInt(Account.COLUMN_ACCOUNT_ID)),
+				   AccessLevel.translateAccessLevelStringToEnum(rs.getString(Account.COLUMN_ACCESS_LEVEL)),
+				   rs.getString(Account.COLUMN_FIRST_NAME),
+				   rs.getString(Account.COLUMN_MIDDLE_NAME),
+				   rs.getString(Account.COLUMN_LAST_NAME),
+				   rs.getString(Account.COLUMN_USERNAME),
+				   rs.getString(Account.COLUMN_PASSWORD),
+				   rs.getString(Account.COLUMN_EMAIL),
+				   creditCard,
+				   billingAddress,
+				   shippingAddress,
+				   receipts,
+				   isLocked);
 	    }
-	    else
-	    {
-		isLocked = true;
-	    }
-	    
-	    return new Account(Integer.toString(rs.getInt(Account.COLUMN_ACCOUNT_ID)),
-			       AccessLevel.translateAccessLevelStringToEnum(rs.getString(Account.COLUMN_ACCESS_LEVEL)),
-			       rs.getString(Account.COLUMN_FIRST_NAME),
-			       rs.getString(Account.COLUMN_MIDDLE_NAME),
-			       rs.getString(Account.COLUMN_LAST_NAME),
-			       rs.getString(Account.COLUMN_USERNAME),
-			       rs.getString(Account.COLUMN_PASSWORD),
-			       rs.getString(Account.COLUMN_EMAIL),
-			       creditCard,
-			       billingAddress,
-			       shippingAddress,
-			       receipts,
-			       isLocked);
 	}
 	catch (SQLException ex)
 	{
@@ -119,51 +120,52 @@ public class AccountManager
 	    
 	    ResultSet rs = ps.executeQuery();
 	    
-	    rs.next();
-	    
-	    Address billingAddress = new Address(rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_STREET),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_SUBDIVISION),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_CITY),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_POSTAL_CODE),
-						 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_COUNTRY));
-	    
-	    Address shippingAddress = new Address(rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_STREET),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE),
-						 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY));
-	    
-	    CreditCard creditCard = creditCardManager.queryCreditCardByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
-	    
-	    ArrayList<Receipt> receipts = receiptManager.queryAllReceiptByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
-	    
-	    int locked = rs.getInt(Account.COLUMN_IS_LOCKED);
-	    boolean isLocked;
-	    
-	    if( locked == 0 )
+	    if( rs.next() )
 	    {
-		isLocked = false;
+		Address billingAddress = new Address(rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_STREET),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_SUBDIVISION),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_CITY),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_POSTAL_CODE),
+						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_COUNTRY));
+
+		Address shippingAddress = new Address(rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_STREET),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE),
+						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY));
+
+		CreditCard creditCard = creditCardManager.queryCreditCardByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
+
+		ArrayList<Receipt> receipts = receiptManager.queryAllReceiptByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
+
+		int locked = rs.getInt(Account.COLUMN_IS_LOCKED);
+		boolean isLocked;
+
+		if( locked == 0 )
+		{
+		    isLocked = false;
+		}
+		else
+		{
+		    isLocked = true;
+		}
+
+		return new Account(Integer.toString(rs.getInt(Account.COLUMN_ACCOUNT_ID)),
+				   AccessLevel.translateAccessLevelStringToEnum(rs.getString(Account.COLUMN_ACCESS_LEVEL)),
+				   rs.getString(Account.COLUMN_FIRST_NAME),
+				   rs.getString(Account.COLUMN_MIDDLE_NAME),
+				   rs.getString(Account.COLUMN_LAST_NAME),
+				   rs.getString(Account.COLUMN_USERNAME),
+				   rs.getString(Account.COLUMN_PASSWORD),
+				   rs.getString(Account.COLUMN_EMAIL),
+				   creditCard,
+				   billingAddress,
+				   shippingAddress,
+				   receipts,
+				   isLocked);
 	    }
-	    else
-	    {
-		isLocked = true;
-	    }
-	    
-	    return new Account(Integer.toString(rs.getInt(Account.COLUMN_ACCOUNT_ID)),
-			       AccessLevel.translateAccessLevelStringToEnum(rs.getString(Account.COLUMN_ACCESS_LEVEL)),
-			       rs.getString(Account.COLUMN_FIRST_NAME),
-			       rs.getString(Account.COLUMN_MIDDLE_NAME),
-			       rs.getString(Account.COLUMN_LAST_NAME),
-			       rs.getString(Account.COLUMN_USERNAME),
-			       rs.getString(Account.COLUMN_PASSWORD),
-			       rs.getString(Account.COLUMN_EMAIL),
-			       creditCard,
-			       billingAddress,
-			       shippingAddress,
-			       receipts,
-			       isLocked);
 	}
 	catch (SQLException ex)
 	{

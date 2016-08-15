@@ -28,6 +28,26 @@
         <servlet-name>UnlockAccountServlet</servlet-name>
         <servlet-class>servlets.UnlockAccountServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <servlet-class>servlets.AdminPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>GeneralIndexServlet</servlet-name>
+        <servlet-class>servlets.GeneralIndexServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LogoutServlet</servlet-name>
+        <servlet-class>servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditUserDetailsServlet</servlet-name>
+        <servlet-class>servlets.EditUserDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>FilterSalesServlet</servlet-name>
+        <servlet-class>servlets.FilterSalesServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -55,6 +75,26 @@
     <servlet-mapping>
         <servlet-name>UnlockAccountServlet</servlet-name>
         <url-pattern>/UnlockAccountServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AdminPageServlet</servlet-name>
+        <url-pattern>/AdminPageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>GeneralIndexServlet</servlet-name>
+        <url-pattern>/GeneralIndexServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LogoutServlet</servlet-name>
+        <url-pattern>/LogoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditUserDetailsServlet</servlet-name>
+        <url-pattern>/EditUserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FilterSalesServlet</servlet-name>
+        <url-pattern>/FilterSalesServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

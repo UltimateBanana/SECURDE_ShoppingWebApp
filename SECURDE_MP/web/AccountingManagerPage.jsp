@@ -16,7 +16,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-        <link rel="stylesheet" href="AdminPage.css">
+        <link rel="stylesheet" href="AccountingManagerPage.css">
         
         <title>Talaria Footwear Company</title>
         
@@ -67,10 +67,12 @@
                         </a>
                         
                          <!--Logout buttons--> 
-                        <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-                            <input type="button" class="btn btn-default navbar-btn" id="userHeaderBtn" name="userHeaderBtn" value="User's name" />
-                            <input type="button" class="btn btn-default navbar-btn" id="logoutBtn" name="logoutBtn" value="Sign Out" />
-                        </div>
+                        <form action="LogoutServlet" method="post">
+                            <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                               <input type="button" class="btn btn-default navbar-btn" id="userHeaderBtn" name="userHeaderBtn" value="User's name" />
+                               <input type="button" class="btn btn-default navbar-btn" id="logoutBtn" name="logoutBtn" value="Sign Out" />
+                            </div>
+                        </form>
                     </div>
                 </div>  <!-- /container-fluid -->
             </nav> <!-- /navbar top header 

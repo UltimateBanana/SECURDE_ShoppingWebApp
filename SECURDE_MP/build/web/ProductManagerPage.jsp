@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,7 +17,7 @@
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
         
         <!-- Link to CSS file -->
-        <link rel="stylesheet" href="AdminPage.css">
+        <link rel="stylesheet" href="ProductManagerPage.css">
         
         <title>Talaria Footwear Company</title>
         
@@ -83,10 +84,12 @@
                         </a>
                         
                          <!--Logout buttons--> 
-                        <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-                            <input type="button" class="btn btn-default navbar-btn" id="userHeaderBtn" name="userHeaderBtn" value="User's name" />
-                            <input type="button" class="btn btn-default navbar-btn" id="logoutBtn" name="logoutBtn" value="Sign Out" />
-                        </div>
+                        <form action="LogoutServlet" method="post">
+                            <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                                <input type="button" class="btn btn-default navbar-btn" id="userHeaderBtn" name="userHeaderBtn" value="User's name" />
+                                <input type="button" class="btn btn-default navbar-btn" id="logoutBtn" name="logoutBtn" value="Sign Out" />
+                            </div>
+                        </form>
                     </div>
                 </div>  <!-- /container-fluid -->
             </nav> <!-- /navbar top header 
@@ -123,75 +126,28 @@
                                         <th class="text-center">Action</th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Banana Slippers</td>
-                                    <td>Slippers</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-info btn-xs editMe" href="#">
-                                            <span class="glyphicon glyphicon-edit"></span> 
-                                            Edit
-                                        </a> 
-                                        <a href="#" class="btn btn-danger btn-xs deleteMe">
-                                            <span class="glyphicon glyphicon-remove"></span> 
-                                            Del
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Converse</td>
-                                    <td>Shoes</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-info btn-xs editMe" href="#">
-                                            <span class="glyphicon glyphicon-edit"></span> 
-                                            Edit
-                                        </a> 
-                                        <a href="#" class="btn btn-danger btn-xs deleteMe">
-                                            <span class="glyphicon glyphicon-remove"></span> 
-                                            Del
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Tsinelas Bruh</td>
-                                    <td>Slippers</td>
-                                    <td class="text-center">
-                                        <a class="btn btn-info btn-xs editMe" href="#">
-                                            <span class="glyphicon glyphicon-edit"></span> 
-                                            Edit
-                                        </a> 
-                                        <a href="#" class="btn btn-danger btn-xs deleteMe">
-                                            <span class="glyphicon glyphicon-remove"></span> 
-                                            Del
-                                        </a>
-                                    </td>
-                                </tr>
-                                
-                                <!-- Format for the show all product in list -->
-<!--                                <c:forEach items="${tasks}" var="task">
-                                    <li class="list-group-item">
-                                        <c:out value="${task.title}" />
-                                        <span class="glyphicon glyphicon-trash pull-right deleteMe"> </span> 
-                                        <span class="glyphicon glyphicon-edit pull-right editMe"> </span>
-                                    </li>
-                                </c:forEach>-->
-                                
-                                <c:forEach items="${products}" var="task">
+                                <c:forEach items="${products}" var="product">
                                     <tr>
-                                        <td><c:out value="${product.id}" /></td>
-                                        <td><c:out value="${product.title}" /></td>
+                                        <td><c:out value="${product.productId}" /></td>
+                                        <td><c:out value="${product.name}" /></td>
                                         <td><c:out value="${product.category}" /></td>
                                         <td class="text-center">
-                                            <a class="btn btn-info btn-xs editMe" href="#">
+                                            <button type="button" class="btn btn-info btn-xs editMe">
+                                                <i class="glyphicon glyphicon-edit"></i>
+                                                Edit
+                                            </button>
+                                            <button type="button" class="btn btn-danger btn-xs deleteMe">
+                                                <i class="glyphicon glyphicon-remove"></i>
+                                                Remove
+                                            </button>
+<!--                                            <a class="btn btn-info btn-xs editMe" href="#">
                                                 <span class="glyphicon glyphicon-edit"></span> 
                                                 Edit
                                             </a> 
                                             <a href="#" class="btn btn-danger btn-xs deleteMe">
                                                 <span class="glyphicon glyphicon-remove"></span> 
                                                 Del
-                                            </a>
+                                            </a>-->
                                         </td>
                                     </tr>
                                 </c:forEach>
