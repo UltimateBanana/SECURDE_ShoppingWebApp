@@ -131,9 +131,7 @@ public class GeneralIndexServlet extends HttpServlet {
         }
         else if(request.getParameter("userdetailsBtn") != null)
         {
-            
-            
-            request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/ShowUserDetailsServlet").forward(request, response);
 //            response.sendRedirect("UserDetailsPage.jsp");
         }
         else if(request.getParameter("loginBtn") != null)
@@ -152,7 +150,7 @@ public class GeneralIndexServlet extends HttpServlet {
 //                {
 //                    request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
 //                }
-                request.getRequestDispatcher("/UserDetailsPage.jsp").forward(request, response);
+                request.getRequestDispatcher("/ShowUserDetailsServlet").forward(request, response);
             }
         }
         else if(request.getParameter("signupBtn") != null)
