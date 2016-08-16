@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -122,73 +123,75 @@
                         <div class="panel-body">
                             <form role="form" id="showuserdetailsForm" name="showuserdetailsForm">
                                 <fieldset>
+                                    <c:forEach items="${accounts}" var="account">
                                     <!-- Name (First, Middle Initial, Last -->
                                     <div class="col-sm-4 form-group">
-                                        <input class="form-control" placeholder="First Name" name="fnameShowUD" id="fnameShowUD" type="text" autofocus="" value="" readonly>
+                                        <input class="form-control" placeholder="First Name" name="fnameShowUD" id="fnameShowUD" type="text" autofocus="" value="${account.firstName}" readonly>
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <input class="form-control" placeholder="Middle Initial" name="minitialShowUD" id="minitialShowUD" type="text" autofocus="" readonly>
+                                        <input class="form-control" placeholder="Middle Initial" name="minitialShowUD" id="minitialShowUD" type="text" autofocus="" value="${account.middleName}" readonly>
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <input class="form-control" placeholder="Last Name" name="lnameShowUD" id="lnameShowUD" type="text" autofocus="" readonly>
+                                        <input class="form-control" placeholder="Last Name" name="lnameShowUD" id="lnameShowUD" type="text" autofocus="" value="${account.lastName}" readonly>
                                     </div>
 
                                     <!-- Username, Password, and Email -->
                                     <div class="col-sm-6 form-group">
-                                        <input class="form-control" placeholder="Username" name="usernameShowUD" id="usernameShowUD" type="text" autofocus="" readonly>
+                                        <input class="form-control" placeholder="Username" name="usernameShowUD" id="usernameShowUD" type="text" autofocus="" value="${account.username}" readonly>
                                     </div>
                                     <div class="col-sm-6 form-group">
-                                        <input class="form-control" placeholder="E-mail" name="emailShowUD" id="emailShowUD" type="email" value="" readonly>
+                                        <input class="form-control" placeholder="E-mail" name="emailShowUD" id="emailShowUD" type="email" value="${account.email}" readonly>
                                     </div>
 
                                     <!-- Billing Address and Shipping Address -->
                                     <div id="billingAddress">
                                         <label class="col-sm-12">Billing Address</label>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="House #" name="housenumBAShowUD" id="housenumBAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="House #" name="housenumBAShowUD" id="housenumBAShowUD" type="text" autofocus="" value="${account.billingAddress.houseNumber}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Street" name="streetBAShowUD" id="streetBAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Street" name="streetBAShowUD" id="streetBAShowUD" type="text" autofocus=""  value="${account.billingAddress.street}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Subdivision" name="subdivisionBAShowUD" id="subdivisionBAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Subdivision" name="subdivisionBAShowUD" id="subdivisionBAShowUD" type="text" autofocus=""  value="${account.billingAddress.subdivision}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="City" name="cityBAShowUD" id="cityBAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="City" name="cityBAShowUD" id="cityBAShowUD" type="text" autofocus=""  value="${account.billingAddress.city}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Postal Code" name="postalcodeBAShowUD" id="postalcodeBAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Postal Code" name="postalcodeBAShowUD" id="postalcodeBAShowUD" type="text" autofocus=""  value="${account.billingAddress.postalCode}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Country" name="countryBAShowUD" id="countryBAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Country" name="countryBAShowUD" id="countryBAShowUD" type="text" autofocus=""  value="${account.billingAddress.country}" readonly>
                                         </div>
                                     </div>
 
                                     <div id="billingAddress">
                                         <label class="col-sm-12">Shipping Address</label>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="House #" name="housenumSAShowUD" id="housenumSAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="House #" name="housenumSAShowUD" id="housenumSAShowUD" type="text" autofocus="" value="${account.shippingAddress.houseNumber}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Street" name="streetSAShowUD" id="streetSAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Street" name="streetSAShowUD" id="streetSAShowUD" type="text" autofocus=""  value="${account.shippingAddress.street}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Subdivision" name="subdivisionSAShowUD" id="subdivisionSAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Subdivision" name="subdivisionSAShowUD" id="subdivisionSAShowUD" type="text" autofocus="" value="${account.shippingAddress.subdivision}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="City" name="citySAShowUD" id="citySAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="City" name="citySAShowUD" id="citySAShowUD" type="text" autofocus="" value="${account.shippingAddress.city}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Postal Code" name="postalcodeSAShowUD" id="postalcodeSAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Postal Code" name="postalcodeSAShowUD" id="postalcodeSAShowUD" type="text" autofocus="" value="${account.shippingAddress.postalCode}" readonly>
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Country" name="countrySAShowUD" id="countrySAShowUD" type="text" autofocus="" readonly>
+                                            <input class="form-control" placeholder="Country" name="countrySAShowUD" id="countrySAShowUD" type="text" autofocus="" value="${account.shippingAddress.country}" readonly>
                                         </div>
                                         
                                         <div class="col-sm-12 form-group">
                                             <input type="button" class="btn btn-primary editMe" id="edituserBtn" name="edituserBtn" value="Edit User Details" />
                                         </div>
                                     </div>
+                                    </c:forEach>
                                 </fieldset>
                             </form>
                         </div>
@@ -196,7 +199,7 @@
                     </div>
                     
                     
-                    <div class="tab-pane active text-style" id="tab2">
+                    <div class="tab-pane text-style" id="tab2">
                         <h3>User Details</h3>
                         <hr>
                         <div class="panel-body">
@@ -209,7 +212,7 @@
                     </div>
                     
                     
-                    <div class="tab-pane active text-style" id="tab3">
+                    <div class="tab-pane text-style" id="tab3">
                         <h3>User Details</h3>
                         <hr>
                         <div class="panel-body">
@@ -239,68 +242,67 @@
                             <div class="modal-body">
                                 <!--<form role="form" id="showuserdetailsForm" name="showuserdetailsForm">-->
                                 <fieldset>
+                                    <c:forEach items="${accounts}" var="account">
                                      <!--Name (First, Middle Initial, Last--> 
                                     <div class="col-sm-4 form-group">
-                                        <input class="form-control" placeholder="First Name" name="fnameEditUD" id="fnameEditUD" type="text" autofocus="" value="" >
+                                        <input class="form-control" placeholder="First Name" name="fnameEditUD" id="fnameEditUD" type="text" autofocus="" value="${account.firstName}" >
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <input class="form-control" placeholder="Middle Initial" name="minitialEditUD" id="minitialEditUD" type="text" autofocus="" >
+                                        <input class="form-control" placeholder="Middle Initial" name="minitialEditUD" id="minitialEditUD" type="text" value="${account.middleName}" autofocus="" >
                                     </div>
                                     <div class="col-sm-4 form-group">
-                                        <input class="form-control" placeholder="Last Name" name="lnameEditUD" id="lnameEditUD" type="text" autofocus="" >
+                                        <input class="form-control" placeholder="Last Name" name="lnameEditUD" id="lnameEditUD" type="text" value="${account.lastName}" autofocus="" >
                                     </div>
 
                                      <!--Username, Password, and Email--> 
                                     <div class="col-sm-6 form-group">
-                                        <input class="form-control" placeholder="Username" name="usernameEditUD" id="usernameEditUD" type="text" autofocus="" >
-                                    </div>
-                                    <div class="col-sm-6 form-group">
-                                        <input class="form-control" placeholder="E-mail" name="emailEditUD" id="emailEditUD" type="email" value="" >
+                                        <input class="form-control" placeholder="E-mail" name="emailEditUD" id="emailEditUD" type="email" value="${account.email}" autofocus="">
                                     </div>
 
                                      <!--Billing Address and Shipping Address--> 
                                     <div id="billingAddress">
                                         <label class="col-sm-12">Billing Address</label>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="House #" name="housenumBAEditUD" id="housenumBAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="House #" name="housenumBAEditUD" id="housenumBAEditUD" type="text" value="${account.billingAddress.houseNumber}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Street" name="streetBAEditUD" id="streetBAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Street" name="streetBAEditUD" id="streetBAEditUD" type="text" value="${account.billingAddress.street}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Subdivision" name="subdivisionBAEditUD" id="subdivisionBAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Subdivision" name="subdivisionBAEditUD" id="subdivisionBAEditUD" type="text" value="${account.billingAddress.subdivision}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="City" name="cityBAEditUD" id="cityBAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="City" name="cityBAEditUD" id="cityBAEditUD" type="text" value="${account.billingAddress.city}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Postal Code" name="postalcodeBAEditUD" id="postalcodeBAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Postal Code" name="postalcodeBAEditUD" id="postalcodeBAEditUD" type="text" value="${account.billingAddress.postalCode}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Country" name="countryBAEditUD" id="countryBAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Country" name="countryBAEditUD" id="countryBAEditUD" type="text" value="${account.billingAddress.country}" autofocus="" >
                                         </div>
                                     </div>
 
                                     <div id="billingAddress">
                                         <label class="col-sm-12">Shipping Address</label>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="House #" name="housenumSAEditUD" id="housenumSAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="House #" name="housenumSAEditUD" id="housenumSAEditUD" type="text" value="${account.shippingAddress.houseNumber}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Street" name="streetSAEditUD" id="streetSAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Street" name="streetSAEditUD" id="streetSAEditUD" type="text" value="${account.shippingAddress.street}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Subdivision" name="subdivisionSAEditUD" id="subdivisionSAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Subdivision" name="subdivisionSAEditUD" id="subdivisionSAEditUD" type="text" value="${account.shippingAddress.subdivision}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="City" name="citySAEditUD" id="citySAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="City" name="citySAEditUD" id="citySAEditUD" type="text" value="${account.shippingAddress.city}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Postal Code" name="postalcodeSAEditUD" id="postalcodeSAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Postal Code" name="postalcodeSAEditUD" id="postalcodeSAEditUD" type="text" value="${account.shippingAddress.postalCode}" autofocus="" >
                                         </div>
                                         <div class="col-sm-3 form-group">
-                                            <input class="form-control" placeholder="Country" name="countrySAEditUD" id="countrySAEditUD" type="text" autofocus="" >
+                                            <input class="form-control" placeholder="Country" name="countrySAEditUD" id="countrySAEditUD" type="text" value="${account.shippingAddress.country}" autofocus="" >
                                         </div>
+                                        </c:forEach>
                                 </fieldset>
                                 <!--</form>-->
                             </div>

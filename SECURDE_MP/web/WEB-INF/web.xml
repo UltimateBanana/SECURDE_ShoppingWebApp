@@ -56,6 +56,10 @@
         <servlet-name>ProductListServlet</servlet-name>
         <servlet-class>servlets.ProductListServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShowUserDetailsServlet</servlet-name>
+        <servlet-class>servlets.ShowUserDetailsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -111,6 +115,10 @@
     <servlet-mapping>
         <servlet-name>ProductListServlet</servlet-name>
         <url-pattern>/ProductListServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShowUserDetailsServlet</servlet-name>
+        <url-pattern>/ShowUserDetailsServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
