@@ -48,6 +48,15 @@
                     $('.bootstrap-select.open').removeClass('open');
                 }
             });	
+            
+            $(document).on('click', '.buyMe',function(){
+                    // get id of the button clicked
+                    var id = $('#prodID').val();
+                    // set the value of hidden input
+                    $('#idfield').val(id);
+                    // submit the form
+                    $('#viewproductform').submit();
+                });
         });
     </script>
 </head>
@@ -211,20 +220,26 @@
                         <hr>
                     </div>
                     <div class="row small-up-2 medium-up-3 large-up-6">
-                        <div class="column">
+<!--                        <div class="column">
                             <img class="thumbnail" src="./assets/pictures/300x400">
                             <h5>Nulla At Nulla Justo, Eget</h5>
                             <p>$400</p>
                             <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                        </div>
+                        </div>-->
                         <c:forEach items="${products}" var="product">
                             <div class="column">
+                                <form id="viewproductform" action="ViewProductServlet" method="post">
                                 <img class="thumbnail" src="./assets/pictures/300x400">
                                 <h5>${product.name}</h5>
                                 <p>$${product.price}</p>
-                                <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                                <input type="hidden" name="prodID" id="prodID" value="${product.productId}">
+                                <button type="submit" id="buyMeBtn" name="buyMeBtn" class="button small expanded hollow buyMe">Buy</button>
+                                </form>
                             </div>
                         </c:forEach>
+<!--                        <form id="viewproductform" action="ViewProductServlet" method="post">
+			<input type=hidden id="idfield" name="id"/>
+			</form>-->
                     </div>
                     
                     <%--For displaying Previous link except for the 1st page --%>

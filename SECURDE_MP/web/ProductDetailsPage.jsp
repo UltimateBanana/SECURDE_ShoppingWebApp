@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -196,9 +197,10 @@
                                 </div>
                             </div>
                             <div class="medium-6 large-5 columns">
-                                <h4>Vans Old Skool</h4>
-                                <p>Nunc eu ullamcorper orci. Quisque eget odio ac lectus vestibulum faucibus eget in metus. In pellentesque faucibus vestibulum. Nulla at nulla justo, eget luctus tortor.</p>
-                                <form id="addToCart" method="post" action="addToCart">
+                                <c:forEach items="${products}" var="product">
+                                <h4>${product.name}</h4>
+                                <p>${product.description}</p>
+                                <form id="addToCart" method="post" action="AddToCartServlet">
                                     <label>Size
                                         <select name="size">
                                             <option value="9">9</option>
@@ -217,15 +219,18 @@
                                     <div class="row">
                                         <div class="medium-5 columns">
                                             <h3>
-                                                Price: 60$
+                                                Price: ${product.price}$
                                             </h3>
                                         </div>
                                         <div class="medium-6 columns">
+                                            <input type="hidden" name="prodID" id="prodID" value="${product.productId}">
                                         <input id="addToCartBtn" class="button large expanded" type="submit" value="Add To Cart">
                                         </div>
                                     </div>
                                     <!-- <a href="http://foundation.zurb.com/templates-previews-sites-f6/product-page.html#" class="button large expanded">Add To Cart</a> -->
                                 </form>
+                                </c:forEach>
+                                
                                 <div class="small secondary expanded button-group">
 
                                 </div>
