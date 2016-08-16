@@ -5,21 +5,22 @@
  */
 package servlets;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import model.Product;
+import request.ProductRequest;
 
 /**
  *
  * @author hannah
  */
-public class LogoutServlet extends HttpServlet {
+public class ProductManagerPageServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +39,10 @@ public class LogoutServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogoutServlet</title>");            
+            out.println("<title>Servlet ProductManagerPageServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogoutServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet ProductManagerPageServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -75,44 +76,15 @@ public class LogoutServlet extends HttpServlet {
             throws ServletException, IOException {
 //        processRequest(request, response);
         
-        Cookie loginCookie = null;
-    	Cookie[] cookies = request.getCookies();
-    	if(cookies != null){
-            for(Cookie cookie : cookies){
-                if(cookie.getName().equals("JSESSIONID")){
-                    System.out.println("JSESSIONID="+cookie.getValue());
-                }
-                cookie.setMaxAge(0);
-    		response.addCookie(cookie);
-            }
-    	}
-        //invalidate the session if exists
-    	HttpSession session = request.getSession(false);
-    	System.out.println("User="+session.getAttribute("user"));
-    	if(session != null){
-            session.invalidate();
-    	}
-        
-        
-//        Cookie[] cookies = request.getCookies();
-//    	if(cookies != null){
-//            for(Cookie cookie : cookies){
-//                if(cookie.getName().equals("JSESSIONID")){
-//                        System.out.println("JSESSIONID="+cookie.getValue());
-//                        break;
-//                }
-//            }
-//    	}
-//    	//invalidate the session if exists
-//    	HttpSession session = request.getSession(false);
-//    	System.out.println("User="+session.getAttribute("user"));
-//    	if(session != null){
-//            session.invalidate();
-//    	}
-        
-//        RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
-//        rs.forward(request, response);
-        response.sendRedirect("index.jsp");
+        Controller controller = new Controller();
+        ProductRequest productRequest = new ProductRequest();
+        ArrayList<Product> productList = new ArrayList<Product>();
+
+        productRequest.setIsDeleted(false);
+        productList = controller.searchProducts(productRequest);
+        request.setAttribute("products", productList);
+
+        request.getRequestDispatcher("/ProductManagerPage.jsp").forward(request, response);
     }
 
     /**

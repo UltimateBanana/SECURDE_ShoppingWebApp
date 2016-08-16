@@ -23,8 +23,7 @@
         
         <!-- Script for functions -->
         <script>
-            $(document).ready(function(){
-                
+            $(document).ready(function(){                
                 $('#goHome').on('click', function(){
                     window.location.href = "index.jsp";
                 });
@@ -57,6 +56,10 @@
                 });
 
                 $(document).on('click', '.editMe',function(){
+                    // get id of the button clicked
+                    var id = $(this).attr('id');
+                    // set the value of hidden input
+                    $('#idfield').val(id);
                     $('#editModal').modal('show');
                 });
                 
@@ -149,7 +152,7 @@
                                         <td><c:out value="${product.name}" /></td>
                                         <td><c:out value="${product.category}" /></td>
                                         <td class="text-center">
-                                            <button type="button" class="btn btn-info btn-xs editMe">
+                                            <button type="button" id="${product.productId}" class="btn btn-info btn-xs editMe">
                                                 <i class="glyphicon glyphicon-edit"></i>
                                                 Edit
                                             </button>
@@ -228,7 +231,7 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h4 class="modal-title">Edit Product</h4>
                         </div>
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="EditProductDetailsServlet" method="post">
                             <div class="modal-body">
                                 <fieldset>
                                     <!-- Product Details -->
@@ -255,6 +258,7 @@
                                 </fieldset>
                             </div>
                             <div class="modal-footer">
+                                <input type="hidden" id="idfield" name="id">
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                                 <input type="submit" class="btn btn-primary" id="editSave" value="Save changes">
                             </div>

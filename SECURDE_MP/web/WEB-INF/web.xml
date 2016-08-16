@@ -60,6 +60,22 @@
         <servlet-name>ShowUserDetailsServlet</servlet-name>
         <servlet-class>servlets.ShowUserDetailsServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ProductManagerPageServlet</servlet-name>
+        <servlet-class>servlets.ProductManagerPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>AccountingManagerPageServlet</servlet-name>
+        <servlet-class>servlets.AccountingManagerPageServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EditProductDetailsServlet</servlet-name>
+        <servlet-class>servlets.EditProductDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>DeleteProductsServlet</servlet-name>
+        <servlet-class>servlets.DeleteProductsServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -119,6 +135,22 @@
     <servlet-mapping>
         <servlet-name>ShowUserDetailsServlet</servlet-name>
         <url-pattern>/ShowUserDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ProductManagerPageServlet</servlet-name>
+        <url-pattern>/ProductManagerPageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AccountingManagerPageServlet</servlet-name>
+        <url-pattern>/AccountingManagerPageServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EditProductDetailsServlet</servlet-name>
+        <url-pattern>/EditProductDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DeleteProductServlet</servlet-name>
+        <url-pattern>/DeleteProductServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

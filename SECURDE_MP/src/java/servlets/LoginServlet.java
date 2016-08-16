@@ -54,7 +54,29 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("user", account);
             Cookie cookie =new Cookie("user", username);
             response.addCookie(cookie);
-            response.sendRedirect("index.jsp");
+            
+            System.out.println("ACCESS LEVEL: " + account.getAccessLevel().toString());
+            
+            if(account.getAccessLevel().toString().equals("USER"))
+            {
+                response.sendRedirect("index.jsp");
+            }
+            else if(account.getAccessLevel().toString().equals("ADMINISTRATOR"))
+            {
+//                response.sendRedirect("index.jsp");
+                request.getRequestDispatcher("/AdminPageServlet").forward(request, response);
+            }
+            else if(account.getAccessLevel().toString().equals("PRODUCT_MANAGER"))
+            {
+//                response.sendRedirect("index.jsp");
+                request.getRequestDispatcher("/ProductManagerPageServlet").forward(request, response);
+            }
+            else if(account.getAccessLevel().toString().equals("ACCOUNTING_MANAGER"))
+            {
+//                response.sendRedirect("index.jsp");
+                request.getRequestDispatcher("/AccountingManagerPageServlet").forward(request, response);
+            }
+            
             System.out.println("HI user session: "+session.getAttribute("user"));
             //RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
             //rs.forward(request, response);

@@ -53,7 +53,24 @@
         
     </head>
     <body>
-        
+        <%
+//            if(session.getAttribute("user") == null){
+//                response.sendRedirect("index.jsp");
+//            }
+            String userName = "Sign In";
+            String logoutName = "Sign Up";
+            
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("user"))
+                    {
+                        userName = cookie.getValue();
+                        logoutName = "Sign Out";
+                    }
+                }
+            }
+        %>
         <div class="container-fluid">
             
             <!-- The HEADER and the buttons/links in it -->
