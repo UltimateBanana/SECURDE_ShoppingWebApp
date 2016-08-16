@@ -89,44 +89,17 @@ public class GeneralIndexServlet extends HttpServlet {
         }
         else if(request.getParameter("adminBtn") != null)
         {
-            System.out.println("ADMIN BUTTON IS " + request.getParameter("adminBtn"));
-            Controller controller = new Controller();
-            AccountRequest accountRequest = new AccountRequest();
-            ArrayList<Account> lockedUserList = new ArrayList<Account>();
-
-            accountRequest.setIsLocked(true);
-            lockedUserList = controller.queryAllAccounts(accountRequest);
-            request.setAttribute("accounts", lockedUserList);
-
-            request.getRequestDispatcher("/AdminPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/AdminPageServlet").forward(request, response);
 //            response.sendRedirect("AdminPage.jsp");
         }
         else if(request.getParameter("productmanagerBtn") != null)
         {
-            Controller controller = new Controller();
-            ProductRequest productRequest = new ProductRequest();
-            ArrayList<Product> productList = new ArrayList<Product>();
-            
-            productRequest.setIsDeleted(false);
-            productList = controller.searchProducts(productRequest);
-            request.setAttribute("products", productList);
-            
-            request.getRequestDispatcher("/ProductManagerPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/ProductManagerPageServlet").forward(request, response);
 //            response.sendRedirect("ProductManagerPage.jsp");
         }
         else if(request.getParameter("accountingmanagerBtn") != null)
         {
-//            Controller controller = new Controller();
-//            ProductRequest productRequest = new ProductRequest();
-//            ArrayList<Product> productList = new ArrayList<Product>();
-//            
-//            productRequest.setIsDeleted(false);
-//            productList = controller.searchProducts(productRequest);
-//            request.setAttribute("products", productList);
-            
-            // What is needed here??
-            
-            request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
+            request.getRequestDispatcher("/AccountingManagerPageServlet").forward(request, response);
 //            response.sendRedirect("AccountingManagerPage.jsp");
         }
         else if(request.getParameter("userdetailsBtn") != null)
