@@ -6,9 +6,12 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+import model.Account;
 
 public class LoginServlet extends HttpServlet {
 
@@ -45,9 +48,16 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("passwordSignIn");
         
         Controller controller = new Controller();
-        if(controller.login(username, password)!=null){
-            RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
-            rs.forward(request, response);
+        Account account = controller.login(username, password);
+        if(account !=null){
+            HttpSession session = request.getSession(true);
+            session.setAttribute("user", account);
+            Cookie cookie =new Cookie("user", username);
+            response.addCookie(cookie);
+            response.sendRedirect("index.jsp");
+            System.out.println("HI user session: "+session.getAttribute("user"));
+            //RequestDispatcher rs = request.getRequestDispatcher("index.jsp");
+            //rs.forward(request, response);
         }
         else if(username.isEmpty() || password.isEmpty()){
             RequestDispatcher rs = request.getRequestDispatcher("LogInPage.jsp");

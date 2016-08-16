@@ -38,6 +38,25 @@
 </head>
 <body>
 
+    <%
+            //if(session.getAttribute("user") == null){
+            //    response.sendRedirect("index.jsp");
+            //}
+            String userName = "Sign In";
+            String logoutName = "Sign Up";
+            
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("user"))
+                    {
+                        userName = cookie.getValue();
+                        logoutName = "Sign Out";
+                    }
+                }
+            }
+        %>
+        
     <div class="container-fluid">
 
         <!-- The HEADER and the buttons/links in it -->
@@ -61,7 +80,7 @@
                 </form>
 
                 <!-- Sign In and Sign Up buttons -->
-                <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                <!--<div class="btn-group navbar-form navbar-right" role="group" aria-label="...">-->
              <!--        <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Salman khan <span class="glyphicon glyphicon-user pull-right"></span></a>
@@ -78,10 +97,15 @@
                             </ul>
                         </li>
                     </ul> -->
-                    <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
+<!--                    <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
                     <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
-                </div>
-
+                </div>-->
+                <form action="GeneralIndexServlet" method="post">
+                    <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                        <input type="submit" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn" value="<%=userName%>"/>
+                        <input type="submit" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn" value="<%=logoutName%>"/>
+                    </div>
+                </form>
             </div>
         </div> <!-- /container-fluid -->
     </nav> <!-- /navbar top header -->
@@ -195,7 +219,7 @@
                                     <li>Shipping Cost <span>20$</span></li>
                                     <li>Total <span>200$</span></li>
                                 </ul>
-                                <a class="btn btn-default check_out" href="ProductDetailsPage.jsp">Check Out</a>
+                                <a class="btn btn-default check_out" href="CheckoutPage.jsp">Check Out</a>
                             </div>
                 </div>
             </section><!--/#do_action-->

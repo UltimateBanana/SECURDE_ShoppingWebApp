@@ -53,6 +53,24 @@
         
     </head>
     <body>
+        <%
+//            if(session.getAttribute("user") == null){
+//                response.sendRedirect("index.jsp");
+//            }
+            String userName = "Sign In";
+            String logoutName = "Sign Up";
+            
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("user"))
+                    {
+                        userName = cookie.getValue();
+                        logoutName = "Sign Out";
+                    }
+                }
+            }
+        %>
         
         <div class="container-fluid">
             
@@ -67,10 +85,10 @@
                         </a>
                         
                          <!--Logout buttons--> 
-                        <form action="LogoutServlet" method="post">
+                        <form action="GeneralIndexServlet" method="post">
                             <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-                                <input type="button" class="btn btn-default navbar-btn" id="userHeaderBtn" name="userHeaderBtn" value="User's name" />
-                                <input type="submit" class="btn btn-default navbar-btn" id="logoutBtn" name="logoutBtn" value="Sign Out" />
+                                <input type="submit" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn" value="<%=userName%>"/>
+                                <input type="submit" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn" value="<%=logoutName%>"/>
                             </div>
                         </form>
                     </div>

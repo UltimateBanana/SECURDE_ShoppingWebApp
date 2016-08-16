@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,6 +52,24 @@
     </script>
 </head>
 <body>
+    <%
+            //if(session.getAttribute("user") == null){
+            //    response.sendRedirect("index.jsp");
+            //}
+            String userName = "Sign In";
+            String logoutName = "Sign Up";
+            
+            Cookie[] cookies = request.getCookies();
+            if(cookies !=null){
+                for(Cookie cookie : cookies){
+                    if(cookie.getName().equals("user"))
+                    {
+                        userName = cookie.getValue();
+                        logoutName = "Sign Out";
+                    }
+                }
+            }
+        %>
 
     <div class="container-fluid">
 
@@ -119,7 +138,7 @@
                     </form>
 
                     <!-- Sign In and Sign Up buttons -->
-                    <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                    <!--<div class="btn-group navbar-form navbar-right" role="group" aria-label="...">-->
                  <!--        <ul class="nav navbar-nav">
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Salman khan <span class="glyphicon glyphicon-user pull-right"></span></a>
@@ -136,10 +155,15 @@
                             </ul>
                         </li>
                     </ul> -->
-                        <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
+<!--                        <button type="button" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn">Sign In</button>
                         <button type="button" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn">Sign Up</button>
-                    </div>
-                
+                    </div>-->
+                    <form action="GeneralIndexServlet" method="post">
+                        <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
+                            <input type="submit" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn" value="<%=userName%>"/>
+                            <input type="submit" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn" value="<%=logoutName%>"/>
+                        </div>
+                    </form>
                 </div>
             </div> <!-- /container-fluid -->
         </nav> <!-- /navbar top header -->
@@ -193,37 +217,33 @@
                             <p>$400</p>
                             <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
                         </div>
-                        <div class="column">
-                            <img class="thumbnail" src="./assets/pictures/300x400">
-                            <h5>Nulla At Nulla Justo, Eget</h5>
-                            <p>$400</p>
-                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                        </div>
-                        <div class="column">
-                            <img class="thumbnail" src="./assets/pictures/300x400">
-                            <h5>Nulla At Nulla Justo, Eget</h5>
-                            <p>$400</p>
-                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                        </div>
-                        <div class="column">
-                            <img class="thumbnail" src="./assets/pictures/300x400">
-                            <h5>Nulla At Nulla Justo, Eget</h5>
-                            <p>$400</p>
-                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                        </div>
-                        <div class="column">
-                            <img class="thumbnail" src="./assets/pictures/300x400">
-                            <h5>Nulla At Nulla Justo, Eget</h5>
-                            <p>$400</p>
-                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                        </div>
-                        <div class="column">
-                            <img class="thumbnail" src="./assets/pictures/300x400">
-                            <h5>Nulla At Nulla Justo, Eget</h5>
-                            <p>$400</p>
-                            <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
-                        </div>
+                        <c:forEach items="${products}" var="product">
+                            <div class="column">
+                                <img class="thumbnail" src="./assets/pictures/300x400">
+                                <h5>${product.name}</h5>
+                                <p>$${product.price}</p>
+                                <a href="ProductDetailsPage.jsp" class="button small expanded hollow">Buy</a>
+                            </div>
+                        </c:forEach>
                     </div>
+                    
+                    <%--For displaying Previous link except for the 1st page --%>
+                    <c:if test="${currentPage != 1}">
+                        <a href="employee.do?page=${currentPage - 1}">Previous</a>
+                    </c:if>
+                    <%--For displaying Page numbers. The when condition does not display a link for the current page--%>
+                    <c:forEach begin="1" end="${noOfPages}" var="i">
+                        <c:choose>
+                            <c:when test="${currentPage eq i}">${i}</c:when>
+                            <c:otherwise>
+                                <a href="employee.do?page=${i}">${i}</a>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                    <%--For displaying Next link --%>
+                    <c:if test="${currentPage lt noOfPages}">
+                        <a href="employee.do?page=${currentPage + 1}">Next</a>
+                    </c:if>
                 </div>
             </div><!-- /content -->
 
