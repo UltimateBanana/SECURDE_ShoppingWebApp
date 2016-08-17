@@ -6,11 +6,14 @@ public enum OrderBy
     
     public static OrderBy translateOrderByStringToSQL( String order )
     {
-	switch( order.toUpperCase() )
+	if( order != null )
 	{
-	    case "ASCENDING": return ASC;
-	    case "DESCENDING": return DESC;
-	    default: break;
+	    switch( order.toUpperCase() )
+	    {
+		case "ASCENDING": return ASC;
+		case "DESCENDING": return DESC;
+		default: break;
+	    }
 	}
 	
 	return ASC;
