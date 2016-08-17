@@ -80,6 +80,7 @@ public class ProductListServlet extends HttpServlet {
 //        request.setAttribute("products", productList);
         
         request.getRequestDispatcher("/ProductListPage.jsp").forward(request, response);
+        
     }
 
     @Override

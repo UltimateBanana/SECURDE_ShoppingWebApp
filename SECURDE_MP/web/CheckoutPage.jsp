@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -155,24 +156,26 @@
                                             <h6><span>$</span>60.00</h6>
                                         </div>
                                     </div>
-                                    <div class="form-group"><hr /></div>
+                                    <div class="form-group"><hr /></div>       
+                                    <c:forEach items="${cart}" var="product">
                                     <div class="form-group">
                                         <div class="col-sm-3 col-xs-3">
                                             <img class="img-responsive" src="./assets/pictures/100x70" />
                                         </div>
                                         <div class="col-sm-6 col-xs-6">
-                                            <div class="col-xs-12">Vans Old Skool</div>
+                                            <div class="col-xs-12">${product.name}</div>
                                             <div class="col-xs-12"><small>Quantity:<span>1</span></small></div>
                                         </div>
                                         <div class="col-sm-3 col-xs-3 text-right">
-                                            <h6><span>$</span>60.00</h6>
+                                            <h6><span>$</span>${product.price}</h6>
                                         </div>
                                     </div>
                                     <div class="form-group"><hr /></div>
+                                    </c:forEach>
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <strong>Order Total</strong>
-                                            <div class="pull-right"><span>$</span><span>180.00</span></div>
+                                            <div class="pull-right"><span>$</span><span>${subtotal}</span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +184,7 @@
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-pull-6 col-sm-pull-6">
                             <!--SHIPPING METHOD-->
-                            <form id="checkout" method="post" action="checkout">
+                            <form id="checkout" method="post" action="FinalCheckoutServlet">
                                 <!--CREDIT CART PAYMENT-->
                                 <div class="panel panel-info">
                                     <div class="panel-heading"><span><i class="glyphicon glyphicon-lock"></i></span> Secure Payment</div>
