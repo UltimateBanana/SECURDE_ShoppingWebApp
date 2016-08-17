@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -179,29 +180,31 @@
                                         <a class="cart_quantity_delete" href="ProductDetailsPage.jsp"><i class="glyphicon glyphicon-remove"></i></a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td class="cart_product">
-                                        <a href="ProductDetailsPage.jsp"><img src="./assets/pictures/100x100" alt=""></a>
-                                    </td>
-                                    <td class="cart_description">
-                                        <h4><a href="ProductDetailsPage.jsp">Vans Old Skool</a></h4>
-                                        <p>Size 10</p>
-                                    </td>
-                                    <td class="cart_price">
-                                        <p>60$</p>
-                                    </td>
-                                    <td class="cart_quantity">
-                                        <div class="cart_quantity_button">
-                                            <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
-                                        </div>
-                                    </td>
-                                    <td class="cart_total">
-                                        <p class="cart_total_price">60$</p>
-                                    </td>
-                                    <td class="cart_delete">
-                                        <a class="cart_quantity_delete" href="#"><i class="glyphicon glyphicon-remove"></i></a>
-                                    </td>
-                                </tr>
+                                <c:forEach items="${cart}" var="product">
+                                    <tr>
+                                        <td class="cart_product">
+                                            <a href="ProductDetailsPage.jsp"><img src="./assets/pictures/100x100" alt=""></a>
+                                        </td>
+                                        <td class="cart_description">
+                                            <h4><a href="ProductDetailsPage.jsp">${product.name}</a></h4>
+                                            <p>Size 10</p>
+                                        </td>
+                                        <td class="cart_price">
+                                            <p>${product.price}$</p>
+                                        </td>
+                                        <td class="cart_quantity">
+                                            <div class="cart_quantity_button">
+                                                <input class="cart_quantity_input" type="text" name="quantity" value="1" autocomplete="off" size="2">
+                                            </div>
+                                        </td>
+                                        <td class="cart_total">
+                                            <p class="cart_total_price">${product.price}$</p>
+                                        </td>
+                                        <td class="cart_delete">
+                                            <a class="cart_quantity_delete" href="#"><i class="glyphicon glyphicon-remove"></i></a>
+                                        </td>
+                                    </tr>
+                                </c:forEach>
                             </tbody>
                         </table>
                     </div>
@@ -215,11 +218,11 @@
             </div>
                             <div class="total_area">
                                 <ul>
-                                    <li>Cart Sub Total <span>180$</span></li>
-                                    <li>Shipping Cost <span>20$</span></li>
-                                    <li>Total <span>200$</span></li>
+<!--                                    <li>Cart Sub Total <span></span></li>
+                                    <li>Shipping Cost <span>20$</span></li>-->
+                                    <li>Total <span>$${subtotal}</span></li>
                                 </ul>
-                                <a class="btn btn-default check_out" href="CheckoutPage.jsp">Check Out</a>
+                                <a class="btn btn-default check_out" href="CheckoutServlet">Check Out</a>
                             </div>
                 </div>
             </section><!--/#do_action-->
@@ -227,5 +230,6 @@
 
     </div> <!-- /container-fluid BODY -->
 </div>
+                                
 </body>
 </html>

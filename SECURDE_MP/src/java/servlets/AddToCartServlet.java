@@ -1,13 +1,17 @@
 
 package servlets;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Product;
+import model.ReceiptItem;
 
 public class AddToCartServlet extends HttpServlet {
 
@@ -38,10 +42,41 @@ public class AddToCartServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        Controller controller = new Controller();
+        
+        String id = request.getParameter("prodID");
         String size = request.getParameter("size");
         String color = request.getParameter("color");
-        RequestDispatcher rd = request.getRequestDispatcher("ProductDetailsPage.jsp");
-        rd.forward(request, response);
+        
+        ArrayList<ReceiptItem> cart = new ArrayList<ReceiptItem>();
+        
+        ReceiptItem item = new ReceiptItem();
+        Product product = controller.queryProduct(Integer.parseInt(id));
+        item.setProduct(product);
+        //item.setSize(size);
+        //item.setColr(color);
+        try{
+            cart = (ArrayList<ReceiptItem>)request.getSession(false).getAttribute("cart");
+        }catch(Exception e){
+            cart = new ArrayList<ReceiptItem>();
+        }
+        if(cart == null){
+            cart = new ArrayList<ReceiptItem>();
+        }
+        cart.add(item);
+        double subtotal = 0;
+        ArrayList<Product> products = new ArrayList<Product>();
+        for(ReceiptItem r : cart){
+            subtotal+=r.getSubtotal();
+            products.add(r.getProduct());
+            
+        }
+        request.getSession(false).setAttribute("cart", cart);
+        request.setAttribute("cart", products);
+        request.setAttribute("subtotal", subtotal);
+        request.setAttribute("testname", product.getName());
+        request.setAttribute("testprice", product.getPrice());
+        request.getRequestDispatcher("/ShoppingCartPage.jsp").forward(request, response);
         //processRequest(request, response);
     }
 
