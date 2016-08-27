@@ -35,7 +35,19 @@
                 $('#userHeaderBtn').on('click', function(){
                     
                 });
-                
+                $.ajax({
+                    url: 'UsernameServlet',
+                    //data: {
+                        
+                    //},
+                    type: 'post',
+                    success: function(data){
+                        if(data!=="Sign In"){
+                            $("#loginBtn").value = data;
+                            $("#signupBtn").value = "Sign Out";
+                        }
+                    } 
+                });
                 //source: http://bootsnipp.com/snippets/featured/sidebar-with-tabs
                 $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
                     e.preventDefault();
