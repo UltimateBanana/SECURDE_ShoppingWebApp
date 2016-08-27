@@ -49,9 +49,20 @@ public class ProductListServlet extends HttpServlet {
         ArrayList<Product> productList = new ArrayList<Product>();
         ArrayList<Product> productListForPage = new ArrayList<Product>();
 
+        double price = -1;
+	String priceString = request.getParameter("priceSearch");
+	if( priceString != null && !priceString.isEmpty() )
+	{
+	    price = Double.parseDouble(priceString);
+	}
+	
+	productRequest.setName(request.getParameter("searchproductInput"));
+	productRequest.setOperator(request.getParameter("pricefilterSearch"));
+	productRequest.setPrice(price);
+	productRequest.setCategory(request.getParameter("categorySearch"));
+	productRequest.setOrder(request.getParameter("orderbySearch"));
         productRequest.setIsDeleted(false);
         productList = controller.searchProducts(productRequest);
-        
         
         int page = 1;
         int recordsPerPage = 10;

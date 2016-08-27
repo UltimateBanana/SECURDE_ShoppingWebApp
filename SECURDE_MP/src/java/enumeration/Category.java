@@ -6,13 +6,16 @@ public enum Category
     
     public static Category translateCategoryStringToEnum( String category )
     {
-	switch( category.toUpperCase() )
+	if( category != null )
 	{
-	    case "BOOTS": return Category.BOOTS;
-	    case "SANDALS": return Category.SANDALS;
-	    case "SHOES": return Category.SHOES;
-	    case "SLIPPERS": return Category.SLIPPERS;
-	    default: break;
+	    switch( category.toUpperCase() )
+	    {
+		case "BOOTS": return Category.BOOTS;
+		case "SANDALS": return Category.SANDALS;
+		case "SHOES": return Category.SHOES;
+		case "SLIPPERS": return Category.SLIPPERS;
+		default: break;
+	    }
 	}
 	
 	return null;

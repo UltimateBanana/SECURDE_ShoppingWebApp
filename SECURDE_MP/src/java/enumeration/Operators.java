@@ -6,15 +6,18 @@ public enum Operators
 	
     public static String translateOperatorStringToSQL( String operator )
     {
-	switch( operator.toUpperCase() )
+	if( operator != null )
 	{
-	    case "EQUAL TO": return " = ";
-	    case "NOT EQUAL TO": return " != ";
-	    case "GREATER THAN": return " > ";
-	    case "GREATER THAN OR EQUAL TO": return " >= ";
-	    case "LESS THAN": return " < ";
-	    case "LESS THAN OR EQUAL TO": return " <= ";
-	    default: break;
+	    switch( operator.toUpperCase() )
+	    {
+		case "EQUAL TO": return " = ";
+		case "NOT EQUAL TO": return " != ";
+		case "GREATER THAN": return " > ";
+		case "GREATER THAN OR EQUAL TO": return " >= ";
+		case "LESS THAN": return " < ";
+		case "LESS THAN OR EQUAL TO": return " <= ";
+		default: break;
+	    }
 	}
 	
 	return " = ";
