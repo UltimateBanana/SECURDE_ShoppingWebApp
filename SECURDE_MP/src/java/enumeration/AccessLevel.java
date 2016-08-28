@@ -6,15 +6,17 @@ public enum AccessLevel
     
     public static AccessLevel translateAccessLevelStringToEnum( String accessLevel )
     {
-	switch( accessLevel.toUpperCase() )
+	if( accessLevel != null )
 	{
-	    case "ADMINISTRATOR": return AccessLevel.ADMINISTRATOR;
-	    case "ACCOUNTING MANAGER": return AccessLevel.ACCOUNTING_MANAGER;
-	    case "PRODUCT MANAGER": return AccessLevel.PRODUCT_MANAGER;
-	    case "USER": return AccessLevel.USER;
-	    default: break;
+	    switch( accessLevel.toUpperCase() )
+	    {
+		case "ADMINISTRATOR": return AccessLevel.ADMINISTRATOR;
+		case "ACCOUNTING_MANAGER": return AccessLevel.ACCOUNTING_MANAGER;
+		case "PRODUCT_MANAGER": return AccessLevel.PRODUCT_MANAGER;
+		case "USER": return AccessLevel.USER;
+		default: break;
+	    }
 	}
-	
 	return null;
     }
 }

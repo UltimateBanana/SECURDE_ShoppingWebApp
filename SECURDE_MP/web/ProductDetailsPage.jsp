@@ -87,9 +87,9 @@
                     </a>
 
                     <!-- Search Bar -->
-                    <form class="navbar-form navbar-left form-horizontal" role="search">
+                    <form class="navbar-form navbar-left form-horizontal" role="search" action="ProductListServlet" method="post">
                         <div class="input-group" id="adv-search">
-                            <input type="text" class="form-control" placeholder="Search for Product Name" />
+                            <input type="text" class="form-control" name="searchproductInput" id="searchproductInput" placeholder="Search for Product Name" />
                             <div class="input-group-btn">
                                 <div class="btn-group" role="group">
                                     <div class="dropdown dropdown-lg">
@@ -100,12 +100,12 @@
                                             <div class="col-md-6 form-group">
                                                 <label for="price">Filter Price By</label>
                                                 <select class="selectpicker form-control" name="pricefilterSearch" id="pricefilterSearch">
-                                                    <option value="equalto" selected>Equal To</option>
-                                                    <option value="notequalto">Not Equal To</option>
-                                                    <option value="greaterthanequalto">Greater Than or Equal To</option>
-                                                    <option value="greaterthan">Greater Than</option>
-                                                    <option value="lessthanequalto">Less Than or Equal To</option>
-                                                    <option value="lessthan">Less Than</option>
+                                                    <option value="Equal to" selected>Equal To</option>
+                                                    <option value="Not equal to">Not Equal To</option>
+                                                    <option value="Greater than or equal to">Greater Than or Equal To</option>
+                                                    <option value="Greater than">Greater Than</option>
+                                                    <option value="Less than or equal to">Less Than or Equal To</option>
+                                                    <option value="Less than">Less Than</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-6 form-group">
@@ -115,18 +115,18 @@
                                             <div class="col-md-12 form-group">
                                                 <label for="category">Category</label>
                                                 <select class="selectpicker form-control" name="categorySearch" id="categorySearch">
-                                                    <option value="nocategory" selected>-</option>
-                                                    <option value="boots" >Boots</option>
-                                                    <option value="shoes">Shoes</option>
-                                                    <option value="sandals">Sandals</option>
-                                                    <option value="slippers">Slippers</option>
+                                                    <option value="-" selected>-</option>
+                                                    <option value="Boots" >Boots</option>
+                                                    <option value="Shoes">Shoes</option>
+                                                    <option value="Sandals">Sandals</option>
+                                                    <option value="Slippers">Slippers</option>
                                                 </select>
                                             </div>
                                             <div class="col-md-12 form-group">
                                                 <label for="orderby">Order by</label>
                                                 <select class="selectpicker form-control" name="orderbySearch" id="orderbySearch">
-                                                    <option value="0" selected>Ascending</option>
-                                                    <option value="1">Descending</option>
+                                                    <option value="Ascending" selected>Ascending</option>
+                                                    <option value="Descending">Descending</option>
                                                 </select>
                                             </div>
                                             <!--</fieldset>-->
