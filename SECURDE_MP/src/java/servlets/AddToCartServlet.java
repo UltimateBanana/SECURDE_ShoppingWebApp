@@ -53,6 +53,7 @@ public class AddToCartServlet extends HttpServlet {
         ReceiptItem item = new ReceiptItem();
         Product product = controller.queryProduct(Integer.parseInt(id));
         item.setProduct(product);
+        item.setSubtotal(product.getPrice());
         //item.setSize(size);
         //item.setColr(color);
         try{
@@ -71,11 +72,11 @@ public class AddToCartServlet extends HttpServlet {
             products.add(r.getProduct());
             
         }
+        System.out.println("SUBTOTAL: " + subtotal);
+        
         request.getSession(false).setAttribute("cart", cart);
         request.setAttribute("cart", products);
         request.setAttribute("subtotal", subtotal);
-        request.setAttribute("testname", product.getName());
-        request.setAttribute("testprice", product.getPrice());
         request.getRequestDispatcher("/ShoppingCartPage.jsp").forward(request, response);
         //processRequest(request, response);
     }

@@ -123,15 +123,15 @@
                     </div>
                 </div>    
                 <div class="row cart-body">
-                    <!--<form class="form-horizontal" method="post" action="">-->
+                    <form class="form-horizontal" method="post" action="">
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                             <!--REVIEW ORDER-->
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Review Order <div class="pull-right"><small></small></div>
+                                    Review Order <div class="pull-right"><small></div>
                                 </div>
                                 <div class="panel-body">
-                                    <div class="form-group">
+<!--                                    <div class="form-group">
                                         <div class="col-sm-3 col-xs-3">
                                             <img class="img-responsive" src="./assets/pictures/100x70" />
                                         </div>
@@ -156,7 +156,7 @@
                                             <h6><span>$</span>60.00</h6>
                                         </div>
                                     </div>
-                                    <div class="form-group"><hr /></div>       
+                                    <div class="form-group"><hr /></div>       -->
                                     <c:forEach items="${cart}" var="product">
                                     <div class="form-group">
                                         <div class="col-sm-3 col-xs-3">
@@ -175,7 +175,7 @@
                                     <div class="form-group">
                                         <div class="col-xs-12">
                                             <strong>Order Total</strong>
-                                            <div class="pull-right"><span>$</span><span>${subtotal}</span></div>
+                                            <div class="pull-right"><span>$</span><span><c:out value="${subtotal}"/></span></div>
                                         </div>
                                     </div>
                                 </div>
@@ -238,13 +238,13 @@
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-primary btn-submit-fix" value="Place Order" name="submitBtn">
                                         </div>
-                                    </div>
+                                    </form>
                                 </div>
-                            </form>
+                            </div>
                             <!--CREDIT CART PAYMENT END-->
                         </div>
 
-                    <!--</form>-->
+                    </form>
                 </div>
                 <div class="row cart-footer">
 
@@ -256,7 +256,6 @@
             </div><!-- /content -->
 
         </div> <!-- /container-fluid BODY -->
-    </div>
     </div>
 </body>
 </html>
