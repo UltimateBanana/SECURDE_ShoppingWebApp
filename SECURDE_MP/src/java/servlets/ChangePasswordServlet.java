@@ -2,6 +2,7 @@
 package servlets;
 
 import controller.Controller;
+import hashing.Encryptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -43,22 +44,30 @@ public class ChangePasswordServlet extends HttpServlet {
         Controller controller = new Controller();
         Account user = (Account) request.getSession(false).getAttribute("user");
         String password = request.getParameter("currpasswordChangePass");
+        System.out.println("Password: "+password);
         String newPassword = request.getParameter("newpasswordChangePass");
         String confirmNewPassword = request.getParameter("confnewpasswordChangePass");
+        
+        String key = "Bar12345Bar12345";
+        String vector = "RandomInitVector";
+        String encryptedOldPassword = Encryptor.encrypt(key, vector, password);
         if(password.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()){
             RequestDispatcher rs = request.getRequestDispatcher("UserDetailsPage.jsp");
             out.println("<font color=red>Please fill all the fields. </font>");
             rs.include(request, response);
         }
         else{
-          if(password.equals(user.getPassword())){
+          if(encryptedOldPassword.equals(user.getPassword())){
               if(!newPassword.equals(confirmNewPassword)){
                   RequestDispatcher rs = request.getRequestDispatcher("UserDetailsPage.jsp");
                   out.println("<font color=red>Passwords mismatch. </font>");
                   rs.include(request, response);
               }
               else{
-                  controller.changePassword(Integer.parseInt(user.getAccountId()), newPassword);
+                  
+        
+                  String encryptedPassword = Encryptor.encrypt(key, vector, newPassword);
+                  controller.changePassword(Integer.parseInt(user.getAccountId()), encryptedPassword);
                   RequestDispatcher rs = request.getRequestDispatcher("UserDetailsPage.jsp");
                   rs.forward(request, response);
               }
