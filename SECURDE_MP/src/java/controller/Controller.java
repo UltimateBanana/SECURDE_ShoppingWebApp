@@ -58,6 +58,11 @@ public class Controller
 	return accountManager.insertAccount(account);
     }
     
+    public boolean changePassword( int accountId, String newPassword )
+    {
+	return accountManager.changePassword(accountId, newPassword);
+    }
+    
     public boolean updateAccount( Account account )
     {
 	return accountManager.updateAccount(account);
