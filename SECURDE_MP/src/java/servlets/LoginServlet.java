@@ -2,6 +2,7 @@
 package servlets;
 
 import controller.Controller;
+import hashing.Encryptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -48,7 +49,12 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("passwordSignIn");
         
         Controller controller = new Controller();
-        Account account = controller.login(username, password);
+        String key = "Bar12345Bar12345";
+        String vector = "RandomInitVector";
+        
+        String encryptedPassword = Encryptor.encrypt(key, vector, password);
+        System.out.println("LOGIN: "+encryptedPassword.toString());
+        Account account = controller.login(username, encryptedPassword.toString());
         if(account !=null){
             HttpSession session = request.getSession(true);
             session.setAttribute("user", account);
@@ -69,7 +75,6 @@ public class LoginServlet extends HttpServlet {
             else if(account.getAccessLevel().toString().equals("PRODUCT_MANAGER"))
             {
 //                response.sendRedirect("index.jsp");
-                System.out.println("MACARENA");
                 request.getRequestDispatcher("/ProductManagerPageServlet").forward(request, response);
             }
             else if(account.getAccessLevel().toString().equals("ACCOUNTING_MANAGER"))

@@ -3,6 +3,7 @@ package servlets;
 
 import controller.Controller;
 import enumeration.AccessLevel;
+import hashing.Encryptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -82,7 +83,13 @@ public class SignUpServlet extends HttpServlet {
             account.setMiddleName(middleInitial);
             account.setLastName(lastName);
             account.setUsername(username);
-            account.setPassword(password);
+            
+            String key = "Bar12345Bar12345";
+            String vector = "RandomInitVector";
+            
+            String encryptedPassword = Encryptor.encrypt(key, vector, password);
+            System.out.println("ENCRYPTED: "+encryptedPassword.toString());
+            account.setPassword(encryptedPassword);
             account.setEmail(email);
             
             Address addressBA = new Address();

@@ -38,6 +38,16 @@ public class Controller
     }
     
     // ACCOUNT
+    public boolean queryIfUsernameExists( String username )
+    {
+	return accountManager.queryIfUsernameExists(username);
+    }
+    
+    public String queryAccountPassword( String username )
+    {
+	return accountManager.queryAccountPassword(username);
+    }
+    
     public Account queryAccount( int accountId )
     {
 	return accountManager.queryAccount(accountId);
@@ -75,6 +85,7 @@ public class Controller
     
     public boolean unlockAccount( int accountId )
     {
+	accountManager.resetLoginAttempts(accountId);
 	return accountManager.unlockAccount(accountId);
     }
     
@@ -162,6 +173,11 @@ public class Controller
     }
     
     // RECEIPTITEM
+    public int queryProductReceiptItemId( int accountId, int productId )
+    {
+	return receiptItemManager.queryProductReceiptItemId(accountId, productId);
+    }
+    
     public ReceiptItem queryReceiptItem( int receiptItemId )
     {
 	return receiptItemManager.queryReceiptItem(receiptItemId);

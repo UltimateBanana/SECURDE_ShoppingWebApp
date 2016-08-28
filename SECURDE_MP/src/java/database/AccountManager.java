@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -36,6 +37,87 @@ public class AccountManager
     }
     
     // QUERY
+    public int queryAccountLoginAttempts( String username )
+    {
+	PreparedStatement ps;
+	String sql = "SELECT " + Account.COLUMN_LOGIN_ATTEMPS
+		+ " FROM " + Account.TABLE_NAME
+		+ " WHERE " + Account.COLUMN_USERNAME + " = ?;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setString(1, username);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    if( rs.next() )
+	    {
+		return rs.getInt(Account.COLUMN_LOGIN_ATTEMPS);
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return -1;
+    }
+    
+    public boolean queryIfUsernameExists( String username )
+    {
+	PreparedStatement ps;
+	String sql = "SELECT " + Account.COLUMN_USERNAME
+		+ " FROM " + Account.TABLE_NAME
+		+ " WHERE " + Account.COLUMN_USERNAME + " = ?;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setString(1, username);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    if( rs.next() )
+	    {
+		return true;
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return false;
+    }
+    
+    public String queryAccountPassword( String username )
+    {
+	PreparedStatement ps;
+	String sql = "SELECT " + Account.COLUMN_PASSWORD
+		+ " FROM " + Account.TABLE_NAME
+		+ " WHERE " + Account.COLUMN_USERNAME + " = ?;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setString(1, username);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    if( rs.next() )
+	    {
+		return rs.getString(Account.COLUMN_PASSWORD);
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return null;
+    }
+    
     public Account queryAccount( int accountId )
     {
 	PreparedStatement ps;
@@ -112,66 +194,70 @@ public class AccountManager
 		+ " FROM " + Account.TABLE_NAME
 		+ " WHERE " + Account.COLUMN_USERNAME + " = ? AND " + Account.COLUMN_PASSWORD + " = ?";
 	
-	try
+	if( incrementLoginAttempt(username) )
 	{
-	    ps = connection.prepareStatement(sql);
-	    ps.setString(1, username);
-	    ps.setString(2, password);
-	    
-	    ResultSet rs = ps.executeQuery();
-	    
-	    if( rs.next() )
+	    try
 	    {
-		Address billingAddress = new Address(rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
-						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_STREET),
-						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_SUBDIVISION),
-						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_CITY),
-						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_POSTAL_CODE),
-						     rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_COUNTRY));
+		ps = connection.prepareStatement(sql);
+		ps.setString(1, username);
+		ps.setString(2, password);
 
-		Address shippingAddress = new Address(rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
-						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_STREET),
-						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION),
-						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY),
-						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE),
-						     rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY));
+		ResultSet rs = ps.executeQuery();
 
-		CreditCard creditCard = creditCardManager.queryCreditCardByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
-
-		ArrayList<Receipt> receipts = receiptManager.queryAllReceiptByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
-
-		int locked = rs.getInt(Account.COLUMN_IS_LOCKED);
-		boolean isLocked;
-
-		if( locked == 0 )
+		if( rs.next() )
 		{
-		    isLocked = false;
-		}
-		else
-		{
-		    isLocked = true;
-		}
+		    Address billingAddress = new Address(rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
+							 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_STREET),
+							 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_SUBDIVISION),
+							 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_CITY),
+							 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_POSTAL_CODE),
+							 rs.getString(Account.COLUMN_BILLING_ADDRESS + Address.COLUMN_COUNTRY));
 
-		return new Account(Integer.toString(rs.getInt(Account.COLUMN_ACCOUNT_ID)),
-				   AccessLevel.translateAccessLevelStringToEnum(rs.getString(Account.COLUMN_ACCESS_LEVEL)),
-				   rs.getString(Account.COLUMN_FIRST_NAME),
-				   rs.getString(Account.COLUMN_MIDDLE_NAME),
-				   rs.getString(Account.COLUMN_LAST_NAME),
-				   rs.getString(Account.COLUMN_USERNAME),
-				   rs.getString(Account.COLUMN_PASSWORD),
-				   rs.getString(Account.COLUMN_EMAIL),
-				   creditCard,
-				   billingAddress,
-				   shippingAddress,
-				   receipts,
-				   isLocked);
+		    Address shippingAddress = new Address(rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_HOUSE_NUMBER),
+							 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_STREET),
+							 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION),
+							 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY),
+							 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE),
+							 rs.getString(Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY));
+
+		    CreditCard creditCard = creditCardManager.queryCreditCardByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
+
+		    ArrayList<Receipt> receipts = receiptManager.queryAllReceiptByAccount(rs.getInt(Account.COLUMN_ACCOUNT_ID));
+
+		    int locked = rs.getInt(Account.COLUMN_IS_LOCKED);
+		    boolean isLocked;
+
+		    if( locked == 0 )
+		    {
+			isLocked = false;
+		    }
+		    else
+		    {
+			isLocked = true;
+		    }
+
+		    resetLoginAttempts(username);
+
+		    return new Account(Integer.toString(rs.getInt(Account.COLUMN_ACCOUNT_ID)),
+				       AccessLevel.translateAccessLevelStringToEnum(rs.getString(Account.COLUMN_ACCESS_LEVEL)),
+				       rs.getString(Account.COLUMN_FIRST_NAME),
+				       rs.getString(Account.COLUMN_MIDDLE_NAME),
+				       rs.getString(Account.COLUMN_LAST_NAME),
+				       rs.getString(Account.COLUMN_USERNAME),
+				       rs.getString(Account.COLUMN_PASSWORD),
+				       rs.getString(Account.COLUMN_EMAIL),
+				       creditCard,
+				       billingAddress,
+				       shippingAddress,
+				       receipts,
+				       isLocked);
+		}
+	    }
+	    catch (SQLException ex)
+	    {
+		Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
 	    }
 	}
-	catch (SQLException ex)
-	{
-	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
-	}
-	
 	return null;
     }
     
@@ -273,8 +359,9 @@ public class AccountManager
 			+ Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_SUBDIVISION + ", " 
 			+ Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_CITY + ", " 
 			+ Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_POSTAL_CODE + ", " 
-			+ Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY + ", " + Account.COLUMN_IS_LOCKED + " ) "
-		+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );";
+			+ Account.COLUMN_SHIPPING_ADDRESS + Address.COLUMN_COUNTRY + ", " 
+			+ Account.COLUMN_IS_LOCKED + ", " + Account.COLUMN_LOGIN_ATTEMPS + " ) "
+		+ " VALUES ( ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? );";
 	
 	int isLocked;
 	
@@ -289,7 +376,7 @@ public class AccountManager
 	
 	try
 	{
-	    ps = connection.prepareStatement(sql);
+	    ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	    ps.setString(1, account.getAccessLevel().toString());
 	    ps.setString(2, account.getFirstName());
 	    ps.setString(3, account.getMiddleName());
@@ -310,6 +397,7 @@ public class AccountManager
 	    ps.setInt(18, Integer.parseInt(account.getShippingAddress().getPostalCode()));
 	    ps.setString(19, account.getShippingAddress().getCountry());
 	    ps.setInt(20, isLocked);
+	    ps.setInt(21, 0);
 	    
 	    int affectedRows = ps.executeUpdate();
 	    int genId;
@@ -340,6 +428,93 @@ public class AccountManager
     }
     
     // UPDATE
+    public boolean incrementLoginAttempt( String username )
+    {
+	PreparedStatement ps;
+	String sql = "UPDATE " + Account.TABLE_NAME
+		+ " SET " + Account.COLUMN_LOGIN_ATTEMPS + " = ? "
+		+ " WHERE " + Account.COLUMN_USERNAME + " = ?;";
+	
+	int loginAttempts = queryAccountLoginAttempts(username);
+	
+	if( loginAttempts != -1 )
+	{
+	    try
+	    {
+		ps = connection.prepareStatement(sql);
+		ps.setInt(1, loginAttempts + 1);
+		ps.setString(2, username);
+		
+		ps.executeUpdate();
+		
+		if( loginAttempts + 1 == 6 )
+		{
+		    lockAccount(username);
+
+		    return false;
+		}
+		
+		return true;
+	    }
+	    catch (SQLException ex)
+	    {
+		Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	}
+	
+	return false;
+    }
+    
+    public boolean resetLoginAttempts( String username )
+    {
+	PreparedStatement ps;
+	String sql = "UPDATE " + Account.TABLE_NAME
+		+ " SET " + Account.COLUMN_LOGIN_ATTEMPS + " = ? "
+		+ " WHERE " + Account.COLUMN_USERNAME + " = ?;";
+
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setInt(1, 0);
+	    ps.setString(2, username);
+
+	    ps.executeUpdate();
+
+	    return true;
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return false;
+    }
+    
+    public boolean resetLoginAttempts( int accountId )
+    {
+	PreparedStatement ps;
+	String sql = "UPDATE " + Account.TABLE_NAME
+		+ " SET " + Account.COLUMN_LOGIN_ATTEMPS + " = ? "
+		+ " WHERE " + Account.COLUMN_ACCOUNT_ID + " = ?;";
+
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setInt(1, 0);
+	    ps.setInt(2, accountId);
+
+	    ps.executeUpdate();
+
+	    return true;
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return false;
+    }
+    
     public boolean changePassword( int accountId, String newPassword )
     {
 	PreparedStatement ps;
@@ -422,6 +597,31 @@ public class AccountManager
     }
     
     // DELETE / LOCK
+    public boolean lockAccount( String username )
+    {
+	PreparedStatement ps;
+	String sql = "UPDATE " + Account.TABLE_NAME
+		+ " SET " + Account.COLUMN_IS_LOCKED + " = ?"
+		+ " WHERE " + Account.COLUMN_USERNAME + " = ?;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setInt(1, 1);
+	    ps.setString(2, username);
+	    
+	    ps.executeUpdate();
+	    
+	    return true;
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return false;
+    }
+    
     public boolean lockAccount( int accountId )
     {
 	PreparedStatement ps;

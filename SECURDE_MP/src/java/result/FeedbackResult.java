@@ -72,9 +72,9 @@ public class FeedbackResult
 	this.date = date;
     }
 
-    public Feedback getFeedback()
+    public String getFeedback()
     {
-	return feedback;
+	return feedback.getFeedback();
     }
 
     public void setFeedback(Feedback feedback)
