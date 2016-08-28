@@ -123,7 +123,7 @@
                     </div>
                 </div>    
                 <div class="row cart-body">
-                    <form class="form-horizontal" method="post" action="">
+                    <!--<form class="form-horizontal" method="post" action="">-->
                         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-md-push-6 col-sm-push-6">
                             <!--REVIEW ORDER-->
                             <div class="panel panel-info">
@@ -238,13 +238,13 @@
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-primary btn-submit-fix" value="Place Order" name="submitBtn">
                                         </div>
-                                    </form>
+                                    </div>
                                 </div>
-                            </div>
+                            </form>
                             <!--CREDIT CART PAYMENT END-->
                         </div>
 
-                    </form>
+                    <!--</form>-->
                 </div>
                 <div class="row cart-footer">
 
