@@ -171,11 +171,13 @@ public class ReceiptItemManager
 		{
 		    genId = generatedKeys.getInt(1);
 		    
-		    for( int i = 0; i < receiptItem.getFeedbacks().size(); i++ )
+		    if( receiptItem.getFeedbacks() != null || receiptItem.getFeedbacks().size() != 0 )
 		    {
-			feedbackManager.insertFeedback(genId, receiptItem.getFeedbacks().get(i));
+			for( int i = 0; i < receiptItem.getFeedbacks().size(); i++ )
+			{
+			    feedbackManager.insertFeedback(genId, receiptItem.getFeedbacks().get(i));
+			}
 		    }
-		    
 		    receiptItem.setReceiptItemId(Integer.toString(genId));
 		    
 		    return genId;

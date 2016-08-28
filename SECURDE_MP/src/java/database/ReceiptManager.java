@@ -139,11 +139,13 @@ public class ReceiptManager
 		{
 		    genId = generatedKeys.getInt(1);
 		    
-		    for( int i = 0; i < receipt.getReceiptItems().size(); i++ )
+		    if( receipt.getReceiptItems() != null || receipt.getReceiptItems().size() != 0 )
 		    {
-			receiptItemManager.insertReceiptItem(genId, receipt.getReceiptItems().get(i));
+			for( int i = 0; i < receipt.getReceiptItems().size(); i++ )
+			{
+			    receiptItemManager.insertReceiptItem(genId, receipt.getReceiptItems().get(i));
+			}
 		    }
-		    
 		    receipt.setReceiptId(Integer.toString(genId));
 		    
 		    return genId;
