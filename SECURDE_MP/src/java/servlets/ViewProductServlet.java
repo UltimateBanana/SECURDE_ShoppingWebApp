@@ -86,6 +86,7 @@ public class ViewProductServlet extends HttpServlet {
         ArrayList<Product> productList = new ArrayList<Product>();
         productList.add(product);
         request.setAttribute("reviews", reviewList);
+        request.setAttribute("productId", product.getProductId());
         request.setAttribute("products", productList);
         request.getRequestDispatcher("/ProductDetailsPage.jsp").forward(request, response);
     }
