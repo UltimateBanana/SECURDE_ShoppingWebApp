@@ -199,7 +199,7 @@ public class ReceiptManager
     {
 	PreparedStatement ps;
 	String sql = "SELECT SUM(" + Receipt.COLUMN_PRICE + ") AS 'total_sales' "
-		+ " FROM " + Receipt.TABLE_NAME;
+		+ " FROM " + Receipt.TABLE_NAME + ";";
 	
 	try
 	{
