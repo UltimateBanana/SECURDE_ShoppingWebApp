@@ -139,11 +139,13 @@ public class ReceiptManager
 		{
 		    genId = generatedKeys.getInt(1);
 		    
-		    for( int i = 0; i < receipt.getReceiptItems().size(); i++ )
+		    if( receipt.getReceiptItems() != null )
 		    {
-			receiptItemManager.insertReceiptItem(genId, receipt.getReceiptItems().get(i));
+			for( int i = 0; i < receipt.getReceiptItems().size(); i++ )
+			{
+			    receiptItemManager.insertReceiptItem(genId, receipt.getReceiptItems().get(i));
+			}
 		    }
-		    
 		    receipt.setReceiptId(Integer.toString(genId));
 		    
 		    return genId;
@@ -176,9 +178,12 @@ public class ReceiptManager
 	    
 	    ps.executeUpdate();
 	    
-	    for( int i = 0; i < receipt.getReceiptItems().size(); i++ )
+	    if( receipt.getReceiptItems() != null )
 	    {
-		receiptItemManager.updateReceiptItem(receipt.getReceiptItems().get(i));
+		for( int i = 0; i < receipt.getReceiptItems().size(); i++ )
+		{
+		    receiptItemManager.updateReceiptItem(receipt.getReceiptItems().get(i));
+		}
 	    }
 	    
 	    return true;
