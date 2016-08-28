@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Account;
 import model.Feedback;
 import model.Product;
 import model.Receipt;
@@ -36,6 +37,39 @@ public class ReceiptItemManager
     }
     
     // QUERY
+    public int queryProductReceiptItemId( int accountId, int productId )
+    {
+	PreparedStatement ps;
+	String sql = "SELECT RI." + ReceiptItem.COLUMN_RECEIPT_ITEM_ID
+		+ " FROM " + Account.TABLE_NAME + " A, " + Product.TABLE_NAME + " P, " + Receipt.TABLE_NAME + " R, " + ReceiptItem.TABLE_NAME + " RI "
+		+ " WHERE A." + Account.COLUMN_ACCOUNT_ID + " = R." + Account.COLUMN_ACCOUNT_ID
+		    + " AND R." + Receipt.COLUMN_RECEIPT_ID + " = RI." + Receipt.COLUMN_RECEIPT_ID 
+		    + " AND RI." + Product.COLUMN_PRODUCT_ID + " = P." + Product.COLUMN_PRODUCT_ID
+		    + " AND A." + Account.COLUMN_ACCOUNT_ID + " = ? "
+		    + " AND P." + Product.COLUMN_PRODUCT_ID + " = ? "
+		+ " ORDER BY R." + Receipt.COLUMN_DATE + " DESC;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setInt(1, accountId);
+	    ps.setInt(2, productId);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    if( rs.next() )
+	    {
+		return rs.getInt(ReceiptItem.COLUMN_RECEIPT_ITEM_ID);
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(ReceiptItemManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return 0;
+    }
+    
     public ReceiptItem queryReceiptItem( int receiptItemId )
     {
 	PreparedStatement ps;

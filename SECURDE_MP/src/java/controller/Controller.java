@@ -162,6 +162,11 @@ public class Controller
     }
     
     // RECEIPTITEM
+    public int queryProductReceiptItemId( int accountId, int productId )
+    {
+	return receiptItemManager.queryProductReceiptItemId(accountId, productId);
+    }
+    
     public ReceiptItem queryReceiptItem( int receiptItemId )
     {
 	return receiptItemManager.queryReceiptItem(receiptItemId);
