@@ -203,7 +203,7 @@
                         <h3>User Details</h3>
                         <hr>
                         <div class="panel-body">
-                            <form role="form" id="showuserdetailsForm" name="showuserdetailsForm">
+                            <form role="form" id="creditcarddetailsForm" name="" action="">
                                 <fieldset>
                                     
                                 </fieldset>
@@ -213,12 +213,28 @@
                     
                     
                     <div class="tab-pane text-style" id="tab3">
-                        <h3>User Details</h3>
+                        <h3>Change Password</h3>
                         <hr>
                         <div class="panel-body">
-                            <form role="form" id="showuserdetailsForm" name="showuserdetailsForm">
+                            <form role="form" id="changepasswordForm" name="changepasswordForm" action="ChangePasswordServlet" method="post">
                                 <fieldset>
                                     
+                                    <label class="col-sm-3 control-label">Enter Current Password:</label>
+                                    <div class="col-sm-9 form-group">
+                                        <input class="form-control" placeholder="Password" name="currpasswordChangePass" id="currpasswordChangePass" type="password" value="">
+                                    </div>
+                                    <label class="col-sm-3 control-label">Enter New Password:</label>
+                                    <div class="col-sm-9 form-group">
+                                        <input class="form-control" placeholder="Password" name="newpasswordChangePass" id="newpasswordChangePass" type="password" value="">
+                                    </div>
+                                    <label class="col-sm-3 control-label">Confirm New Password:</label>
+                                    <div class="col-sm-9 form-group">
+                                        <input class="form-control" placeholder="Password" name="confnewpasswordChangePass" id="confnewpasswordChangePass" type="password" value="">
+                                    </div>
+                                    
+                                    <div class="col-sm-12 form-group">
+                                        <input type="submit" class="btn btn-primary editMe" id="changepasswordBtn" name="changepasswordBtn" value="Change Password" />
+                                    </div>
                                 </fieldset>
                             </form>
                         </div>
