@@ -6,10 +6,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.Account;
 import model.Feedback;
+import model.Product;
+import model.Receipt;
 import model.ReceiptItem;
+import result.FeedbackResult;
 
 public class FeedbackManager
 {
@@ -86,6 +91,55 @@ public class FeedbackManager
 	}
 	
 	return feedbacks;	
+    }
+    
+    public ArrayList<FeedbackResult> queryAllFeedbackByProduct( int productId )
+    {
+	ArrayList<FeedbackResult> feedbackResults = new ArrayList<>(0);
+	PreparedStatement ps;
+	String sql = "SELECT A." + Account.COLUMN_FIRST_NAME + ", A." + Account.COLUMN_MIDDLE_NAME + ", A." + Account.COLUMN_LAST_NAME 
+			+ ", A." + Account.COLUMN_USERNAME + ", R." + Receipt.COLUMN_DATE 
+			+ ", F." + Feedback.COLUMN_FEEDBACK_ID + ", F." + Feedback.COLUMN_FEEDBACK 
+		+ " FROM " + Account.TABLE_NAME + " A, " + Feedback.TABLE_NAME + " F, " + Product.TABLE_NAME + " P, " + Receipt.TABLE_NAME + " R, " + ReceiptItem.TABLE_NAME + " RI "
+		+ " WHERE A." + Account.COLUMN_ACCOUNT_ID + " = R." + Account.COLUMN_ACCOUNT_ID
+		    + " AND R." + Receipt.COLUMN_RECEIPT_ID + " = RI." + Receipt.COLUMN_RECEIPT_ID 
+		    + " AND RI." + ReceiptItem.COLUMN_RECEIPT_ITEM_ID + " = F." + ReceiptItem.COLUMN_RECEIPT_ITEM_ID
+		    + " AND RI." + Product.COLUMN_PRODUCT_ID + " = P." + Product.COLUMN_PRODUCT_ID
+		    + " AND P." + Product.COLUMN_PRODUCT_ID + " = ? "
+		+ " ORDER BY R." + Receipt.COLUMN_DATE + " DESC, A." + Account.COLUMN_USERNAME + " ASC, A." + Account.COLUMN_FIRST_NAME + " ASC, A." 
+		    + Account.COLUMN_MIDDLE_NAME + " ASC, A." + Account.COLUMN_LAST_NAME + " ASC, F." + Feedback.COLUMN_FEEDBACK + " ASC;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setInt(1, productId);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    while( rs.next() )
+	    {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(rs.getDate(Receipt.COLUMN_DATE));
+		
+		Feedback feedback = new Feedback(Integer.toString(rs.getInt(Feedback.COLUMN_FEEDBACK_ID)),
+						 rs.getString(Feedback.COLUMN_FEEDBACK));
+		
+		FeedbackResult feedbackResult = new FeedbackResult(rs.getString(Account.COLUMN_FIRST_NAME),
+								   rs.getString(Account.COLUMN_MIDDLE_NAME),
+								   rs.getString(Account.COLUMN_LAST_NAME),
+								   rs.getString(Account.COLUMN_USERNAME),
+								   calendar, 
+								   feedback);
+		
+		feedbackResults.add(feedbackResult);
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(FeedbackManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return feedbackResults;
     }
     
     // INSERT

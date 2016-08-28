@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/model/Account.java</file>
             <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/controller/Controller.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/web/ProductListPage.jsp</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/enumeration/Operators.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/request/ProductRequest.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/ProductListServlet.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/web/ProductDetailsPage.jsp</file>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/DatabaseConnector.java</file>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/ReceiptManager.java</file>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/AccountManager.java</file>
         </group>
     </open-files>
 </project-private>

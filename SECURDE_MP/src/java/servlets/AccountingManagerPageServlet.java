@@ -5,12 +5,15 @@
  */
 package servlets;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import result.SalesResult;
 
 /**
  *
@@ -71,6 +74,13 @@ public class AccountingManagerPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
+        
+
+        Controller controller = new Controller();
+        ArrayList<SalesResult> salesList = new ArrayList<SalesResult>();
+        
+        salesList.add(controller.queryTotalSales());
+        request.setAttribute("sales", salesList);
         
         request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
     }
