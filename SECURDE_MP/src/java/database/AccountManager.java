@@ -340,6 +340,31 @@ public class AccountManager
     }
     
     // UPDATE
+    public boolean changePassword( int accountId, String newPassword )
+    {
+	PreparedStatement ps;
+	String sql = "UPDATE " + Account.TABLE_NAME
+		+ " SET " + Account.COLUMN_PASSWORD + " = ? "
+		+ " WHERE " + Account.COLUMN_ACCOUNT_ID + " = ?;";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    ps.setString(1, newPassword);
+	    ps.setInt(2, accountId);
+	    
+	    ps.executeUpdate();
+	    
+	    return true;
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(AccountManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return false;
+    }
+    
     public boolean updateAccount( Account account )
     {
 	PreparedStatement ps;

@@ -11,6 +11,7 @@ import java.util.logging.Logger;
 import model.Account;
 import model.Receipt;
 import model.ReceiptItem;
+import result.SalesResult;
 
 public class ReceiptManager
 {
@@ -192,4 +193,30 @@ public class ReceiptManager
     // DELETE
     
     // RESTORE
+    
+    // SALES - Total Sales
+    public SalesResult queryTotalSales()
+    {
+	PreparedStatement ps;
+	String sql = "SELECT SUM(" + Receipt.COLUMN_PRICE + ") AS 'total_sales' "
+		+ " FROM " + Receipt.TABLE_NAME + ";";
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    if( rs.next() )
+	    {
+		return new SalesResult("ALL", rs.getDouble("total_sales"));
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(ReceiptManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return new SalesResult("ALL", 0);
+    }
 }

@@ -15,6 +15,8 @@ import model.Receipt;
 import model.ReceiptItem;
 import request.AccountRequest;
 import request.ProductRequest;
+import result.FeedbackResult;
+import result.SalesResult;
 
 public class Controller
 {
@@ -54,6 +56,11 @@ public class Controller
     public int register( Account account )
     {
 	return accountManager.insertAccount(account);
+    }
+    
+    public boolean changePassword( int accountId, String newPassword )
+    {
+	return accountManager.changePassword(accountId, newPassword);
     }
     
     public boolean updateAccount( Account account )
@@ -106,6 +113,11 @@ public class Controller
     public ArrayList<Feedback> queryAllFeedbackByReceiptItem( int receiptItemId )
     {
 	return feedbackManager.queryAllFeedbackByReceiptItem(receiptItemId);
+    }
+    
+    public ArrayList<FeedbackResult> queryAllFeedbackByProductId( int productId )
+    {
+	return feedbackManager.queryAllFeedbackByProduct(productId);
     }
     
     public int addFeedback( int receiptItemId, Feedback feedback )
@@ -189,5 +201,21 @@ public class Controller
     public boolean updateReceipt( Receipt receipt )
     {
 	return receiptManager.updateReceipt(receipt);
+    }
+    
+    // SALES
+    public SalesResult queryTotalSales()
+    {
+	return receiptManager.queryTotalSales();
+    }
+    
+    public ArrayList<SalesResult> queryTotalSalesPerCategory()
+    {
+	return receiptItemManager.queryTotalSalesPerCategory();
+    }
+    
+    public ArrayList<SalesResult> queryTotalSalesPerProduct()
+    {
+	return receiptItemManager.queryTotalSalesPerProduct();
     }
 }
