@@ -5,6 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -44,6 +45,79 @@
                     var index = $(this).index();
                     $("div.bhoechie-tab>div.bhoechie-tab-content").removeClass("active");
                     $("div.bhoechie-tab>div.bhoechie-tab-content").eq(index).addClass("active");
+                });
+                
+                $('#filterSubmit').on('click', function(){
+                    var saleFilter = $("#filterbyFinancialRecords").val();
+                    
+                    if(saleFilter == "1")
+                    {
+//                        var header = ["All Items", "Sales"];
+                        alert("Total Sales");
+//                        $.get("UpdateSalesTable1Servlet", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+//                            $("#salesTable").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
+//                        });
+                        $('#divTable').empty();
+                        $.get("UpdateSalesTable1Servlet", function(responseJson) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+                            var $table = $("<table class=\"table table-striped custab\">").appendTo($("#divTable")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
+                            
+                            //Header
+                            $("<thead>").appendTo($table);
+                            $("<tr>").appendTo($table)
+                                .append($("<th>").text("All Items"))
+                                .append($("<th>").text("Sales"));
+                            
+                            //Content
+                            $.each(responseJson, function(index, sale) {    // Iterate over the JSON array.
+                                $("<tr>").appendTo($table)                     // Create HTML <tr> element, set its text content with currently iterated item and append it to the <table>.
+                                    .append($("<td>").text(sale.name))        // Create HTML <td> element, set its text content with id of currently iterated product and append it to the <tr>.
+                                    .append($("<td>").text(sale.totalSales));    // Create HTML <td> element, set its text content with price of currently iterated product and append it to the <tr>.
+                            });
+                        });
+                    }
+                    else if(saleFilter == "2")
+                    {
+                        alert("Total Sales per Category");
+                        $('#divTable').empty();
+                        $.get("UpdateSalesTable2Servlet", function(responseJson) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+                            var $table = $("<table class=\"table table-striped custab\">").appendTo($("#divTable")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
+                            
+                            //Header
+                            $("<thead>").appendTo($table);
+//                            $("<thead>").appendTo($table);
+                            $("<tr>").appendTo($table)
+                                .append($("<th>").text("Category"))
+                                .append($("<th>").text("Sales"));
+                            
+                            //Content
+                            $.each(responseJson, function(index, sale) {    // Iterate over the JSON array.
+                                $("<tr>").appendTo($table)                     // Create HTML <tr> element, set its text content with currently iterated item and append it to the <table>.
+                                    .append($("<td>").text(sale.name))        // Create HTML <td> element, set its text content with id of currently iterated product and append it to the <tr>.
+                                    .append($("<td>").text(sale.totalSales));    // Create HTML <td> element, set its text content with price of currently iterated product and append it to the <tr>.
+                            });
+                        });
+                    }
+                    else if(saleFilter == "3")
+                    {
+                        alert("Total Sales per Product");
+                        $('#divTable').empty();
+                        $.get("UpdateSalesTable3Servlet", function(responseJson) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
+                            var $table = $("<table class=\"table table-striped custab\">").appendTo($("#divTable")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
+                            
+                            //Header
+                            $("<thead>").appendTo($table);
+                            $("<tr>").appendTo($table)
+                                .append($("<th>").text("Product"))
+                                .append($("<th>").text("Sales"));
+                            
+                            //Content
+                            $.each(responseJson, function(index, sale) {    // Iterate over the JSON array.
+                                $("<tr>").appendTo($table)                     // Create HTML <tr> element, set its text content with currently iterated item and append it to the <table>.
+                                    .append($("<td>").text(sale.name))        // Create HTML <td> element, set its text content with id of currently iterated product and append it to the <tr>.
+                                    .append($("<td>").text(sale.totalSales));    // Create HTML <td> element, set its text content with price of currently iterated product and append it to the <tr>.
+                            });
+                        });
+                    }
                 });
                 
             });
@@ -120,12 +194,12 @@
                                         <div class="col-sm-4">
                                             <select class="form-control" id="filterbyFinancialRecords" name="filterbyFinancialRecords">
                                                 <option value="1">Total Sales</option>
-                                                <option value="2">Sales per Category</option>
-                                                <option value="3">Sales per Product</option>
+                                                <option value="2">Total Sales per Category</option>
+                                                <option value="3">Total Sales per Product</option>
                                             </select>
                                         </div>
                                         <div class="col-sm-4">
-                                            <input type="submit" class="btn btn-success" id="filterSubmit" name="filterSubmit" value="Filter" />
+                                            <input type="button" class="btn btn-success" id="filterSubmit" name="filterSubmit" value="Filter" />
                                         </div>
                                     </div>
                                     
@@ -136,40 +210,18 @@
 <!--                        <div class="panel-heading">
                             <h2 class="panel-title">Add Manager</h2>
                         </div>-->
-                        <div class="row col-md-12 custyle">
-                            <table class="table table-striped custab">
+                        <div class="row col-md-12 custyle" id="divTable" name="divTable">
+                            <table class="table table-striped custab" id="salesTable" name="salesTable">
                                 <thead>
                                     <tr>
-                                        <th>??</th>
-                                        <th>??</th>
+                                        <th>All Items</th>
+                                        <th>Sales</th>
                                     </tr>
                                 </thead>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Banana Slippers</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Converse</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Tsinelas Bruh</td>
-                                </tr>
-                                
-                                <!-- Format for the show all product in list -->
-<!--                                <c:forEach items="${tasks}" var="task">
-                                    <li class="list-group-item">
-                                        <c:out value="${task.title}" />
-                                        <span class="glyphicon glyphicon-trash pull-right deleteMe"> </span> 
-                                        <span class="glyphicon glyphicon-edit pull-right editMe"> </span>
-                                    </li>
-                                </c:forEach>-->
-                                
-                                <c:forEach items="${products}" var="task">
+                                <c:forEach items="${sales}" var="sale">
                                     <tr>
-                                        <td><c:out value="${product.id}" /></td>
-                                        <td><c:out value="${product.title}" /></td>
+                                        <td><c:out value="${sale.name}" /></td>
+                                        <td><c:out value="${sale.totalSales}" /></td>
                                     </tr>
                                 </c:forEach>
                             </table>
