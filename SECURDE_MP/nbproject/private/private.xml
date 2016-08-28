@@ -3,10 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/controller/Controller.java</file>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/FinalCheckoutServlet.java</file>
             <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/DatabaseConnector.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/CheckoutServlet.java</file>
             <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/ReceiptItemManager.java</file>
             <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/database/ReceiptManager.java</file>
+            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/web/CheckoutPage.jsp</file>
         </group>
     </open-files>
 </project-private>
