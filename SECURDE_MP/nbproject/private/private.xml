@@ -3,12 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/controller/Controller.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/web/ProductListPage.jsp</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/enumeration/Operators.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/request/ProductRequest.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/ProductListServlet.java</file>
-            <file>file:/C:/Users/Justin/Documents/GitHub/SECURDE_ShoppingWebApp/SECURDE_MP/web/ProductDetailsPage.jsp</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/src/java/servlets/ProductListServlet.java</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/nbproject/build-impl.xml</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/web/UserDetailsPage.jsp</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/web/AdminPage.jsp</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/web/ProductManagerPage.jsp</file>
+            <file>file:/Users/hannah/Desktop/SECURDE_Github/SECURDE_ShoppingWebApp/SECURDE_MP/web/AccountingManagerPage.jsp</file>
         </group>
     </open-files>
 </project-private>
