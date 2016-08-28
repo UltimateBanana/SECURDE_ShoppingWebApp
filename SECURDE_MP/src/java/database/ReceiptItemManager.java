@@ -171,11 +171,13 @@ public class ReceiptItemManager
 		{
 		    genId = generatedKeys.getInt(1);
 		    
-		    for( int i = 0; i < receiptItem.getFeedbacks().size(); i++ )
+		    if( receiptItem.getFeedbacks() != null )
 		    {
-			feedbackManager.insertFeedback(genId, receiptItem.getFeedbacks().get(i));
+			for( int i = 0; i < receiptItem.getFeedbacks().size(); i++ )
+			{
+			    feedbackManager.insertFeedback(genId, receiptItem.getFeedbacks().get(i));
+			}
 		    }
-		    
 		    receiptItem.setReceiptItemId(Integer.toString(genId));
 		    
 		    return genId;
@@ -208,9 +210,12 @@ public class ReceiptItemManager
 	    
 	    ps.executeUpdate();
 	    
-	    for( int i = 0; i < receiptItem.getFeedbacks().size(); i++ )
+	    if( receiptItem.getFeedbacks() != null )
 	    {
-		feedbackManager.updateFeedback(receiptItem.getFeedbacks().get(i));
+		for( int i = 0; i < receiptItem.getFeedbacks().size(); i++ )
+		{
+		    feedbackManager.updateFeedback(receiptItem.getFeedbacks().get(i));
+		}
 	    }
 	    
 	    return true;
