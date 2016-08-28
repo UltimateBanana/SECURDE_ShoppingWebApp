@@ -15,6 +15,7 @@ import model.Receipt;
 import model.ReceiptItem;
 import request.AccountRequest;
 import request.ProductRequest;
+import result.SalesResult;
 
 public class Controller
 {
@@ -189,5 +190,21 @@ public class Controller
     public boolean updateReceipt( Receipt receipt )
     {
 	return receiptManager.updateReceipt(receipt);
+    }
+    
+    // SALES
+    public SalesResult queryTotalSales()
+    {
+	return receiptManager.queryTotalSales();
+    }
+    
+    public ArrayList<SalesResult> queryTotalSalesPerCategory()
+    {
+	return receiptItemManager.queryTotalSalesPerCategory();
+    }
+    
+    public ArrayList<SalesResult> queryTotalSalesPerProduct()
+    {
+	return receiptItemManager.queryTotalSalesPerProduct();
     }
 }
