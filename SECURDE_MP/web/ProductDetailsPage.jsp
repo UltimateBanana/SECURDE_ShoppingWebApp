@@ -32,6 +32,7 @@
                 window.location.href = "LogInPage.jsp";
             });
             $('#addReviewBtn').on('click', function(){
+                   var productId = '${productId}';
                    $.ajax({
                     url: 'CheckIfLoggedInServlet',
                     //data: {
@@ -42,9 +43,9 @@
                         if(data==="Yes"){
                             $.ajax({
                             url: 'CheckIfBoughtServlet',
-                            //data: {
-
-                            //},
+                            data: {
+                                productId: productId
+                            },
                             type: 'post',
                             success: function(data){
                                 if(data==="Yes"){
@@ -311,6 +312,7 @@
                                     <form id="addReview" action="addReviewServlet" method="post">
                                     <label>
                                         My Review
+                                        <input type="hidden" name="productId" id="productId" value="${productId}">
                                         <textarea id="userReview" name="userReview" placeholder="None"></textarea>
                                     </label>
                                         <button id="addReviewBtn" class="button">Submit Review</button>
