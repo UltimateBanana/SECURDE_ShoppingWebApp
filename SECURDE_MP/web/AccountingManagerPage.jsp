@@ -53,7 +53,7 @@
                     if(saleFilter == "1")
                     {
 //                        var header = ["All Items", "Sales"];
-                        alert("Total Sales");
+//                        alert("Total Sales");
 //                        $.get("UpdateSalesTable1Servlet", function(responseText) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
 //                            $("#salesTable").text(responseText);           // Locate HTML DOM element with ID "somediv" and set its text content with the response text.
 //                        });
@@ -77,7 +77,7 @@
                     }
                     else if(saleFilter == "2")
                     {
-                        alert("Total Sales per Category");
+//                        alert("Total Sales per Category");
                         $('#divTable').empty();
                         $.get("UpdateSalesTable2Servlet", function(responseJson) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
                             var $table = $("<table class=\"table table-striped custab\">").appendTo($("#divTable")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".
@@ -99,7 +99,7 @@
                     }
                     else if(saleFilter == "3")
                     {
-                        alert("Total Sales per Product");
+//                        alert("Total Sales per Product");
                         $('#divTable').empty();
                         $.get("UpdateSalesTable3Servlet", function(responseJson) {   // Execute Ajax GET request on URL of "someservlet" and execute the following function with Ajax response text...
                             var $table = $("<table class=\"table table-striped custab\">").appendTo($("#divTable")); // Create HTML <table> element and append it to HTML DOM element with ID "somediv".

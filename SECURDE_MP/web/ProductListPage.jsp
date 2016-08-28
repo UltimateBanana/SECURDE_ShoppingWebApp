@@ -184,7 +184,7 @@
                 <!-- Text -->
                 <div id="contenttext">
                     <br><br>
-                    <div class="row column text-center">
+<!--                    <div class="row column text-center">
                         <h2>Our Newest Products</h2>
                         <hr>
                     </div>
@@ -214,9 +214,9 @@
                             <a href="ProductDetailsPage.jsp" class="button expanded">Buy</a>
                         </div>
                     </div>
-                    <hr>
+                    <hr>-->
                     <div class="row column text-center">
-                        <h2>Some Other Neat Products</h2>
+                        <h2>Our Newest Products</h2>
                         <hr>
                     </div>
                     <div class="row small-up-2 medium-up-3 large-up-6">
@@ -242,23 +242,6 @@
 			</form>-->
                     </div>
                     
-                    <%--For displaying Previous link except for the 1st page --%>
-                    <c:if test="${currentPage != 1}">
-                        <a href="employee.do?page=${currentPage - 1}">Previous</a>
-                    </c:if>
-                    <%--For displaying Page numbers. The when condition does not display a link for the current page--%>
-                    <c:forEach begin="1" end="${noOfPages}" var="i">
-                        <c:choose>
-                            <c:when test="${currentPage eq i}">${i}</c:when>
-                            <c:otherwise>
-                                <a href="employee.do?page=${i}">${i}</a>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                    <%--For displaying Next link --%>
-                    <c:if test="${currentPage lt noOfPages}">
-                        <a href="employee.do?page=${currentPage + 1}">Next</a>
-                    </c:if>
                 </div>
             </div><!-- /content -->
 

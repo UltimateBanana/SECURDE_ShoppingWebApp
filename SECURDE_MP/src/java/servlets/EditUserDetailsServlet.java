@@ -79,14 +79,15 @@ public class EditUserDetailsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
-        Account user = (Account) request.getSession(false).getAttribute("user");
+        HttpSession session = request.getSession(false);
+        Account user = (Account) session.getAttribute("user");
         System.out.println("username: "+user.getUsername());
         Controller controller = new Controller();
 
         String firstName = request.getParameter("fnameEditUD");
         String middleName = request.getParameter("minitialEditUD");
         String lastName = request.getParameter("lnameEditUD");
-        String username = request.getParameter("usernameEditUD");
+//        String username = request.getParameter("usernameEditUD");
         String email = request.getParameter("emailEditUD");
         
         String houseNumBA = request.getParameter("housenumBAEditUD");
@@ -137,6 +138,12 @@ public class EditUserDetailsServlet extends HttpServlet {
         account.setAccountId(user.getAccountId());
         
         controller.updateAccount(account);
+        
+        session.setAttribute("user", account);
+        ArrayList<Account> accountList = new ArrayList<Account>();
+        accountList.add(account);
+        request.setAttribute("accounts", accountList);
+        
         RequestDispatcher rs = request.getRequestDispatcher("UserDetailsPage.jsp");
         rs.forward(request, response);
         //rs.forward(request, response);

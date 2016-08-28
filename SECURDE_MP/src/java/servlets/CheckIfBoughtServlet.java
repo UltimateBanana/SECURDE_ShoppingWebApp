@@ -8,21 +8,16 @@ package servlets;
 import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
-import result.FeedbackResult;
-
+import model.Account;
 /**
  *
  * @author Paolo
  */
-@WebServlet(name = "ViewProductServlet", urlPatterns = {"/ViewProductServlet"})
-public class ViewProductServlet extends HttpServlet {
+public class CheckIfBoughtServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +36,10 @@ public class ViewProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewProductServlet</title>");            
+            out.println("<title>Servlet CheckIfBoughtServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ViewProductServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet CheckIfBoughtServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,19 +71,21 @@ public class ViewProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-//            String id = (String) request.getSession(false).getAttribute("id");
-        String id = request.getParameter("prodID");
         Controller controller = new Controller();
-        Product product = controller.queryProduct(Integer.parseInt(id));
-        ArrayList<FeedbackResult> reviewList = new ArrayList<FeedbackResult>();
-        reviewList = controller.queryAllFeedbackByProductId(Integer.parseInt(id));
-        ArrayList<Product> productList = new ArrayList<Product>();
-        productList.add(product);
-        request.setAttribute("reviews", reviewList);
-        request.setAttribute("productId", product.getProductId());
-        request.setAttribute("products", productList);
-        request.getRequestDispatcher("/ProductDetailsPage.jsp").forward(request, response);
+        Account account = (Account) request.getSession(false).getAttribute("user");
+        
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int accountId = Integer.parseInt(account.getAccountId());
+        
+        if(controller.queryProductReceiptItemId(accountId, productId) > 0){
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("Yes");
+        }else{
+            response.setContentType("text/plain");
+            response.setCharacterEncoding("UTF-8");
+            response.getWriter().write("No");
+        }
     }
 
     /**

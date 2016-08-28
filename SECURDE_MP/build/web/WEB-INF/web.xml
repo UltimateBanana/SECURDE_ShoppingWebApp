@@ -104,6 +104,14 @@
         <servlet-name>UpdateSalesTable3Servlet</servlet-name>
         <servlet-class>servlets.UpdateSalesTable3Servlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CheckIfLoggedInServlet</servlet-name>
+        <servlet-class>servlets.CheckIfLoggedInServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CheckIfBoughtServlet</servlet-name>
+        <servlet-class>servlets.CheckIfBoughtServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -208,9 +216,21 @@
         <servlet-name>UpdateSalesTable3Servlet</servlet-name>
         <url-pattern>/UpdateSalesTable3Servlet</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckIfBoughtServlet</servlet-name>
+        <url-pattern>/CheckIfBoughtServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CheckIfLoggedInServlet</servlet-name>
+        <url-pattern>/CheckIfLoggedInServlet</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
         </session-timeout>
+        <cookie-config>
+            <http-only>true</http-only>
+            <secure>true</secure>
+        </cookie-config>
     </session-config>
 </web-app>
