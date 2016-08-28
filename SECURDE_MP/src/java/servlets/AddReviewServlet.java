@@ -1,6 +1,7 @@
 
 package servlets;
 
+import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -41,10 +42,13 @@ public class AddReviewServlet extends HttpServlet {
             throws ServletException, IOException {
         Controller controller = new Controller();
         Account account = (Account) request.getSession(false).getAttribute("user");
+        
         int productId = Integer.parseInt(request.getParameter("productId"));
         int accountId = Integer.parseInt(account.getAccountId());
+        
         String review = request.getParameter("userReview");
         Feedback feedback = new Feedback();
+        
         feedback.setFeedback(review);
         int receiptId = controller.queryProductReceiptItemId(accountId, productId);
         if(receiptId > 0){

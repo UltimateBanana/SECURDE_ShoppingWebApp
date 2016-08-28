@@ -71,20 +71,27 @@ public class CheckIfLoggedInServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            
+            int flag = 0;
+            
             Cookie[] cookies = request.getCookies();
             if(cookies !=null){
                 for(Cookie cookie : cookies){
                     if(cookie.getName().equals("user"))
                     {
+                        flag = 1;
                         response.setContentType("text/plain");
                         response.setCharacterEncoding("UTF-8");
                         response.getWriter().write("Yes");
                     }
                 }
             }
-            response.setContentType("text/plain");
-            response.setCharacterEncoding("UTF-8");
-            response.getWriter().write("No");
+            if(flag == 0)
+            {
+                response.setContentType("text/plain");
+                response.setCharacterEncoding("UTF-8");
+                response.getWriter().write("No");
+            }
     }
 
     /**

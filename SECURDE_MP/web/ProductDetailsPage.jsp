@@ -40,7 +40,7 @@
                     //},
                     type: 'post',
                     success: function(data){
-                        if(data==="Yes"){
+                        if(data=="Yes"){
                             $.ajax({
                             url: 'CheckIfBoughtServlet',
                             data: {
@@ -48,7 +48,7 @@
                             },
                             type: 'post',
                             success: function(data){
-                                if(data==="Yes"){
+                                if(data=="Yes"){
                                     $('#addReview').submit();
                                 }else{
                                     alert("You must have bought this product before adding a review.");
@@ -70,7 +70,7 @@
                     //},
                     type: 'post',
                     success: function(data){
-                        if(data==="Yes"){
+                        if(data=="Yes"){
                             $('#addToCart').submit();
                         }else{
                             alert("You must be signed in to add a review.");
@@ -309,7 +309,7 @@
                                       </div>  
                                         
                                     </c:forEach>
-                                    <form id="addReview" action="addReviewServlet" method="post">
+                                    <form id="addReview" action="AddReviewServlet" method="post">
                                     <label>
                                         My Review
                                         <input type="hidden" name="productId" id="productId" value="${productId}">

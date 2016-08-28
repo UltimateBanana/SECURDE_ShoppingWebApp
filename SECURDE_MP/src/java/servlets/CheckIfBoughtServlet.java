@@ -73,8 +73,10 @@ public class CheckIfBoughtServlet extends HttpServlet {
             throws ServletException, IOException {
         Controller controller = new Controller();
         Account account = (Account) request.getSession(false).getAttribute("user");
+        
         int productId = Integer.parseInt(request.getParameter("productId"));
         int accountId = Integer.parseInt(account.getAccountId());
+        
         if(controller.queryProductReceiptItemId(accountId, productId) > 0){
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");

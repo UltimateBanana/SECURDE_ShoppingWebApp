@@ -9,20 +9,22 @@ import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Product;
-import result.FeedbackResult;
+import model.Account;
+import model.CreditCard;
+import model.Receipt;
+import model.ReceiptItem;
 
 /**
  *
  * @author Paolo
  */
-@WebServlet(name = "ViewProductServlet", urlPatterns = {"/ViewProductServlet"})
-public class ViewProductServlet extends HttpServlet {
+public class FinalCheckoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,10 +43,10 @@ public class ViewProductServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ViewProductServlet</title>");            
+            out.println("<title>Servlet FinalCheckoutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet ViewProductServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FinalCheckoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -76,19 +78,38 @@ public class ViewProductServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
-//            String id = (String) request.getSession(false).getAttribute("id");
-        String id = request.getParameter("prodID");
+        //processRequest(request, response);
+        String number = request.getParameter("cardNumber");
+        String code = request.getParameter("cardCode");
+        String expMonth = request.getParameter("expirationMonth");
+        String expYear = request.getParameter("expirationYear");
+        
+        CreditCard card = new CreditCard();
+        
+        card.setCreditCardNumber(number);
+        card.setSecurityPin(code);
+        
+        ArrayList<ReceiptItem> cart = (ArrayList<ReceiptItem>) request.getSession(false).getAttribute("cart");
+        
+        int total = 0;
+        for(ReceiptItem r : cart){
+            total+=r.getSubtotal();
+        }
+        //validate(card, expMonth, expYear);
+        //check if creditlimit > total price
+        Account account = (Account) request.getSession(false).getAttribute("user");
+        Calendar cal = Calendar.getInstance();
+        Receipt receipt = new Receipt();
+        receipt.setCreditCardNumber(number);
+        receipt.setReceiptItems(cart);
+        receipt.setDate(cal);
+        receipt.setPrice(total);
+        
         Controller controller = new Controller();
-        Product product = controller.queryProduct(Integer.parseInt(id));
-        ArrayList<FeedbackResult> reviewList = new ArrayList<FeedbackResult>();
-        reviewList = controller.queryAllFeedbackByProductId(Integer.parseInt(id));
-        ArrayList<Product> productList = new ArrayList<Product>();
-        productList.add(product);
-        request.setAttribute("reviews", reviewList);
-        request.setAttribute("productId", product.getProductId());
-        request.setAttribute("products", productList);
-        request.getRequestDispatcher("/ProductDetailsPage.jsp").forward(request, response);
+        controller.addReceipt(Integer.parseInt(account.getAccountId()), receipt);
+        
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     /**
