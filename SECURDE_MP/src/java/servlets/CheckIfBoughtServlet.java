@@ -12,7 +12,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
+import model.Account;
 /**
  *
  * @author Paolo
@@ -72,7 +72,10 @@ public class CheckIfBoughtServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         Controller controller = new Controller();
-        if(/*user has bought product*/true){
+        Account account = (Account) request.getSession(false).getAttribute("user");
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int accountId = Integer.parseInt(account.getAccountId());
+        if(controller.queryProductReceiptItemId(accountId, productId) > 0){
             response.setContentType("text/plain");
             response.setCharacterEncoding("UTF-8");
             response.getWriter().write("Yes");
