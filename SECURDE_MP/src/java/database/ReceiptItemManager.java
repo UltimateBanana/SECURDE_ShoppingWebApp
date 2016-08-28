@@ -12,6 +12,7 @@ import model.Feedback;
 import model.Product;
 import model.Receipt;
 import model.ReceiptItem;
+import result.SalesResult;
 
 public class ReceiptItemManager
 {
@@ -191,4 +192,68 @@ public class ReceiptItemManager
     // DELETE
     
     // RESTORE
+    
+    // SALES - Total Sales Per Category
+    public ArrayList<SalesResult> queryTotalSalesPerCategory()
+    {
+	ArrayList<SalesResult> salesResults = new ArrayList<>(0);
+	PreparedStatement ps;
+	String sql = "SELECT P." + Product.COLUMN_CATEGORY + ", SUM(RI." + ReceiptItem.COLUMN_SUBTOTAL + ") AS 'total_sales_category'"
+		+ " FROM " + ReceiptItem.TABLE_NAME + " RI, " + Product.TABLE_NAME + " P "
+		+ " WHERE RI." + Product.COLUMN_PRODUCT_ID + " = P." + Product.COLUMN_PRODUCT_ID
+		+ " GROUP BY P." + Product.COLUMN_CATEGORY
+		+ " ORDER BY P." + Product.COLUMN_CATEGORY;
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    while( rs.next() )
+	    {
+		SalesResult salesResult = new SalesResult(rs.getString(Product.COLUMN_CATEGORY), rs.getDouble("total_sales_category"));
+		
+		salesResults.add(salesResult);
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(ReceiptItemManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return salesResults;
+    }
+    
+    // SALES - Total Sales Per Product
+    public ArrayList<SalesResult> queryTotalSalesPerProduct()
+    {
+	ArrayList<SalesResult> salesResults = new ArrayList<>(0);
+	PreparedStatement ps;
+	String sql = "SELECT P." + Product.COLUMN_NAME + ", SUM(RI." + ReceiptItem.COLUMN_SUBTOTAL + ") AS 'total_sales_product'"
+		+ " FROM " + ReceiptItem.TABLE_NAME + " RI, " + Product.TABLE_NAME + " P "
+		+ " WHERE RI." + Product.COLUMN_PRODUCT_ID + " = P." + Product.COLUMN_PRODUCT_ID
+		+ " GROUP BY P." + Product.COLUMN_NAME
+		+ " ORDER BY P." + Product.COLUMN_NAME;
+	
+	try
+	{
+	    ps = connection.prepareStatement(sql);
+	    
+	    ResultSet rs = ps.executeQuery();
+	    
+	    while( rs.next() )
+	    {
+		SalesResult salesResult = new SalesResult(rs.getString(Product.COLUMN_NAME), rs.getDouble("total_sales_product"));
+		
+		salesResults.add(salesResult);
+	    }
+	}
+	catch (SQLException ex)
+	{
+	    Logger.getLogger(ReceiptItemManager.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	
+	return salesResults;
+    }
 }
