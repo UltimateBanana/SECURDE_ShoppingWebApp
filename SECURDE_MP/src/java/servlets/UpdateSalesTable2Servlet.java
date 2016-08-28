@@ -5,11 +5,13 @@
  */
 package servlets;
 
+import com.google.gson.Gson;
 import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -19,7 +21,8 @@ import result.SalesResult;
  *
  * @author hannah
  */
-public class AccountingManagerPageServlet extends HttpServlet {
+@WebServlet("/UpdateSalesTable2Servlet/*")
+public class UpdateSalesTable2Servlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +41,10 @@ public class AccountingManagerPageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AccountingManagerPageServlet</title>");            
+            out.println("<title>Servlet UpdateSalesTable2Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AccountingManagerPageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet UpdateSalesTable2Servlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -59,7 +62,19 @@ public class AccountingManagerPageServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+//        processRequest(request, response);
+        
+        System.out.println("UpdateSalesTable2Servlet - Total Sales per Category");
+//        String text = "some text";
+
+        Controller controller = new Controller();
+        ArrayList<SalesResult> salesList = new ArrayList<SalesResult>();
+        salesList = controller.queryTotalSalesPerCategory();
+        String json = new Gson().toJson(salesList);
+        
+        response.setContentType("application/json");  // Set content type of the response so that jQuery knows what it can expect.
+        response.setCharacterEncoding("UTF-8"); // You want world domination, huh?
+        response.getWriter().write(json);       // Write response body.
     }
 
     /**
@@ -74,15 +89,6 @@ public class AccountingManagerPageServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 //        processRequest(request, response);
-        
-
-        Controller controller = new Controller();
-        ArrayList<SalesResult> salesList = new ArrayList<SalesResult>();
-        
-        salesList.add(controller.queryTotalSales());
-        request.setAttribute("sales", salesList);
-        
-        request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
     }
 
     /**
