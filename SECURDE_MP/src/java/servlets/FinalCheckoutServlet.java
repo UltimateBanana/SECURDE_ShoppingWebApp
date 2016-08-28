@@ -9,17 +9,21 @@ import controller.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import result.SalesResult;
+import model.Account;
+import model.CreditCard;
+import model.Receipt;
+import model.ReceiptItem;
 
 /**
  *
- * @author hannah
+ * @author Paolo
  */
-public class AccountingManagerPageServlet extends HttpServlet {
+public class FinalCheckoutServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,10 +42,10 @@ public class AccountingManagerPageServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet AccountingManagerPageServlet</title>");            
+            out.println("<title>Servlet FinalCheckoutServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet AccountingManagerPageServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet FinalCheckoutServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -73,16 +77,35 @@ public class AccountingManagerPageServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-//        processRequest(request, response);
+        //processRequest(request, response);
+        System.out.println("APPLE BOTTOM JEANS WITH BOOTS AND FUR");
         
-
+        String number = request.getParameter("cardNumber");
+        String code = request.getParameter("cardCode");
+        String expMonth = request.getParameter("expirationMonth");
+        String expYear = request.getParameter("expirationYear");
+        CreditCard card = new CreditCard();
+        card.setCreditCardNumber(number);
+        card.setSecurityPin(code);
+        ArrayList<ReceiptItem> cart = (ArrayList<ReceiptItem>) request.getSession(false).getAttribute("cart");
+        int total = 0;
+        for(ReceiptItem r : cart){
+            total+=r.getSubtotal();
+        }
+        //validate(card, expMonth, expYear);
+        //check if creditlimit > total price
+        Account account = (Account) request.getSession(false).getAttribute("user");
+        System.out.println(account.getUsername());
+        
+        Receipt receipt = new Receipt();
+        receipt.setCreditCardNumber(number);
+        receipt.setReceiptItems(cart);
+        receipt.setPrice(total);
         Controller controller = new Controller();
-        ArrayList<SalesResult> salesList = new ArrayList<SalesResult>();
+        controller.addReceipt(Integer.parseInt(account.getAccountId()), receipt);
         
-        salesList.add(controller.queryTotalSales());
-        request.setAttribute("sales", salesList);
-        
-        request.getRequestDispatcher("/AccountingManagerPage.jsp").forward(request, response);
+        RequestDispatcher rd = request.getRequestDispatcher("index.jsp");
+        rd.forward(request, response);
     }
 
     /**

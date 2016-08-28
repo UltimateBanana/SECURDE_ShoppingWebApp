@@ -110,7 +110,7 @@ public class EditUserDetailsServlet extends HttpServlet {
         account.setFirstName(firstName);
         account.setMiddleName(middleName);
         account.setLastName(lastName);
-        account.setUsername(username);
+        account.setUsername(user.getUsername());
         account.setPassword(user.getPassword());
         account.setEmail(email);
         

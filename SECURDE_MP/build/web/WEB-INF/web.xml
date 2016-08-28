@@ -84,6 +84,26 @@
         <servlet-name>CheckoutServlet</servlet-name>
         <servlet-class>servlets.CheckoutServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>FinalCheckoutServlet</servlet-name>
+        <servlet-class>servlets.FinalCheckoutServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <servlet-class>servlets.ChangePasswordServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSalesTableServlet</servlet-name>
+        <servlet-class>servlets.UpdateSalesTable1Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSalesTable2Servlet</servlet-name>
+        <servlet-class>servlets.UpdateSalesTable2Servlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateSalesTable3Servlet</servlet-name>
+        <servlet-class>servlets.UpdateSalesTable3Servlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -167,6 +187,26 @@
     <servlet-mapping>
         <servlet-name>CheckoutServlet</servlet-name>
         <url-pattern>/CheckoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>FinalCheckoutServlet</servlet-name>
+        <url-pattern>/FinalCheckoutServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangePasswordServlet</servlet-name>
+        <url-pattern>/ChangePasswordServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSalesTableServlet</servlet-name>
+        <url-pattern>/UpdateSalesTableServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSalesTable2Servlet</servlet-name>
+        <url-pattern>/UpdateSalesTable2Servlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateSalesTable3Servlet</servlet-name>
+        <url-pattern>/UpdateSalesTable3Servlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
