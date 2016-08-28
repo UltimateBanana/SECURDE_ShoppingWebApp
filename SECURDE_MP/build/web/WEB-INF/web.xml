@@ -188,13 +188,9 @@
         <session-timeout>
             30
         </session-timeout>
-    </session-config>
-    <session-config>
         <tracking-mode>
             COOKIE
         </tracking-mode>
-    </session-config>
-    <session-config>
         <cookie-config>
             <http-only>true</http-only>
             <secure>true</secure>
