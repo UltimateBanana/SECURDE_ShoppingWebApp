@@ -31,7 +31,53 @@
             $('#loginBtn').on('click', function(){
                 window.location.href = "LogInPage.jsp";
             });
+            $('#addReviewBtn').on('click', function(){
+                   var productId = '${productId}';
+                   $.ajax({
+                    url: 'CheckIfLoggedInServlet',
+                    //data: {
+                        
+                    //},
+                    type: 'post',
+                    success: function(data){
+                        if(data=="Yes"){
+                            $.ajax({
+                            url: 'CheckIfBoughtServlet',
+                            data: {
+                                productId: productId
+                            },
+                            type: 'post',
+                            success: function(data){
+                                if(data=="Yes"){
+                                    $('#addReview').submit();
+                                }else{
+                                    alert("You must have bought this product before adding a review.");
+                                }
+                            } 
+                            });
+                        }else{
+                            alert("You must be signed in to add a review.");
+                        }
+                    } 
+                }); 
+            });               
             
+            $('#addToCartBtn').on('click', function(){
+                   $.ajax({
+                    url: 'CheckIfLoggedInServlet',
+                    //data: {
+                        
+                    //},
+                    type: 'post',
+                    success: function(data){
+                        if(data=="Yes"){
+                            $('#addToCart').submit();
+                        }else{
+                            alert("You must be signed in to add a product to cart.");
+                        }
+                    } 
+                }); 
+            });
             
             // For the Search bar part
             $('.dropdown-menu').on('click', function(event) {
@@ -217,18 +263,20 @@
                                         </select>
                                     </label>
                                     <div class="row">
-                                        <div class="medium-5 columns">
+                                        <div class="medium-7 columns">
                                             <h3>
                                                 Price: ${product.price}$
                                             </h3>
                                         </div>
                                         <div class="medium-6 columns">
                                             <input type="hidden" name="prodID" id="prodID" value="${product.productId}">
-                                        <input id="addToCartBtn" class="button large expanded" type="submit" value="Add To Cart">
+                                        
                                         </div>
                                     </div>
+                                    </form>
+                                    <button id="addToCartBtn" class="button large expanded" value="Add To Cart">Add To Cart</button>
                                     <!-- <a href="http://foundation.zurb.com/templates-previews-sites-f6/product-page.html#" class="button large expanded">Add To Cart</a> -->
-                                </form>
+                                
                                 </c:forEach>
                                 
                                 <div class="small secondary expanded button-group">
@@ -241,7 +289,8 @@
                             <div class="tabs-content" data-tabs-content="example-tabs">
                                 <div class="tabs-panel is-active" id="panel1" aria-hidden="false">
                                     <h4>Reviews</h4>
-                                    <div class="media-object stack-for-small">
+                                    
+<!--                                    <div class="media-object stack-for-small">
                                         <div class="media-object-section">
                                             <img class="thumbnail" src="./assets/pictures//200x200">
                                         </div>
@@ -249,32 +298,28 @@
                                             <h5>Mike Stevenson</h5>
                                             <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you.</p>
                                         </div>
-                                    </div>
-                                    <div class="media-object stack-for-small">
+                                    </div>-->
+                                    <c:forEach items="${reviews}" var="review">
+                                      <div class="media-object stack-for-small">
                                         <div class="media-object-section">
                                             <img class="thumbnail" src="./assets/pictures//200x200">
                                         </div>
                                         <div class="media-object-section">
-                                            <h5>Mike Stevenson</h5>
-                                            <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
+                                            <h5>${review.firstName} ${review.lastName}</h5>
+                                            <p>${review.feedback}</p>
                                         </div>
-                                    </div>
-                                    <div class="media-object stack-for-small">
-                                        <div class="media-object-section">
-                                            <img class="thumbnail" src="./assets/pictures//200x200">
-                                        </div>
-                                        <div class="media-object-section">
-                                            <h5>Mike Stevenson</h5>
-                                            <p>I'm going to improvise. Listen, there's something you should know about me... about inception. An idea is like a virus, resilient, highly contagious. The smallest seed of an idea can grow. It can grow to define or destroy you</p>
-                                        </div>
-                                    </div>
-                                    <form id="addReview" action="addReview" method="post">
+                                      </div>  
+                                        
+                                    </c:forEach>
+                                    <form id="addReview" action="AddReviewServlet" method="post">
                                     <label>
                                         My Review
+                                        <input type="hidden" name="productId" id="productId" value="${productId}">
                                         <textarea id="userReview" name="userReview" placeholder="None"></textarea>
                                     </label>
-                                    <input type="submit" id="addReviewBtn" value="Submit Review" class="button">
+                                        <!--<button id="addReviewBtn" class="button">Submit Review</button>-->
                                     </form>
+                                        <button id="addReviewBtn" class="button">Submit Review</button>
                                 </div>
                             </div>
                         </div>

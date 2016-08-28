@@ -136,9 +136,9 @@
                                     </div>
 
                                     <!-- Username, Password, and Email -->
-                                    <div class="col-sm-6 form-group">
+<!--                                    <div class="col-sm-6 form-group">
                                         <input class="form-control" placeholder="Username" name="usernameShowUD" id="usernameShowUD" type="text" autofocus="" value="${account.username}" readonly>
-                                    </div>
+                                    </div>-->
                                     <div class="col-sm-6 form-group">
                                         <input class="form-control" placeholder="E-mail" name="emailShowUD" id="emailShowUD" type="email" value="${account.email}" readonly>
                                     </div>

@@ -3,6 +3,7 @@ package servlets;
 
 import controller.Controller;
 import enumeration.AccessLevel;
+import hashing.Encryptor;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.RequestDispatcher;
@@ -61,20 +62,19 @@ public class AddManagerServlet extends HttpServlet {
         }
         else{
                 if(managerType.equals("1"))
-                {
-//                    account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
-                    account.setAccessLevel(AccessLevel.translateAccessLevelStringToEnum("PRODUCT MANAGER"));
-                }
+                    account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
                 else if(managerType.equals("2"))
-                {
-//                    account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
-                    account.setAccessLevel(AccessLevel.translateAccessLevelStringToEnum("ACCOUNTING MANAGER"));
-                }
+                    account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
                 account.setFirstName(firstName);
                 account.setMiddleName(middleInitial);
                 account.setLastName(lastName);
                 account.setUsername(username);
-                account.setPassword(password);
+                
+                String key = "Bar12345Bar12345";
+                String vector = "RandomInitVector";
+            
+                String encryptedPassword = Encryptor.encrypt(key, vector, password);
+                account.setPassword(encryptedPassword);
                 account.setEmail(email);
                 
                 Address address = new Address();
