@@ -58,6 +58,11 @@ public class Controller
 	return accountManager.insertAccount(account);
     }
     
+    public boolean changePassword( int accountId, String newPassword )
+    {
+	return accountManager.changePassword(accountId, newPassword);
+    }
+    
     public boolean updateAccount( Account account )
     {
 	return accountManager.updateAccount(account);
@@ -157,6 +162,11 @@ public class Controller
     }
     
     // RECEIPTITEM
+    public int queryProductReceiptItemId( int accountId, int productId )
+    {
+	return receiptItemManager.queryProductReceiptItemId(accountId, productId);
+    }
+    
     public ReceiptItem queryReceiptItem( int receiptItemId )
     {
 	return receiptItemManager.queryReceiptItem(receiptItemId);
