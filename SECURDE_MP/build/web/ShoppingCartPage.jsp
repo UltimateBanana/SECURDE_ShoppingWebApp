@@ -133,7 +133,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+<!--                                <tr>
                                     <td class="cart_product">
                                         <a href="ProductDetailsPage.jsp"><img src="./assets/pictures/100x100" alt=""></a>
                                     </td>
@@ -179,7 +179,7 @@
                                     <td class="cart_delete">
                                         <a class="cart_quantity_delete" href="ProductDetailsPage.jsp"><i class="glyphicon glyphicon-remove"></i></a>
                                     </td>
-                                </tr>
+                                </tr>-->
                                 <c:forEach items="${cart}" var="product">
                                     <tr>
                                         <td class="cart_product">
@@ -220,7 +220,7 @@
                                 <ul>
 <!--                                    <li>Cart Sub Total <span></span></li>
                                     <li>Shipping Cost <span>20$</span></li>-->
-                                    <li>Total <span>$${subtotal}</span></li>
+                                    <li>Total <span>$<c:out value="${subtotal}"/></span></li>
                                 </ul>
                                 <a class="btn btn-default check_out" href="CheckoutServlet">Check Out</a>
                             </div>
