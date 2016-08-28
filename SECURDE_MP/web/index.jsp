@@ -59,18 +59,18 @@
 //                    window.location.href = "UserDetailsPage.jsp";
 //                });
                 
-                $('#productBtn').on('click', function(){
-                    window.location.href = "ProductDetailsPage.jsp";
-                });
+//                $('#productBtn').on('click', function(){
+//                    window.location.href = "ProductDetailsPage.jsp";
+//                });
                 
-                $('#productListBtn').on('click', function(){
-                    window.location.href = "ProductListPage.jsp";
-                });
+//                $('#productListBtn').on('click', function(){
+//                    window.location.href = "ProductListPage.jsp";
+//                });
                 
-                $('#shoppingCartBtn').on('click', function(){
-                    window.location.href = "ShoppingCartPage.jsp";
-                });
-            });
+//                $('#shoppingCartBtn').on('click', function(){
+//                    window.location.href = "ShoppingCartPage.jsp";
+//                });
+//            });
         </script>
     </head>
     <body>
@@ -131,13 +131,13 @@
                         <!-- Sign In and Sign Up buttons -->
                         <form action="GeneralIndexServlet" method="post">
                             <div class="btn-group navbar-form navbar-right" role="group" aria-label="...">
-                                <input type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn" value="Product Details Page"/>
+                                <!--<input type="button" class="btn btn-default navbar-btn" id="productBtn" name="productBtn" value="Product Details Page"/>-->
                                 <input type="submit" class="btn btn-default navbar-btn" id="productListBtn" name="productListBtn" value="Product List Page"/>
-                                <input type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="shoppingCartBtn" value="Shopping Cart Page"/>
+                                <!--<input type="button" class="btn btn-default navbar-btn" id="shoppingCartBtn" name="shoppingCartBtn" value="Shopping Cart Page"/>-->
                                 <input type="submit" class="btn btn-default navbar-btn" id="adminBtn" name="adminBtn" value="Admin Page"/>
                                 <input type="submit" class="btn btn-default navbar-btn" id="productmanagerBtn" name="productmanagerBtn" value="Product Manager Page"/>
                                 <input type="submit" class="btn btn-default navbar-btn" id="accountingmanagerBtn" name="accountingmanagerBtn" value="Accounting Manager Page"/>
-                                <input type="submit" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn" value="User Details Page"/>
+                                <!--<input type="submit" class="btn btn-default navbar-btn" id="userdetailsBtn" name="userdetailsBtn" value="User Details Page"/>-->
                                 <input type="submit" class="btn btn-default navbar-btn" id="loginBtn" name="loginBtn" value="<%=userName%>"/>
                                 <input type="submit" class="btn btn-default navbar-btn" id="signupBtn" name="signupBtn" value="<%=logoutName%>"/>
                             </div>
