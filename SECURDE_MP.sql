@@ -46,8 +46,9 @@ CREATE TABLE `account` (
   `shipping_postal_code` int(11) NOT NULL,
   `shipping_country` varchar(100) NOT NULL,
   `is_locked` int(1) NOT NULL,
+  `login_attemps` int(1) unsigned zerofill NOT NULL,
   PRIMARY KEY (`account_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -56,6 +57,7 @@ CREATE TABLE `account` (
 
 LOCK TABLES `account` WRITE;
 /*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES (1,'USER','HALLO','sa','sdfghj','banana','chocolate','qwertyui@qwerty.com','1234','sdfghjk','xcvbnm','dfghjk',1234,'dfghjk','1234','dfgyhuio','xcvbnm','ewrtyui',1234,'tvbhnj',0,0),(2,'ADMINISTRATOR','Gelo','A','John','gelo-ace1','jellyace','gelo@ace.com','12','Hey','Shawn','Kingston',1234,'Neverland','12','You\'re','Way','Too',1234,'BeaCHES',0,0),(3,'PRODUCT_MANAGER','Angelo','G','John','gelo-ace2','jellyace','gelo@ace.com','12','Hey','Shawn','Kingston',1234,'Neverland','12','You\'re','Way','Too',1234,'BeaCHES',0,0),(4,'ACCOUNTING_MANAGER','John','G','Angelo','gelo-ace3','jellyace','gelo@ace.com','12','Hey','Shawn','Kingston',1234,'Neverland','12','You\'re','Way','Too',1234,'BeaCHES',0,0),(5,'USER','Banana','D','Yuup','hello','hello123','hello@123.com','123','qwerty','qwertyuiop','asdf',1234,'asdfghjkl','123','qwerty','qwertyuiop','asdf',1234,'asdfghjkl',0,0),(6,'PRODUCT_MANAGER','Monkey','C','MonkeyDo','mankey','mankey2','mankey@monkey.com','','','','',0,'','','','','',0,'',0,0),(7,'ACCOUNTING_MANAGER','Giraffe','G','Giraffarig','giraffe','g123','giraffe@g.com','','','','',0,'','','','','',0,'',0,0),(8,'USER','Hannah','S','Banana','hannah','banana','hannah@banana.com','1234','banana','world','yoo',1234,'BANANA','1234','banana','world','yoo',1234,'BANANA',0,0),(9,'PRODUCT_MANAGER','Bananana','b','Banana','banana1','banana','banana@banana.com','','','','',0,'','','','','',0,'',0,0);
 /*!40000 ALTER TABLE `account` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -82,6 +84,7 @@ CREATE TABLE `creditcard` (
 
 LOCK TABLES `creditcard` WRITE;
 /*!40000 ALTER TABLE `creditcard` DISABLE KEYS */;
+INSERT INTO `creditcard` VALUES (1,'1234567890','123',999);
 /*!40000 ALTER TABLE `creditcard` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -99,7 +102,7 @@ CREATE TABLE `feedback` (
   PRIMARY KEY (`feedback_id`,`receipt_item_id`),
   KEY `receipt_item_id_feedback_idx` (`receipt_item_id`),
   CONSTRAINT `receipt_item_id_feedback` FOREIGN KEY (`receipt_item_id`) REFERENCES `receiptitem` (`receipt_item_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -108,6 +111,7 @@ CREATE TABLE `feedback` (
 
 LOCK TABLES `feedback` WRITE;
 /*!40000 ALTER TABLE `feedback` DISABLE KEYS */;
+INSERT INTO `feedback` VALUES (1,1,NULL);
 /*!40000 ALTER TABLE `feedback` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +130,7 @@ CREATE TABLE `product` (
   `price` double NOT NULL,
   `is_deleted` int(1) NOT NULL,
   PRIMARY KEY (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,7 +139,7 @@ CREATE TABLE `product` (
 
 LOCK TABLES `product` WRITE;
 /*!40000 ALTER TABLE `product` DISABLE KEYS */;
-INSERT INTO `product` VALUES (1,'Sample A','A is a sample boots product','Boots',500,0),(2,'B','B is a sample sandals product','Sandals',350,0),(3,'C','C is a sample shoes product','Shoes',400,0),(4,'D','D is a sample slippers product','Slippers',200,1);
+INSERT INTO `product` VALUES (1,'Sample A','A is a sample boots product','Boots',500,0),(2,'B','B is a sample sandals product','Sandals',350,0),(3,'C','C is a sample shoes product','Shoes',400,0),(4,'D','D is a sample slippers product','Slippers',200,1),(5,'Banana','Bananas in pajamas','Slippers',100,0),(6,'Vans White','WAT ARE THOOOOOSE','Shoes',300,0),(7,'Yo Momma','Yo Momma by Converse','Shoes',200,0),(8,'Apple Bottom','HEEEEEYY','BOOTS',123,0),(9,'Oxfords','OXFORDS NOT BROGUES','Shoes',555,0),(10,'Brogues','BROGUES NOT OXFORDS','Shoes',555,0),(11,'NANAY MO','NANAY MO DAW OH','Sandals',345,0),(12,'KERRBIE','KERR-BAE','SHOES',123,0);
 /*!40000 ALTER TABLE `product` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,7 +159,7 @@ CREATE TABLE `receipt` (
   PRIMARY KEY (`receipt_id`),
   KEY `account_id_idx` (`account_id`),
   CONSTRAINT `account_id_receipt` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -164,6 +168,7 @@ CREATE TABLE `receipt` (
 
 LOCK TABLES `receipt` WRITE;
 /*!40000 ALTER TABLE `receipt` DISABLE KEYS */;
+INSERT INTO `receipt` VALUES (1,1,'1234567890','2016-06-18 00:00:00',500);
 /*!40000 ALTER TABLE `receipt` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -185,7 +190,7 @@ CREATE TABLE `receiptitem` (
   KEY `product_id_receipt_item_idx` (`product_id`),
   CONSTRAINT `product_id_receipt_item` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   CONSTRAINT `receipt_id_receipt_item` FOREIGN KEY (`receipt_id`) REFERENCES `receipt` (`receipt_id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -194,6 +199,7 @@ CREATE TABLE `receiptitem` (
 
 LOCK TABLES `receiptitem` WRITE;
 /*!40000 ALTER TABLE `receiptitem` DISABLE KEYS */;
+INSERT INTO `receiptitem` VALUES (1,1,1,1,500);
 /*!40000 ALTER TABLE `receiptitem` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -206,4 +212,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2016-08-12 17:52:57
+-- Dump completed on 2016-08-28 19:25:22

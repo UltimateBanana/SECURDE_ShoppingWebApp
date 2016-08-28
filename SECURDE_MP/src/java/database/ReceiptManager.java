@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -118,7 +119,7 @@ public class ReceiptManager
 	
 	try
 	{
-	    ps = connection.prepareStatement(sql);
+	    ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 	    ps.setInt(1, accountId);
 	    ps.setString(2, receipt.getCreditCardNumber());
 	    ps.setDate(3, new java.sql.Date(receipt.getDate().getTimeInMillis()));

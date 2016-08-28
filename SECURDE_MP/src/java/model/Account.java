@@ -17,6 +17,7 @@ public class Account
     public static final String COLUMN_BILLING_ADDRESS = "billing_" ;
     public static final String COLUMN_SHIPPING_ADDRESS = "shipping_" ;
     public static final String COLUMN_IS_LOCKED = "is_locked";
+    public static final String COLUMN_LOGIN_ATTEMPS = "login_attemps";
     
     private String accountId;
     private AccessLevel accessLevel;
