@@ -52,7 +52,10 @@ public class LoginServlet extends HttpServlet {
         if(account !=null){
             HttpSession session = request.getSession(true);
             session.setAttribute("user", account);
-            Cookie cookie =new Cookie("user", username);
+            Cookie cookie = new Cookie("user", username);
+            cookie.setSecure(true);
+            cookie.setHttpOnly(true);
+            cookie.setMaxAge(86400);
             response.addCookie(cookie);
             
             System.out.println("ACCESS LEVEL: " + account.getAccessLevel().toString());
