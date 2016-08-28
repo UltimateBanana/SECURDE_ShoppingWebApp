@@ -73,7 +73,7 @@
                         if(data=="Yes"){
                             $('#addToCart').submit();
                         }else{
-                            alert("You must be signed in to add a review.");
+                            alert("You must be signed in to add a product to cart.");
                         }
                     } 
                 }); 
@@ -263,18 +263,20 @@
                                         </select>
                                     </label>
                                     <div class="row">
-                                        <div class="medium-5 columns">
+                                        <div class="medium-7 columns">
                                             <h3>
                                                 Price: ${product.price}$
                                             </h3>
                                         </div>
                                         <div class="medium-6 columns">
                                             <input type="hidden" name="prodID" id="prodID" value="${product.productId}">
-                                        <button id="addToCartBtn" class="button large expanded" value="Add To Cart">Add To Cart</button>
+                                        
                                         </div>
                                     </div>
+                                    </form>
+                                    <button id="addToCartBtn" class="button large expanded" value="Add To Cart">Add To Cart</button>
                                     <!-- <a href="http://foundation.zurb.com/templates-previews-sites-f6/product-page.html#" class="button large expanded">Add To Cart</a> -->
-                                </form>
+                                
                                 </c:forEach>
                                 
                                 <div class="small secondary expanded button-group">
@@ -315,8 +317,9 @@
                                         <input type="hidden" name="productId" id="productId" value="${productId}">
                                         <textarea id="userReview" name="userReview" placeholder="None"></textarea>
                                     </label>
-                                        <button id="addReviewBtn" class="button">Submit Review</button>
+                                        <!--<button id="addReviewBtn" class="button">Submit Review</button>-->
                                     </form>
+                                        <button id="addReviewBtn" class="button">Submit Review</button>
                                 </div>
                             </div>
                         </div>

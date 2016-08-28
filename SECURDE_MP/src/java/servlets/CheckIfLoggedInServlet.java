@@ -80,6 +80,7 @@ public class CheckIfLoggedInServlet extends HttpServlet {
                     if(cookie.getName().equals("user"))
                     {
                         flag = 1;
+                        System.out.println("YESSSSSS");
                         response.setContentType("text/plain");
                         response.setCharacterEncoding("UTF-8");
                         response.getWriter().write("Yes");
@@ -88,6 +89,7 @@ public class CheckIfLoggedInServlet extends HttpServlet {
             }
             if(flag == 0)
             {
+                System.out.println("Dapat NOOOOO");
                 response.setContentType("text/plain");
                 response.setCharacterEncoding("UTF-8");
                 response.getWriter().write("No");
