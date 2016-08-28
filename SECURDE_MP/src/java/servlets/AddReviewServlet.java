@@ -8,6 +8,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.Account;
+import model.Feedback;
 
 public class AddReviewServlet extends HttpServlet {
 
@@ -37,12 +39,18 @@ public class AddReviewServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        PrintWriter out = response.getWriter();
+        Controller controller = new Controller();
+        Account account = (Account) request.getSession(false).getAttribute("user");
+        int productId = Integer.parseInt(request.getParameter("productId"));
+        int accountId = Integer.parseInt(account.getAccountId());
         String review = request.getParameter("userReview");
-        RequestDispatcher rd = request.getRequestDispatcher("ProductDetailsPage.jsp");
-        System.out.println("Review: "+review);
-        rd.forward(request, response);
-        //processRequest(request, response);
+        Feedback feedback = new Feedback();
+        feedback.setFeedback(review);
+        int receiptId = controller.queryProductReceiptItemId(accountId, productId);
+        if(receiptId > 0){
+            controller.addFeedback(receiptId, feedback);
+        }
+        request.getRequestDispatcher("/ProductListServlet").forward(request, response);
     }
 
     @Override
