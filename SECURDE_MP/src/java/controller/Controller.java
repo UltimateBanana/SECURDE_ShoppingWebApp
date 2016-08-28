@@ -15,6 +15,7 @@ import model.Receipt;
 import model.ReceiptItem;
 import request.AccountRequest;
 import request.ProductRequest;
+import result.FeedbackResult;
 import result.SalesResult;
 
 public class Controller
@@ -107,6 +108,11 @@ public class Controller
     public ArrayList<Feedback> queryAllFeedbackByReceiptItem( int receiptItemId )
     {
 	return feedbackManager.queryAllFeedbackByReceiptItem(receiptItemId);
+    }
+    
+    public ArrayList<FeedbackResult> queryAllFeedbackByProductId( int productId )
+    {
+	return feedbackManager.queryAllFeedbackByProduct(productId);
     }
     
     public int addFeedback( int receiptItemId, Feedback feedback )

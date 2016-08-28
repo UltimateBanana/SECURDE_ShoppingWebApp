@@ -202,7 +202,7 @@ public class ReceiptItemManager
 		+ " FROM " + ReceiptItem.TABLE_NAME + " RI, " + Product.TABLE_NAME + " P "
 		+ " WHERE RI." + Product.COLUMN_PRODUCT_ID + " = P." + Product.COLUMN_PRODUCT_ID
 		+ " GROUP BY P." + Product.COLUMN_CATEGORY
-		+ " ORDER BY P." + Product.COLUMN_CATEGORY;
+		+ " ORDER BY P." + Product.COLUMN_CATEGORY + ";";
 	
 	try
 	{
@@ -234,7 +234,7 @@ public class ReceiptItemManager
 		+ " FROM " + ReceiptItem.TABLE_NAME + " RI, " + Product.TABLE_NAME + " P "
 		+ " WHERE RI." + Product.COLUMN_PRODUCT_ID + " = P." + Product.COLUMN_PRODUCT_ID
 		+ " GROUP BY P." + Product.COLUMN_NAME
-		+ " ORDER BY P." + Product.COLUMN_NAME;
+		+ " ORDER BY P." + Product.COLUMN_NAME + ";";
 	
 	try
 	{
