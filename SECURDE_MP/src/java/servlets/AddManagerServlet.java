@@ -61,9 +61,15 @@ public class AddManagerServlet extends HttpServlet {
         }
         else{
                 if(managerType.equals("1"))
-                    account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
+                {
+//                    account.setAccessLevel(AccessLevel.PRODUCT_MANAGER);
+                    account.setAccessLevel(AccessLevel.translateAccessLevelStringToEnum("PRODUCT MANAGER"));
+                }
                 else if(managerType.equals("2"))
-                    account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
+                {
+//                    account.setAccessLevel(AccessLevel.ACCOUNTING_MANAGER);
+                    account.setAccessLevel(AccessLevel.translateAccessLevelStringToEnum("ACCOUNTING MANAGER"));
+                }
                 account.setFirstName(firstName);
                 account.setMiddleName(middleInitial);
                 account.setLastName(lastName);
