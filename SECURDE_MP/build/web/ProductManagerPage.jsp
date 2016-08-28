@@ -122,7 +122,8 @@
                         <!--<h4>Administrator</h4>-->
                         <ul class="nav tabs" id="tabTitle">
                             <li class="active"><a id="tabTitle1" href="#tab1" data-toggle="tab">Product List</a></li>
-                            <li class=""><a id="tabTitle2" href="#tab2" data-toggle="tab">Add Product</a></li>                             
+                            <li class=""><a id="tabTitle2" href="#tab2" data-toggle="tab">Add Product</a></li>         
+                            <li class=""><a id="tabTitle2" href="#tab3" data-toggle="tab">Change Password</a></li> 
                         </ul>
                     </nav>
                     <!--<div><h2 class="add">Place for your add!</h2></div>-->
@@ -212,6 +213,34 @@
 <!--                                            <a href="javascript:;" class="btn btn-sm btn-success">Login</a>-->
                                     <div class="col-sm-12 form-group">
                                         <input type="submit" class="btn btn-success" id="addproductSubmit" name="addproductSubmit" value="Add Product" />
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <div class="tab-pane text-style" id="tab3">
+                        <h3>Change Password</h3>
+                        <hr>
+                        <div class="panel-body">
+                            <form role="form" id="changepasswordForm" name="changepasswordForm" action="ChangePasswordServlet" method="post">
+                                <fieldset>
+                                    
+                                    <label class="col-sm-3 control-label">Enter Current Password:</label>
+                                    <div class="col-sm-9 form-group">
+                                        <input class="form-control" placeholder="Password" name="currpasswordChangePass" id="currpasswordChangePass" type="password" value="">
+                                    </div>
+                                    <label class="col-sm-3 control-label">Enter New Password:</label>
+                                    <div class="col-sm-9 form-group">
+                                        <input class="form-control" placeholder="Password" name="newpasswordChangePass" id="newpasswordChangePass" type="password" value="">
+                                    </div>
+                                    <label class="col-sm-3 control-label">Confirm New Password:</label>
+                                    <div class="col-sm-9 form-group">
+                                        <input class="form-control" placeholder="Password" name="confnewpasswordChangePass" id="confnewpasswordChangePass" type="password" value="">
+                                    </div>
+                                    
+                                    <div class="col-sm-12 form-group">
+                                        <input type="submit" class="btn btn-primary editMe" id="changepasswordBtn" name="changepasswordBtn" value="Change Password" />
                                     </div>
                                 </fieldset>
                             </form>
