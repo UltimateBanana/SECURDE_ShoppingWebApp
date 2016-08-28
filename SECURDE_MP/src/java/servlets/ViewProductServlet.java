@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Product;
+import result.FeedbackResult;
 
 /**
  *
@@ -80,10 +81,11 @@ public class ViewProductServlet extends HttpServlet {
         String id = request.getParameter("prodID");
         Controller controller = new Controller();
         Product product = controller.queryProduct(Integer.parseInt(id));
-
+        ArrayList<FeedbackResult> reviewList = new ArrayList<FeedbackResult();
+        reviewList = controller.queryAllFeedbackByProductId(Integer.parseInt(id));
         ArrayList<Product> productList = new ArrayList<Product>();
         productList.add(product);
-        
+        request.setAttribute("reviews", reviewList);
         request.setAttribute("products", productList);
         request.getRequestDispatcher("/ProductDetailsPage.jsp").forward(request, response);
     }
